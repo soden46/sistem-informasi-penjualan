@@ -18,7 +18,7 @@
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <h5 class="text-white mb-4">Tentang</h5>
-                    <p>Tentang Perusahaan</p>
+                    <p>Sadiman Meubel Simbatan didirikan pada tahun 2001. Berawal dari usaha kecil kecilan yang didirikan oleh Ibu Warsi dan Bapak Sadiman, ternyata usaha ini mendapatkan respon positif dari warga sekitar. Tidak hanya menyediakan berbagai macam meubel, Sadiman Meubel juga menerima customize mulai dari meja, kursi, lemari, tempat tidur dan berbagai macam jenis meubel lainnya sesuai dengan permintaan konsumen.</p>
                 </div>
             </div>
         </div>
