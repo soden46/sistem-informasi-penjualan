@@ -15,17 +15,17 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name', 255);
-            $table->string('username')->unique();
+            $table->increments('id_user');
+            $table->string('username', 50);
+            $table->string('nama', 50);
+            $table->string('email')->unique();
+            $table->string('no_telepon', 15);
+            $table->text('alamat');
+            $table->enum('role', ['admin', 'pelanggan']);
+            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('phone', 25);
-            $table->string('email', 255);
-            $table->text('address');
-            $table->char('photo');
-            $table->enum('role', ['owner', 'admin', 'pelanggan'])->default('pelanggan');
-            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
+            $table->rememberToken();
+            $table->timestamps();
         });
     }
 

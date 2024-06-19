@@ -17,18 +17,6 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Demo URL
-    |--------------------------------------------------------------------------
-    |
-    | if true you can access to the demo documentation of the notify package
-    | here: http://localhost:8000/notify/demo, by default is true
-    |
-    */
-
-    'demo' => true,
-
-    /*
-    |--------------------------------------------------------------------------
     | Notification timeout
     |--------------------------------------------------------------------------
     |
@@ -36,7 +24,7 @@ return [
     |
     */
 
-    'timeout'   => 5000,
+    'timeout' => 5000,
 
     /*
     |--------------------------------------------------------------------------
@@ -52,9 +40,9 @@ return [
         // An example preset 'user updated' Connectify notification.
         'user-updated' => [
             'message' => 'The user has been updated successfully.',
-            'type'    => 'success',
-            'model'   => 'connect',
-            'title'   => 'User Updated',
+            'type' => 'success',
+            'model' => 'connect',
+            'title' => 'User Updated',
         ],
     ],
 

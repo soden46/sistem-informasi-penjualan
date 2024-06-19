@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <title>{{ $pagetitle . ' | ' . profile()->nama_perusahaan }}</title>
+    <title>{{ $pagetitle . ' | ' . "Nama Toko" }}</title>
     @include('home.layouts.meta')
     @include('home.layouts.css')
     @yield('css')
+    @notifyCss
 </head>
-
 <body>
-    <x:notify-messages />
+    <x-notify::notify />
     <!-- Spinner Start -->
     <div id="spinner"
         class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -31,7 +30,5 @@
     @include('home.layouts.js')
     @notifyJs
     @yield('js')
-
 </body>
-
 </html>

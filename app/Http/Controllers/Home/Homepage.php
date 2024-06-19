@@ -4,24 +4,21 @@ namespace App\Http\Controllers\Home;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Notify;
 
 class Homepage extends Controller
 {
     public function index()
     {
-
-        $profile = DB::table('settings')->get()->first();
         $barang = DB::table('barang')->get();
         $pelanggan = DB::table('users')->where('role', 'pelanggan')->get();
-        $transaksi = DB::table('penjualan as a')->where('status', '1')->get();
         $results = [
             'pagetitle' => 'Homepage',
-            'profile' => $profile,
             'barang' => $barang,
             'pelanggan' => $pelanggan,
-            'transaksi' => $transaksi,
         ];
 
+        notify()->success('Selamat datang di Homepage', 'Sukses');
         return view('home.pages.homepage', $results);
     }
 
@@ -51,10 +48,8 @@ class Homepage extends Controller
     public function faqs()
     {
 
-        $profile = DB::table('settings')->get()->first();
         $results = [
             'pagetitle' => 'Tentang Kami',
-            'profile' => $profile,
         ];
 
         return view('home.pages.about', $results);
@@ -62,11 +57,8 @@ class Homepage extends Controller
 
     public function custom_produk()
     {
-
-        $profile = DB::table('settings')->get()->first();
         $results = [
             'pagetitle' => 'Custom Produk',
-            'profile' => $profile,
         ];
 
         return view('home.pages.custom-produk', $results);
@@ -83,12 +75,10 @@ class Homepage extends Controller
     public function barang()
     {
 
-        $profile = DB::table('settings')->get()->first();
         $barang = DB::table('barang')->get();
 
         $results = [
             'pagetitle' => 'Furniture',
-            'profile' => $profile,
             'barang' => $barang,
         ];
 
@@ -98,11 +88,8 @@ class Homepage extends Controller
     public function profile()
     {
 
-        $profile = DB::table('settings')->get()->first();
-
         $results = [
             'pagetitle' => 'Profile',
-            'profile' => $profile,
         ];
 
         return view('home.pages.profile', $results);

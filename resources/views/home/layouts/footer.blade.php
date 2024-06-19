@@ -4,21 +4,21 @@
             <div class="row g-5">
                 <div class="col-lg-6 col-md-6">
                     <h5 class="text-white mb-4">Kantor Kami</h5>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>{{ profile()->alamat }}</p>
-                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>{{ profile()->telepon }}</p>
-                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>{{ profile()->email }}</p>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Alamat</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>Telepon</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>Email</p>
                     <div class="d-flex pt-3">
                         <a class="btn btn-square btn-primary rounded-circle me-2"
-                            href="https://wa.me/{{ profile()->whatsapp }}"><i class="fab fa-whatsapp"></i></a>
-                        <a class="btn btn-square btn-primary rounded-circle me-2" href="{{ profile()->facebook }}"><i
+                            href="https://wa.me/"><i class="fab fa-whatsapp"></i></a>
+                        <a class="btn btn-square btn-primary rounded-circle me-2" href="Facebook"><i
                                 class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-square btn-primary rounded-circle me-2" href="{{ profile()->instagram }}"><i
+                        <a class="btn btn-square btn-primary rounded-circle me-2" href="Instagram"><i
                                 class="fab fa-instagram"></i></a>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <h5 class="text-white mb-4">Tentang</h5>
-                    <p>{{ profile()->tentang }}</p>
+                    <p>Tentang Perusahaan</p>
                 </div>
             </div>
         </div>
@@ -29,7 +29,7 @@
     <!-- Copyright Start -->
     <div class="container-fluid copyright bg-dark py-4">
         <div class="container text-center">
-            <p class="mb-2">Copyright &copy; {{ date('Y') }} <a class="fw-semi-bold" href="#">{{ profile()->nama_perusahaan }}</a>
+            <p class="mb-2">Copyright &copy; {{ date('Y') }} <a class="fw-semi-bold" href="#">Nama Toko</a>
             </p>
         </div>
     </div>

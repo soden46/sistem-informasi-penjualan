@@ -8,8 +8,8 @@
         <div class="row g-5">
             <div class="col-lg-12 wow fadeInUp" data-wow-delay="0.1s">
                 <p class="fw-medium text-uppercase text-primary mb-2">Tentang Kami</p>
-                <h1 class="display-5 mb-4">{{ profile()->nama_perusahaan }}</h1>
-                <p class="mb-4" style="text-align: justify">{{ profile()->tentang }}</p>
+                <h1 class="display-5 mb-4">Nama PT</h1>
+                <p class="mb-4" style="text-align: justify">About</p>
                 <div class="row g-4">
                     <div class="col-4">
                         <div class="d-flex">
@@ -18,7 +18,7 @@
                             </div>
                             <div class="ms-3">
                                 <h6>Telepon</h6>
-                                <span>{{ profile()->telepon }}</span>
+                                <span>Telepon</span>
                             </div>
                         </div>
                     </div>
@@ -29,7 +29,7 @@
                             </div>
                             <div class="ms-3">
                                 <h6>Whatspp</h6>
-                                <span>{{ profile()->whatsapp }}</span>
+                                <span>Whatsapp</span>
                             </div>
                         </div>
                     </div>
@@ -40,7 +40,7 @@
                             </div>
                             <div class="ms-3">
                                 <h6>Email</h6>
-                                <span>{{ profile()->email }}</span>
+                                <span>Email</span>
                             </div>
                         </div>
                     </div>

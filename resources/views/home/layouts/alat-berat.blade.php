@@ -9,29 +9,29 @@
             @foreach ($barang as $item)
             <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="{{ $delay[rand(0, 5)] }}">
                 <div class="team-item">
-                    <img class="img-thumbnail" src="{{ url('assets/upload/images/barang/' . $item->gambar) }}" alt="" style="height: 210px;object-fit: cover;">
+                    <img class="img-thumbnail" src="{{ url('assets/upload/images/barang/') }}" alt="" style="height: 210px;object-fit: cover;">
                     <div class="d-flex">
                         <div class="flex-shrink-0 btn-square bg-primary" style="width: 90px; height: 90px;">
                             <img src="{{ url('assets/homepage/img/amartalogo.png') }}" alt="" style="height: 50px; width: auto; ">
                         </div>
                         <div class="position-relative overflow-hidden bg-light d-flex flex-column justify-content-center w-100 ps-4" style="height: 90px;">
-                            <h4 style="line-height: 14px">{{ $item->nama_barang }}</h4>
-                            <span class="text-primary">Rp.{{ number_format($item->harga) . '/' }}<small>{{ $item->jumlah }} Pcs</small>
+                            <h4 style="line-height: 14px">Nama Barang</h4>
+                            <span class="text-primary">Rp.<small> Pcs</small>
                             </span>
                             <div class="d-flex gap-2">
                                 @if ($item->stok == 'Tersedia')
-                                <span><i class="fa-solid fa-boxes-stacked"></i> Stok: {!!$item->stok!!}</span>
+                                <span><i class="fa-solid fa-boxes-stacked"></i> Stok: </span>
                                 @endif
 
                             </div>
                             <div class="team-social">
                                 @if ($item->stok == 'Tersedia')
-                                <a class="btn btn-dark mx-1" href="{{ url('detail-alat-berat/'. $item->id) }}"><i class="bi bi-file-earmark-plus"></i> Pesan</a>
+                                <a class="btn btn-dark mx-1" href="{{ url('detail-alat-berat/') }}"><i class="bi bi-file-earmark-plus"></i> Pesan</a>
                                 @else
                                 <button class="btn btn-warning disabled mx-1" href="">Tidak
                                     Tersedia</button>
                                 @endif
-                                <a class="btn btn-dark mx-1" href="{{ url('detail-alat-berat/' . $item->id) }}" id="id" name="id"><i class="bi bi-info-circle"></i>
+                                <a class="btn btn-dark mx-1" href="{{ url('detail-alat-berat/' ) }}" id="id" name="id"><i class="bi bi-info-circle"></i>
                                     Detail</a>
                             </div>
                         </div>

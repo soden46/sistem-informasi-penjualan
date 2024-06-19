@@ -8,8 +8,8 @@
                       <div class="container">
                           <div class="row justify-content-center">
                               <div class="col-lg-10 text-start">
-                                  <p class="fs-5 fw-medium text-primary text-uppercase animated slideInRight">{{ profile()->nama_perusahaan }} </p>
-                                  <h2 class="display-1 text-white mb-5 animated slideInRight">Selamat Datang di <br> {{ profile()->nama_perusahaan }}</h2>
+                                  <p class="fs-5 fw-medium text-primary text-uppercase animated slideInRight">Nama Toko</p>
+                                  <h2 class="display-1 text-white mb-5 animated slideInRight">Selamat Datang di <br> Nama Toko</h2>
                               </div>
                           </div>
                       </div>
@@ -21,7 +21,7 @@
                       <div class="container">
                           <div class="row justify-content-center">
                               <div class="col-lg-10 text-start">
-                                  <p class="fs-5 fw-medium text-primary text-uppercase animated slideInRight">{{ profile()->nama_perusahaan }}</p>
+                                  <p class="fs-5 fw-medium text-primary text-uppercase animated slideInRight">Nama Toko</p>
                                   <h2 class="display-1 text-white mb-5 animated slideInRight">Terbaik Dan Terpercaya
                                       Untuk Solusi Perabotan Anda</h2>
                               </div>

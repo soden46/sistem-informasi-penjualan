@@ -11,7 +11,7 @@
     <a href="{{ url('login') }}" class="btn btn-primary"><i class="bi bi-person"></i>
         Login Untuk Melakukan Pemesanan</a>
     @endif
-    <a href="https://wa.me/{{ profile()->whatsapp }}" class="btn btn-success"><i class="bi bi-whatsapp"></i> Whatspp</a>
+    <a href="https://wa.me/" class="btn btn-success"><i class="bi bi-whatsapp"></i> Whatspp</a>
 </div>
 <form action="{{ url('confirm-custom') }}" method="post" enctype="multipart/form-data">
     @csrf
