@@ -16,7 +16,7 @@
                         </div>
                         <div class="position-relative overflow-hidden bg-light d-flex flex-column justify-content-center w-100 ps-4" style="height: 90px;">
                             <h4 style="line-height: 14px">{{ $item->nama_barang }}</h4>
-                            <span class="text-primary">Rp.{{ $item->harga }}<small>{{ $item->satuan}}</small>
+                            <span class="text-primary">Rp.{{ $item->harga }}<small> /{{ $item->satuan}}</small>
                             </span>
                             <div class="d-flex gap-2">
                                 @if ($item->stok > 0)

@@ -46,7 +46,7 @@
                                 <label class="form-label fw-bold" for=""><i class="bi bi-shield-check"></i>
                                     Stok</label>
                                 <p>
-                                    {!! $barang->stok == 'Tersedia'
+                                    {!! $barang->stok > 0
                                     ? '<span class="badge bg-success">Tersedia</span>'
                                     : '<span class="badge bg-danger">Tidak Tersedia</span>' !!}</p>
                                 @if ($barang->stok == 'Tidak Tersedia')
@@ -75,7 +75,7 @@
                     <hr>
                     <div class="pt-2 pb-2 d-flex gap-3">
                         @if (login())
-                        @if ($barang->stok == 'Tersedia')
+                        @if ($barang->stok > 0)
                         <button class="btn btn-primary" onclick="myFunction()"><i class="bi bi-file-earmark-plus"></i> Mulai Pesan</button>
                         @endif
                         @else

@@ -26,7 +26,7 @@ class Homepage extends Controller
     {
 
         $barang = DB::table('barang as a')
-            ->select('a.id', 'a.id_kategori', 'a.nama_barang', 'a.bahan', 'a.deskripsi', 'a.jumlah', 'a.harga', 'a.gambar', 'a.finishing', 'a.ukuran', 'a.stok')
+            ->select('a.id', 'a.id_kategori', 'a.nama_barang', 'a.stok', 'a.satuan')
             ->where('a.id', '=', $id)
             ->get()->first();
         $kategori = DB::table('kategori as k')
@@ -34,10 +34,8 @@ class Homepage extends Controller
             ->join('barang as a', 'k.id', '=', 'a.id_kategori')
             ->where('a.id', '=', $id)
             ->get()->first();
-        $profile = DB::table('settings')->get()->first();
         $results = [
             'pagetitle' => 'Detail Produk',
-            'profile' => $profile,
             'barang' => $barang,
             'kategori' => $kategori
         ];
