@@ -1,5 +1,5 @@
 <div class="container-xxl py-5">
-    <div class="container">
+    <div class="container mb-4">
         <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
             <p class="fw-medium text-uppercase text-primary mb-2">Furniture</p>
             <h1 class="display-5 mb-5">Furniture</h1>
@@ -41,7 +41,7 @@
             @endforeach
         </div>
     </div>
-    <div class="container mt-8">
+    <div class="container mt-4">
         <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
             <p class="fw-medium text-uppercase text-primary mb-2">Kategori</p>
             <h1 class="display-5 mb-5">Kategori Furniture</h1>
