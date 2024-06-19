@@ -18,7 +18,7 @@ class Homepage extends Controller
             'pelanggan' => $pelanggan,
         ];
 
-        notify()->success('Selamat datang di Homepage', 'Sukses');
+
         return view('home.pages.homepage', $results);
     }
 
