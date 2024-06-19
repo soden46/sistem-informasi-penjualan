@@ -29,7 +29,8 @@
     <!-- Copyright Start -->
     <div class="container-fluid copyright bg-dark py-4">
         <div class="container text-center">
-            <p class="mb-2">Copyright &copy; {{ date('Y') }} <a class="fw-semi-bold" href="#">Nama Toko</a>
+            <p class="mb-2">Copyright &copy; {{ date('Y') }} <a class="fw-semi-bold" href="#">⁠Sadiman Meubel Simbatan
+</a>
             </p>
         </div>
     </div>

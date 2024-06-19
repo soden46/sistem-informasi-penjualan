@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>{{ $pagetitle . ' | ' . "Nama Toko" }}</title>
+    <title>{{ $pagetitle . ' | ' . "⁠Sadiman Meubel Simbatan" }}</title>
     @include('home.layouts.meta')
     @include('home.layouts.css')
     @yield('css')
