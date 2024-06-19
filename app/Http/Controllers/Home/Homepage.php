@@ -76,10 +76,11 @@ class Homepage extends Controller
     {
 
         $barang = DB::table('barang')->get();
-
+        $kategori = DB::table('kategori')->get();
         $results = [
             'pagetitle' => 'Furniture',
             'barang' => $barang,
+            'kategori' => $kategori,
         ];
 
         return view('home.pages.barang', $results);
