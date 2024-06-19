@@ -11,11 +11,13 @@ class Homepage extends Controller
     public function index()
     {
         $barang = DB::table('barang')->get();
+        $kategori = DB::table('kategori')->get();
         $pelanggan = DB::table('users')->where('role', 'pelanggan')->get();
         $results = [
             'pagetitle' => 'Homepage',
             'barang' => $barang,
             'pelanggan' => $pelanggan,
+            'kategori' => $kategori,
         ];
 
 
