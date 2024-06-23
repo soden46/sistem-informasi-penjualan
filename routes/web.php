@@ -20,7 +20,7 @@ Route::get('/cara-pemesanan', 'App\Http\Controllers\Home\Homepage@cara')->name('
 Route::get('/produk', 'App\Http\Controllers\Home\Homepage@barang')->name('produk');
 Route::get('/pelanggan/custom-produk', 'App\Http\Controllers\Home\Homepage@custom_produk')->name('custom_produk');
 Route::get('/profil-pengguna', 'App\Http\Controllers\Home\Homepage@profile')->name('profile');
-Route::get('/detail-mebel/{id}', 'App\Http\Controllers\Home\Homepage@detail')->name('detail')->middleware('cek_login:pelanggan');
+Route::get('/detail-mebel/{id_barang}', 'App\Http\Controllers\Home\Homepage@detail')->name('detail')->middleware('cek_login:pelanggan');
 Route::get('/transaksi', 'App\Http\Controllers\Home\Transaksi@index')->name('Transaksi')->middleware('cek_login:pelanggan');
 Route::get('/invoice/{post}', 'App\Http\Controllers\Home\Transaksi@invoice')->name('invoice')->middleware('cek_login:pelanggan');
 Route::get('/invoicec/{post}', 'App\Http\Controllers\Home\Transaksi@invoicec')->name('invoicec')->middleware('cek_login:pelanggan');

@@ -67,7 +67,7 @@ class Barang extends Controller
     public function update(Request $request, $id_barang)
     {
         $rules =  [
-            'id_kategori' => ['string', 'min:3', 'max:191', 'nullable'],
+            'id_kategori' => ['string', 'nullable'],
             'nama_barang' => ['string', 'min:3', 'max:191', 'nullable'],
             'deskripsi' => ['string', 'min:3', 'max:191', 'nullable'],
             'stok' => ['string', 'nullable'],
