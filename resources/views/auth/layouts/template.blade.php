@@ -5,12 +5,6 @@
     @include('admin/layouts/meta')
     @include('admin/layouts/css')
     @notifyCss
-    <style type="text/css">
-        .notify {
-            z-index: 1000000;
-            margin-top: 2%;
-        }
-    </style>
 </head>
 
 <body
