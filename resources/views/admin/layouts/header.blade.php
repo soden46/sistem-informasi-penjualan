@@ -3,7 +3,7 @@
     <div class="d-flex align-items-center justify-content-between">
         <a href="{{ url('') }}" class="logo d-flex align-items-center">
             <img src="{{ url('assets/homepage/img/amarta.png') }}" alt="">
-            <span class="d-none d-lg-block fs-6">{{ profile()->nama_perusahaan }}</span>
+            <span class="d-none d-lg-block fs-6">Sadiman Meubel Simbatan</span>
         </a>
         <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -13,16 +13,16 @@
             <li class="nav-item dropdown pe-3">
 
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                    <img src="{{ url('assets/admin/images/users/' . login()->photo) }}" alt="Profile" class="rounded-circle">
-                    <span class="d-none d-md-block dropdown-toggle ps-2">{{ login()->name }}</span>
+                    {{-- <img src="{{ url('assets/admin/images/users/' . login()->photo) }}" alt="Profile" class="rounded-circle"> --}}
+                    <span class="d-none d-md-block dropdown-toggle ps-2">{{ login()->nama }}</span>
                 </a><!-- End Profile Image Icon -->
 
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                     <div class="d-flex justify-content-center">
-                        <img src="{{ url('assets/admin/images/users/' . login()->photo) }}" alt="Profile" class="rounded-circle" style="height: 100px; width: auto">
+                        {{-- <img src="{{ url('assets/admin/images/users/' . login()->photo) }}" alt="Profile" class="rounded-circle" style="height: 100px; width: auto"> --}}
                     </div>
                     <li class="dropdown-header">
-                        <h6>{{ login()->name }}</h6>
+                        <h6>{{ login()->nama }}</h6>
                         <span>{{ login()->role }}</span>
                     </li>
                     <li>
