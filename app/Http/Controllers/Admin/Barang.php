@@ -14,7 +14,7 @@ class Barang extends Controller
     {
         $barang = DB::table('barang as a')
             ->select('a.*', 'b.id', 'b.kategori')
-            ->join('kategori as b', 'a.id_kategori', '=', 'b.id')
+            ->join('kategori as b', 'a.id_kategori', '=', 'b.id_kategori')
             ->get();
 
         $results = [
@@ -29,10 +29,11 @@ class Barang extends Controller
     {
 
         $rules =  [
-            'kategori' => ['string', 'min:3', 'max:191', 'required'],
-            'sku' => ['string', 'min:3', 'max:191', 'required'],
-            'bahan' => ['string', 'min:3', 'max:191', 'required'],
+            'id_kategori' => ['string', 'min:3', 'max:191', 'required'],
+            'nama_barang' => ['string', 'min:3', 'max:191', 'required'],
             'deskripsi' => ['string', 'min:3', 'max:191', 'required'],
+            'stok' => ['string', 'min:3', 'max:191', 'required'],
+            'satuan' => ['string', 'min:3', 'max:191', 'required'],
             'harga' => ['string', 'min:3', 'max:191', 'required'],
             'foto' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048|dimensions:min_width=100,min_height=100,max_width=1000,max_height=1000',
         ];
@@ -64,10 +65,11 @@ class Barang extends Controller
     public function update(Request $request, $id)
     {
         $rules =  [
-            'kategori' => ['string', 'min:3', 'max:191', 'required'],
-            'sku' => ['string', 'min:3', 'max:191', 'required'],
-            'bahan' => ['string', 'min:3', 'max:191', 'required'],
+            'id_kategori' => ['string', 'min:3', 'max:191', 'required'],
+            'nama_barang' => ['string', 'min:3', 'max:191', 'required'],
             'deskripsi' => ['string', 'min:3', 'max:191', 'required'],
+            'stok' => ['string', 'min:3', 'max:191', 'required'],
+            'satuan' => ['string', 'min:3', 'max:191', 'required'],
             'harga' => ['string', 'min:3', 'max:191', 'required'],
             'foto' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048|dimensions:min_width=100,min_height=100,max_width=1000,max_height=1000',
         ];

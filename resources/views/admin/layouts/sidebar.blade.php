@@ -50,13 +50,6 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link collapsed " href="{{ url('data-profil-perusahaan') }}">
-                <i class="bi bi-building"></i>
-                <span>Profil Perusahaan</span>
-            </a>
-        </li>
-
-        <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#pengguna-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-people"></i><span>Pengguna</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>

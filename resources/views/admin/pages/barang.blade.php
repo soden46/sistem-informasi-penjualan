@@ -30,12 +30,10 @@
                                                 <th scope="col">#</th>
                                                 <th scope="col">Kategori</th>
                                                 <th scope="col">Nama Barang</th>
-                                                <th scope="col">Bahan</th>
                                                 <th scope="col">Deskripsi</th>
-                                                <th scope="col">Ukuran</th>
-                                                <th scope="col">Jumlah</th>
-                                                <th scope="col">Harga</th>
                                                 <th scope="col">Stok</th>
+                                                <th scope="col">Satuan</th>
+                                                <th scope="col">Harga</th>
                                                 <th scope="col">Aksi</th>
                                             </tr>
                                         </thead>
@@ -43,19 +41,17 @@
                                             @foreach ($barang as $no => $item)
                                             <tr>
                                                 <th scope="row">{{ $no + 1 }}</th>
-                                                <td>{{ $item->kategori }}</td>
+                                                <td>{{ $item->kategori->nama_kategori }}</td>
                                                 <td>{{ $item->nama_barang }}</td>
-                                                <td>{{ $item->bahan}}</td>
                                                 <td>{{ $item->deskripsi}}</td>
-                                                <td>{{ $item->ukuran}}</td>
-                                                <td>{{ $item->jumlah}}</td>
-                                                <td>{{ $item->harga}}</td>
                                                 <td>{{ $item->stok}}</td>
+                                                <td>{{ $item->satuan}}</td>
+                                                <td>{{ $item->harga}}</td>
                                                 <td>
                                                     <div class="d-flex justify-content-center gap-2">
-                                                        <a href="javascript:void(0);" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#view-{{ $item->id }}"><i class="bi bi-eye"></i> Lihat</a>
-                                                        <a href="javascript:void(0);" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#edit-{{ $item->id }}"><i class="bi bi-pencil"></i> Ubah</a>
-                                                        <a href="javascript:void(0);" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#delete-{{ $item->id }}"><i class="bi bi-trash"></i> Hapus</a>
+                                                        <a href="javascript:void(0);" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#view-{{ $item->id_barang }}"><i class="bi bi-eye"></i> Lihat</a>
+                                                        <a href="javascript:void(0);" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#edit-{{ $item->id_barang }}"><i class="bi bi-pencil"></i> Ubah</a>
+                                                        <a href="javascript:void(0);" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#delete-{{ $item->id_barang }}"><i class="bi bi-trash"></i> Hapus</a>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -79,15 +75,15 @@
                                     @csrf
                                     <div class="modal-body">
                                         <div class="row pt-2">
-                                            <label for="kategori" class="col-sm-2 col-form-label">Kategori</label>
+                                            <label for="id_kategori" class="col-sm-2 col-form-label">Kategori</label>
                                             <div class="col-sm-10">
-                                                <select name="kategori" id="kategori" class="form-select @error('kategori') is-invalid @enderror">
+                                                <select name="id_kategori" id="id_kategori" class="form-select @error('id_kategori') is-invalid @enderror">
                                                     <option value="">--Pilih--</option>
                                                     @foreach ($barang as $data)
-                                                    <option value="{{ $data->kategori }}">{{ $data->kategori }}</option>
+                                                    <option value="{{ $data->id_kategori }}">{{ $data->nama_kategori }}</option>
                                                     @endforeach
                                                 </select>
-                                                @error('kategori')
+                                                @error('id_kategori')
                                                 <div class="text-danger">
                                                     {{ $message }}
                                                 </div>
@@ -95,21 +91,10 @@
                                             </div>
                                         </div>
                                         <div class="row pt-2">
-                                            <label for="sku" class="col-sm-2 col-form-label">Nama Barang</label>
+                                            <label for="nama_barang" class="col-sm-2 col-form-label">Nama Barang</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control @error('sku') is-invalid @enderror" name="sku" id="guru" placeholder="Masukan Nama Barang">
-                                                @error('sku')
-                                                <div class="text-danger">
-                                                    {{ $message }}
-                                                </div>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                        <div class="row pt-2">
-                                            <label for="bahan" class="col-sm-2 col-form-label">Bahan</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control @error('bahan') is-invalid @enderror" name="bahan" id="guru" placeholder="Masukan bahan">
-                                                @error('bahan')
+                                                <input type="text" class="form-control @error('nama_barang') is-invalid @enderror" name="nama_barang" id="guru" placeholder="Masukan Nama Barang">
+                                                @error('nama_barang')
                                                 <div class="text-danger">
                                                     {{ $message }}
                                                 </div>
@@ -121,6 +106,28 @@
                                             <div class="col-sm-10">
                                                 <input type="text" class="form-control @error('deskripsi') is-invalid @enderror" name="deskripsi" id="guru" placeholder="Masukan Deskripsi">
                                                 @error('deskripsi')
+                                                <div class="text-danger">
+                                                    {{ $message }}
+                                                </div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="row pt-2">
+                                            <label for="stok" class="col-sm-2 col-form-label">Stok</label>
+                                            <div class="col-sm-10">
+                                                <input type="number" min="0" class="form-control @error('stok') is-invalid @enderror" name="stok" id="guru" placeholder="Masukan stok">
+                                                @error('stok')
+                                                <div class="text-danger">
+                                                    {{ $message }}
+                                                </div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="row pt-2">
+                                            <label for="satuan" class="col-sm-2 col-form-label">Satuan</label>
+                                            <div class="col-sm-10">
+                                                <input type="number" min="0" class="form-control @error('satuan') is-invalid @enderror" name="satuan" id="guru" placeholder="Masukan satuan">
+                                                @error('satuan')
                                                 <div class="text-danger">
                                                     {{ $message }}
                                                 </div>
@@ -159,14 +166,14 @@
                         </div>
                     </div>
                     @foreach ($barang as $item)
-                    <div class="modal fade" id="delete-{{ $item->id }}" tabindex="-1">
+                    <div class="modal fade" id="delete-{{ $item->id_barang }}" tabindex="-1">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title">Hapus {{ $pagetitle }}</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
-                                <form action="{{ url('delete-data-mebel/' . $item->id) }}" method="post">
+                                <form action="{{ url('delete-data-mebel/' . $item->id_barang) }}" method="post">
                                     @method('DELETE')
                                     @csrf
                                     <div class="modal-body">
@@ -181,27 +188,27 @@
                         </div>
                     </div>
 
-                    <div class="modal fade" id="edit-{{ $item->id }}" tabindex="-1">
+                    <div class="modal fade" id="edit-{{ $item->id_barang }}" tabindex="-1">
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title">Edit {{ $pagetitle }}</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
-                                <form action="{{ url('update-data-mebel/' . $item->id) }}" method="post" enctype="multipart/form-data">
+                                <form action="{{ url('update-data-mebel/' . $item->id_barang) }}" method="post" enctype="multipart/form-data">
                                     @method('put')
                                     @csrf
                                     <div class="modal-body">
                                         <div class="row pt-2">
-                                            <label for="kategori" class="col-sm-2 col-form-label">Kategori</label>
+                                            <label for="id_kategori" class="col-sm-2 col-form-label">Kategori</label>
                                             <div class="col-sm-10">
-                                                <select name="kategori" id="kategori" class="form-select @error('kategori') is-invalid @enderror">
+                                                <select name="id_kategori" id="id_kategori" class="form-select @error('id_kategori') is-invalid @enderror">
                                                     <option value="">--Pilih--</option>
                                                     @foreach ($barang as $data)
-                                                    <option {!! $item->kategori == $data->kategori ? 'selected' : '' !!} value="{{ $data->kategori }}">{{ $data->kategori }}</option>
+                                                    <option {!! $item->id_kategori == $data->id_kategori ? 'selected' : '' !!} value="{{ $data->kategori->nama_kategori }}">{{ $data->kategori }}</option>
                                                     @endforeach
                                                 </select>
-                                                @error('kategori')
+                                                @error('id_kategori')
                                                 <div class="text-danger">
                                                     {{ $message }}
                                                 </div>
@@ -209,10 +216,10 @@
                                             </div>
                                         </div>
                                         <div class="row pt-2">
-                                            <label for="sku" class="col-sm-2 col-form-label">Nama Barang</label>
+                                            <label for="nama_barang" class="col-sm-2 col-form-label">Nama Barang</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control @error('sku') is-invalid @enderror" name="sku" value="{!! $item->nama_barang !!}" id="sku" placeholder="Masukan Nama Barang">
-                                                @error('sku')
+                                                <input type="text" class="form-control @error('nama_barang') is-invalid @enderror" name="nama_barang" value="{!! $item->nama_barang !!}" id="nama_barang" placeholder="Masukan Nama Barang">
+                                                @error('nama_barang')
                                                 <div class="text-danger">
                                                     {{ $message }}
                                                 </div>
@@ -220,7 +227,7 @@
                                             </div>
                                         </div>
                                         <div class="row pt-2">
-                                            <label for="harga" class="col-sm-2 col-form-label">Harga Sewa</label>
+                                            <label for="harga" class="col-sm-2 col-form-label">Harga</label>
                                             <div class="col-sm-10">
                                                 <input type="number" min="0" class="form-control @error('harga') is-invalid @enderror" name="harga" value="{{ $item->harga }}" id="harga" placeholder="Masukan Harga">
                                                 @error('harga')
