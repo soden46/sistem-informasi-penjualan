@@ -25,7 +25,7 @@ class Type extends Controller
     {
 
         $rules =  [
-            'nama_kategori' => ['string', 'min:3', 'max:191', 'required', 'unique:nama_kategori'],
+            'nama_kategori' => ['string', 'min:3', 'max:191', 'required'],
         ];
         if ($request->validate($rules)) {
             TypeModel::insert($request->validate($rules));

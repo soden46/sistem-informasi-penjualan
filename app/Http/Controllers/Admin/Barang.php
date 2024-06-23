@@ -17,10 +17,13 @@ class Barang extends Controller
             ->join('kategori as b', 'a.id_kategori', '=', 'b.id_kategori')
             ->get();
 
+        $kategori = DB::table('kategori')->get();
+
         $results = [
             'pagetitle' => 'Data Produk',
             'uri' => 'admin',
             'barang' => $barang,
+            'kategori' => $kategori,
         ];
         return view('admin.pages.barang', $results);
     }
@@ -35,7 +38,7 @@ class Barang extends Controller
             'stok' => ['string', 'min:3', 'max:191', 'required'],
             'satuan' => ['string', 'min:3', 'max:191', 'required'],
             'harga' => ['string', 'min:3', 'max:191', 'required'],
-            'foto' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048|dimensions:min_width=100,min_height=100,max_width=1000,max_height=1000',
+            'foto' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg|max:2048|dimensions:min_width=100,min_height=100,max_width=1000,max_height=1000',
         ];
         if ($request->validate($rules)) {
             $foto = $request['foto'];
@@ -62,7 +65,7 @@ class Barang extends Controller
         }
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_barang)
     {
         $rules =  [
             'id_kategori' => ['string', 'min:3', 'max:191', 'required'],
@@ -71,11 +74,11 @@ class Barang extends Controller
             'stok' => ['string', 'min:3', 'max:191', 'required'],
             'satuan' => ['string', 'min:3', 'max:191', 'required'],
             'harga' => ['string', 'min:3', 'max:191', 'required'],
-            'foto' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048|dimensions:min_width=100,min_height=100,max_width=1000,max_height=1000',
+            'foto' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg|max:2048|dimensions:min_width=100,min_height=100,max_width=1000,max_height=1000',
         ];
 
         if ($request->validate($rules)) {
-            $barang = BarangModel::find($id);
+            $barang = BarangModel::find($id_barang);
             $foto = $request['foto'];
 
             if ($request->foto != '') {
@@ -96,7 +99,7 @@ class Barang extends Controller
                 $validatedData = $request->validate($rules);
                 $concat = $validatedData;
             }
-            BarangModel::where('id', $id)->update($concat);
+            BarangModel::where('id_barang', $id_barang)->update($concat);
 
             notify()->success('Data telah diperbarui', 'Berhasil');
             return back();
@@ -106,10 +109,10 @@ class Barang extends Controller
         }
     }
 
-    public function delete($id)
+    public function delete($id_barang)
     {
-        if ($id != "") {
-            BarangModel::where('id', $id)->delete();
+        if ($id_barang != "") {
+            BarangModel::where('id_barang', $id_barang)->delete();
             notify()->success('Data telah dihapus', 'Berhasil');
             return back();
         } else {

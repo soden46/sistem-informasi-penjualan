@@ -12,6 +12,6 @@ class TypeModel extends Model
     protected $table = 'kategori';
     protected $fillable = [
         'id_kategori',
-        'kategori',
+        'nama_kategori',
     ];
 }

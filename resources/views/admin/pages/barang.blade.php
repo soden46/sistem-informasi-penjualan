@@ -79,7 +79,7 @@
                                             <div class="col-sm-10">
                                                 <select name="id_kategori" id="id_kategori" class="form-select @error('id_kategori') is-invalid @enderror">
                                                     <option value="">--Pilih--</option>
-                                                    @foreach ($barang as $data)
+                                                    @foreach ($kategori as $data)
                                                     <option value="{{ $data->id_kategori }}">{{ $data->nama_kategori }}</option>
                                                     @endforeach
                                                 </select>
