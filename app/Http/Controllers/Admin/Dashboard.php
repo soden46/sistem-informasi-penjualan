@@ -17,7 +17,7 @@ class Dashboard extends Controller
         $pelanggan = DB::table('users')->where('role', 'pelanggan')->get();
         $barang = DB::table('barang')->get();
         $transaksi = DB::table('pembelian as a')
-            ->select('a.*', 'b.id_kategori', 'b.nama_barang', 'b.bahan', 'b.deskripsi', 'b.harga', 'b.satuan as per', 'c.nama as nama_pelanggan', 'c.no_telepon', 'c.email')
+            ->select('a.*', 'b.id_kategori', 'b.nama_barang', 'b.deskripsi', 'b.harga', 'b.satuan as per', 'c.nama as nama_pelanggan', 'c.no_telepon', 'c.email')
             ->join('barang as b', 'a.id_barang', '=', 'b.id')
             ->join('users as c', 'a.id_pelanggan', '=', 'c.id')
             ->get();
