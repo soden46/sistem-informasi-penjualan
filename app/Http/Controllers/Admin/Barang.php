@@ -30,14 +30,13 @@ class Barang extends Controller
 
     public function create(Request $request)
     {
-
         $rules =  [
-            'id_kategori' => ['string', 'min:3', 'max:191', 'required'],
+            'id_kategori' => ['string', 'required'],
             'nama_barang' => ['string', 'min:3', 'max:191', 'required'],
             'deskripsi' => ['string', 'min:3', 'max:191', 'required'],
-            'stok' => ['string', 'min:3', 'max:191', 'required'],
-            'satuan' => ['string', 'min:3', 'max:191', 'required'],
-            'harga' => ['string', 'min:3', 'max:191', 'required'],
+            'stok' => ['string',  'required'],
+            'satuan' => ['string',  'required'],
+            'harga' => ['string',  'required'],
             'foto' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg|max:2048|dimensions:min_width=100,min_height=100,max_width=1000,max_height=1000',
         ];
         if ($request->validate($rules)) {
@@ -68,12 +67,12 @@ class Barang extends Controller
     public function update(Request $request, $id_barang)
     {
         $rules =  [
-            'id_kategori' => ['string', 'min:3', 'max:191', 'required'],
-            'nama_barang' => ['string', 'min:3', 'max:191', 'required'],
-            'deskripsi' => ['string', 'min:3', 'max:191', 'required'],
-            'stok' => ['string', 'min:3', 'max:191', 'required'],
-            'satuan' => ['string', 'min:3', 'max:191', 'required'],
-            'harga' => ['string', 'min:3', 'max:191', 'required'],
+            'id_kategori' => ['string', 'min:3', 'max:191', 'nullable'],
+            'nama_barang' => ['string', 'min:3', 'max:191', 'nullable'],
+            'deskripsi' => ['string', 'min:3', 'max:191', 'nullable'],
+            'stok' => ['string', 'nullable'],
+            'satuan' => ['string', 'nullable'],
+            'harga' => ['string', 'nullable'],
             'foto' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg|max:2048|dimensions:min_width=100,min_height=100,max_width=1000,max_height=1000',
         ];
 

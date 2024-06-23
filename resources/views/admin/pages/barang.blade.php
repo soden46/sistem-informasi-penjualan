@@ -41,7 +41,7 @@
                                             @foreach ($barang as $no => $item)
                                             <tr>
                                                 <th scope="row">{{ $no + 1 }}</th>
-                                                <td>{{ $item->kategori->nama_kategori }}</td>
+                                                <td>{{ $item->nama_kategori }}</td>
                                                 <td>{{ $item->nama_barang }}</td>
                                                 <td>{{ $item->deskripsi}}</td>
                                                 <td>{{ $item->stok}}</td>
@@ -126,7 +126,7 @@
                                         <div class="row pt-2">
                                             <label for="satuan" class="col-sm-2 col-form-label">Satuan</label>
                                             <div class="col-sm-10">
-                                                <input type="number" min="0" class="form-control @error('satuan') is-invalid @enderror" name="satuan" id="guru" placeholder="Masukan satuan">
+                                                <input type="text" min="0" class="form-control @error('satuan') is-invalid @enderror" name="satuan" id="guru" placeholder="Masukan satuan">
                                                 @error('satuan')
                                                 <div class="text-danger">
                                                     {{ $message }}
@@ -205,7 +205,7 @@
                                                 <select name="id_kategori" id="id_kategori" class="form-select @error('id_kategori') is-invalid @enderror">
                                                     <option value="">--Pilih--</option>
                                                     @foreach ($barang as $data)
-                                                    <option {!! $item->id_kategori == $data->id_kategori ? 'selected' : '' !!} value="{{ $data->kategori->nama_kategori }}">{{ $data->kategori }}</option>
+                                                    <option {!! $item->id_kategori == $data->id_kategori ? 'selected' : '' !!} value="{{ $data->id_kategori }}">{{ $data->nama_kategori }}</option>
                                                     @endforeach
                                                 </select>
                                                 @error('id_kategori')
@@ -220,6 +220,39 @@
                                             <div class="col-sm-10">
                                                 <input type="text" class="form-control @error('nama_barang') is-invalid @enderror" name="nama_barang" value="{!! $item->nama_barang !!}" id="nama_barang" placeholder="Masukan Nama Barang">
                                                 @error('nama_barang')
+                                                <div class="text-danger">
+                                                    {{ $message }}
+                                                </div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="row pt-2">
+                                            <label for="deskripsi" class="col-sm-2 col-form-label">Deskripsi</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control @error('deskripsi') is-invalid @enderror" name="deskripsi" value="{!! $item->deskripsi !!}" id="deskripsi" placeholder="Masukan Nama Barang">
+                                                @error('deskripsi')
+                                                <div class="text-danger">
+                                                    {{ $message }}
+                                                </div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="row pt-2">
+                                            <label for="stok" class="col-sm-2 col-form-label">Stok</label>
+                                            <div class="col-sm-10">
+                                                <input type="number" min="0" class="form-control @error('stok') is-invalid @enderror" name="stok" value="{{ $item->stok }}" id="stok" placeholder="Masukan stok">
+                                                @error('stok')
+                                                <div class="text-danger">
+                                                    {{ $message }}
+                                                </div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="row pt-2">
+                                            <label for="satuan" class="col-sm-2 col-form-label">Satuan</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" min="0" class="form-control @error('satuan') is-invalid @enderror" name="satuan" value="{{ $item->satuan }}" id="satuan" placeholder="Masukan satuan">
+                                                @error('satuan')
                                                 <div class="text-danger">
                                                     {{ $message }}
                                                 </div>
@@ -258,7 +291,7 @@
                         </div>
                     </div>
 
-                    <div class="modal fade" id="view-{{ $item->id }}" tabindex="-1">
+                    <div class="modal fade" id="view-{{ $item->id_barang }}" tabindex="-1">
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -278,7 +311,7 @@
                                                     <tr>
                                                         <th>Kategori</th>
                                                         <th>:</th>
-                                                        <td>{{ $item->kategori }}</td>
+                                                        <td>{{ $item->nama_kategori }}</td>
                                                     </tr>
                                                     <tr>
                                                         <th>Nama Barang</th>
@@ -288,7 +321,7 @@
                                                     <tr>
                                                         <th>Harga</th>
                                                         <th>:</th>
-                                                        <th>{{ 'Rp.'. number_format($item->harga) .'/'. $item->jumlah  }}</th>
+                                                        <th>{{ 'Rp.'. number_format($item->harga) .'/'. $item->satuan  }}</th>
                                                     </tr>
                                                 </table>
                                             </div>
