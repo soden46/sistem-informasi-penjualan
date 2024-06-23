@@ -91,14 +91,14 @@ class Transaksi extends Controller
         ];
 
         if ($request->validate($rules)) {
-            $gambar = $request['bukti_pembayaran'];
+            $foto = $request['bukti_pembayaran'];
             if ($request->bukti_pembayaran != '') {
                 $location = 'assets/upload/images/bukti_pembayaran/';
-                $name = now()->timestamp . "_{$gambar->getClientOriginalName()}";
+                $name = now()->timestamp . "_{$foto->getClientOriginalName()}";
                 $results =  [
                     'bukti_pembayaran' => $name
                 ];
-                $gambar->move($location, $name);
+                $foto->move($location, $name);
                 TransaksiModel::where('id', $id)->update($results);
                 notify()->success('Bukti Pembayaran Terkirim, Tunggu Konfirmasi Admin', 'Berhasil');
                 return back();

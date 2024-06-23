@@ -88,7 +88,6 @@
                         <th class="th">Jumlah</th>
                         <th class="th">Harga (Rp.)</th>
                         <th class="th">Stok</th>
-                        <th class="th">Gambar</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -104,7 +103,6 @@
                         <td class="td">{{ $item->jumlah }}</td>
                         <td class="td">{{ $item->harga }}</td>
                         <td class="td">{{ $item->stok }}</td>
-                        <td class="td">{{ $item->gambar }}</td>
                     </tr>
                     @endforeach
                 </tbody>

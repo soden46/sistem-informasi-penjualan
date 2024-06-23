@@ -41,7 +41,6 @@
                                                 <th>Jumlah</th>
                                                 <th>Harga</th>
                                                 <th>Stok</th>
-                                                <th>Gambar</th>
                                                 <th>Status</th>
                                             </tr>
                                         </thead>

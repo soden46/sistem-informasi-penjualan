@@ -33,19 +33,19 @@ class Barang extends Controller
             'bahan' => ['string', 'min:3', 'max:191', 'required'],
             'deskripsi' => ['string', 'min:3', 'max:191', 'required'],
             'harga' => ['string', 'min:3', 'max:191', 'required'],
-            'gambar' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048|dimensions:min_width=100,min_height=100,max_width=1000,max_height=1000',
+            'foto' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048|dimensions:min_width=100,min_height=100,max_width=1000,max_height=1000',
         ];
         if ($request->validate($rules)) {
-            $gambar = $request['gambar'];
+            $foto = $request['foto'];
             $results_data = $request->validate($rules);
-            if ($gambar != "") {
-                $name = now()->timestamp . "_{$gambar->getClientOriginalName()}";
+            if ($foto != "") {
+                $name = now()->timestamp . "_{$foto->getClientOriginalName()}";
                 $results =  [
-                    'gambar' => $name
+                    'foto' => $name
                 ];
                 $concat = array_merge($results_data, $results);
                 $location = 'assets/upload/images/barang/';
-                $gambar->move($location, $name);
+                $foto->move($location, $name);
             } else {
                 $validatedData = $results_data;
                 $concat = $validatedData;
@@ -68,27 +68,27 @@ class Barang extends Controller
             'bahan' => ['string', 'min:3', 'max:191', 'required'],
             'deskripsi' => ['string', 'min:3', 'max:191', 'required'],
             'harga' => ['string', 'min:3', 'max:191', 'required'],
-            'gambar' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048|dimensions:min_width=100,min_height=100,max_width=1000,max_height=1000',
+            'foto' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048|dimensions:min_width=100,min_height=100,max_width=1000,max_height=1000',
         ];
 
         if ($request->validate($rules)) {
             $barang = BarangModel::find($id);
-            $gambar = $request['gambar'];
+            $foto = $request['foto'];
 
-            if ($request->gambar != '') {
+            if ($request->foto != '') {
 
                 $location = 'assets/upload/images/barang/';
-                if ($barang->gambar != ''  && $barang->gambar != null) {
-                    $file_old = $location . $barang->gambar;
+                if ($barang->foto != ''  && $barang->foto != null) {
+                    $file_old = $location . $barang->foto;
                     unlink($file_old);
                 }
-                $name = now()->timestamp . "_{$gambar->getClientOriginalName()}";
+                $name = now()->timestamp . "_{$foto->getClientOriginalName()}";
                 $results =  [
-                    'gambar' => $name
+                    'foto' => $name
                 ];
                 $validatedData = $request->validate($rules);
                 $concat = array_merge($validatedData, $results);
-                $gambar->move($location, $name);
+                $foto->move($location, $name);
             } else {
                 $validatedData = $request->validate($rules);
                 $concat = $validatedData;

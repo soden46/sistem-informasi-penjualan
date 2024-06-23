@@ -34,7 +34,7 @@
                                                 <th>Jumlah</th>
                                                 <th>Harga</th>
                                                 <th>Stok</th>
-                                                <th>Gambar</th>
+                                                <th>Foto</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -68,7 +68,7 @@
                                                     @endif
                                                 </td>
                                                 <td>{{ $item->stok }}</td>
-                                                <td><a href="{{asset('upload/images/barang/'. $item->gambar)}}">Lihat Foto</td>
+                                                <td><a href="{{asset('upload/images/barang/'. $item->foto)}}">Lihat Foto</td>
                                             </tr>
                                             @endforeach
                                             @foreach ($transaksic as $items)
@@ -101,7 +101,7 @@
                                                     @endif
                                                 </td>
                                                 <td>{{ $item->Stok }}</td>
-                                                <td><a href="{{asset('upload/images/barang/'. $item->gambar)}}">Lihat Foto</td>
+                                                <td><a href="{{asset('upload/images/barang/'. $item->foto)}}">Lihat Foto</td>
                                             </tr>
                                             @endforeach
                                         </tbody>

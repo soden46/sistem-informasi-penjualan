@@ -139,10 +139,10 @@
                                             </div>
                                         </div>
                                         <div class="row pt-2">
-                                            <label for="gambar" class="col-sm-2 col-form-label">Gambar</label>
+                                            <label for="foto" class="col-sm-2 col-form-label">Gambar</label>
                                             <div class="col-sm-10">
-                                                <input type="file" class="form-control @error('gambar') is-invalid @enderror" name="gambar" id="gambar">
-                                                @error('gambar')
+                                                <input type="file" class="form-control @error('foto') is-invalid @enderror" name="foto" id="foto">
+                                                @error('foto')
                                                 <div class="text-danger">
                                                     {{ $message }}
                                                 </div>
@@ -231,10 +231,10 @@
                                             </div>
                                         </div>
                                         <div class="row pt-2">
-                                            <label for="gambar" class="col-sm-2 col-form-label">Gambar</label>
+                                            <label for="foto" class="col-sm-2 col-form-label">Gambar</label>
                                             <div class="col-sm-10">
-                                                <input type="file" class="form-control @error('gambar') is-invalid @enderror" name="gambar" id="gambar">
-                                                @error('gambar')
+                                                <input type="file" class="form-control @error('foto') is-invalid @enderror" name="foto" id="foto">
+                                                @error('foto')
                                                 <div class="text-danger">
                                                     {{ $message }}
                                                 </div>
@@ -263,7 +263,7 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="d-flex align-items-center flex-column">
-                                                    <img src="{{ url('assets/upload/images/barang/' . $item->gambar) }}" alt="" class="img-fluid" style="height: 230px; border-radius: 10px">
+                                                    <img src="{{ url('assets/upload/images/barang/' . $item->foto) }}" alt="" class="img-fluid" style="height: 230px; border-radius: 10px">
                                                 </div>
                                             </div>
                                             <div class="col-md-12 pt-3">

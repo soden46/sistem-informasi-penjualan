@@ -9,7 +9,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">
-                    <img class="img-fluid" src="{{ url('assets/upload/images/barang/' . $barang->gambar) }}" alt="">
+                    <img class="img-fluid" src="{{ url('assets/upload/images/barang/' . $barang->foto) }}" alt="">
                 </div>
                 <div class="col-lg-6">
                     <div class="row pt-2 pb-4">
