@@ -20,7 +20,7 @@ Route::get('/cara-pemesanan', 'App\Http\Controllers\Home\Homepage@cara')->name('
 Route::get('/produk', 'App\Http\Controllers\Home\Homepage@barang')->name('produk');
 Route::get('/pelanggan/custom-produk', 'App\Http\Controllers\Home\Homepage@custom_produk')->name('custom_produk');
 Route::get('/profil-pengguna', 'App\Http\Controllers\Home\Homepage@profile')->name('profile');
-Route::get('/detail-alat-berat/{id}', 'App\Http\Controllers\Home\Homepage@detail')->name('detail')->middleware('cek_login:pelanggan');
+Route::get('/detail-mebel/{id}', 'App\Http\Controllers\Home\Homepage@detail')->name('detail')->middleware('cek_login:pelanggan');
 Route::get('/transaksi', 'App\Http\Controllers\Home\Transaksi@index')->name('Transaksi')->middleware('cek_login:pelanggan');
 Route::get('/invoice/{post}', 'App\Http\Controllers\Home\Transaksi@invoice')->name('invoice')->middleware('cek_login:pelanggan');
 Route::get('/invoicec/{post}', 'App\Http\Controllers\Home\Transaksi@invoicec')->name('invoicec')->middleware('cek_login:pelanggan');
@@ -61,10 +61,10 @@ Route::post('/create-data-type', 'App\Http\Controllers\Admin\Type@create')->name
 Route::put('/update-data-type/{post}', 'App\Http\Controllers\Admin\Type@update')->name('update')->middleware('cek_login:admin,owner');
 Route::delete('/delete-data-type/{post}', 'App\Http\Controllers\Admin\Type@delete')->name('delete')->middleware('cek_login:admin,owner');
 
-Route::get('/data-alat-berat', 'App\Http\Controllers\Admin\Barang@index')->name('admin')->middleware('cek_login:admin,owner');
-Route::post('/create-data-alat-berat', 'App\Http\Controllers\Admin\Barang@create')->name('create')->middleware('cek_login:admin,owner');
-Route::put('/update-data-alat-berat/{post}', 'App\Http\Controllers\Admin\Barang@update')->name('update')->middleware('cek_login:admin,owner');
-Route::delete('/delete-data-alat-berat/{post}', 'App\Http\Controllers\Admin\Barang@delete')->name('delete')->middleware('cek_login:admin,owner');
+Route::get('/data-mebel', 'App\Http\Controllers\Admin\Barang@index')->name('admin')->middleware('cek_login:admin,owner');
+Route::post('/create-data-mebel', 'App\Http\Controllers\Admin\Barang@create')->name('create')->middleware('cek_login:admin,owner');
+Route::put('/update-data-mebel/{post}', 'App\Http\Controllers\Admin\Barang@update')->name('update')->middleware('cek_login:admin,owner');
+Route::delete('/delete-data-mebel/{post}', 'App\Http\Controllers\Admin\Barang@delete')->name('delete')->middleware('cek_login:admin,owner');
 
 Route::put('/update-data-custom/{post}', 'App\Http\Controllers\Admin\CustomProduct@update')->name('update')->middleware('cek_login:admin,owner');
 Route::delete('/delete-data-custom/{post}', 'App\Http\Controllers\Admin\CustomProduct@delete')->name('delete')->middleware('cek_login:admin,owner');
@@ -97,8 +97,8 @@ Route::get('/download-laporan-pelanggan', 'App\Http\Controllers\Admin\Pelanggan@
 
 
 Route::get('/custom-produk', 'App\Http\Controllers\Admin\CustomProduct@index')->name('admin')->middleware('cek_login:admin,owner');
-Route::post('/create-data-alat-berat', 'App\Http\Controllers\Admin\Barang@create')->name('create')->middleware('cek_login:admin,owner');
-Route::put('/update-data-alat-berat/{post}', 'App\Http\Controllers\Admin\Barang@update')->name('update')->middleware('cek_login:admin,owner');
-Route::delete('/delete-data-alat-berat/{post}', 'App\Http\Controllers\Admin\Barang@delete')->name('delete')->middleware('cek_login:admin,owner');
+Route::post('/create-data-mebel', 'App\Http\Controllers\Admin\Barang@create')->name('create')->middleware('cek_login:admin,owner');
+Route::put('/update-data-mebel/{post}', 'App\Http\Controllers\Admin\Barang@update')->name('update')->middleware('cek_login:admin,owner');
+Route::delete('/delete-data-mebel/{post}', 'App\Http\Controllers\Admin\Barang@delete')->name('delete')->middleware('cek_login:admin,owner');
 
 Route::get('laporan/pengiriman', 'App\Http\Controllers\Admin\Pengiriman@index')->name('admin')->middleware('cek_login:admin,owner');

@@ -26,12 +26,12 @@
                             </div>
                             <div class="team-social">
                                 @if ($item->stok > 0)
-                                <a class="btn btn-dark mx-1" href="{{ url('detail-alat-berat/') }}"><i class="bi bi-file-earmark-plus"></i> Pesan</a>
+                                <a class="btn btn-dark mx-1" href="{{ url('detail-mebel/') }}"><i class="bi bi-file-earmark-plus"></i> Pesan</a>
                                 @else
                                 <button class="btn btn-warning disabled mx-1" href="">Tidak
                                     Tersedia</button>
                                 @endif
-                                <a class="btn btn-dark mx-1" href="{{ url('detail-alat-berat/' ) }}" id="id" name="id"><i class="bi bi-info-circle"></i>
+                                <a class="btn btn-dark mx-1" href="{{ url('detail-mebel/' ) }}" id="id" name="id"><i class="bi bi-info-circle"></i>
                                     Detail</a>
                             </div>
                         </div>

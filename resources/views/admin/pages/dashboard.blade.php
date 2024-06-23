@@ -47,7 +47,7 @@
                                     <li class="dropdown-header text-start">
                                         <h6>Aksi</h6>
                                     </li>
-                                    <li><a class="dropdown-item" href="{{ url('data-alat-berat') }}">Lihat</a></li>
+                                    <li><a class="dropdown-item" href="{{ url('data-mebel') }}">Lihat</a></li>
                                 </ul>
                             </div>
 

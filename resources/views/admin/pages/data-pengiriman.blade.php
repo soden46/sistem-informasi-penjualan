@@ -101,7 +101,7 @@
                             <h5 class="modal-title">Edit {{ $pagetitle }}</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <form action="{{ url('update-data-alat-berat/' . $item->id) }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ url('update-data-mebel/' . $item->id) }}" method="post" enctype="multipart/form-data">
                             @method('put')
                             @csrf
                             <div class="modal-body">

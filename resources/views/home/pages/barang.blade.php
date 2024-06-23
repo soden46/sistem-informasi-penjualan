@@ -3,7 +3,7 @@
 @endsection
 @section('main')
     @include('home.layouts.breadcrumb')
-    @include('home.layouts.alat-berat')
+    @include('home.layouts.mebel')
 @endsection
 @section('script')
 @endsection

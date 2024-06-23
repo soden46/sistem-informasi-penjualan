@@ -14,7 +14,7 @@ class Type extends Controller
         $kategori = DB::table('kategori')->get();
         $results = [
             'pagetitle' => 'Data Kategori',
-            'uri' => 'type alat-berat',
+            'uri' => 'type mebel',
             'kategori' => $kategori,
         ];
         return view('admin.pages.kategori', $results);

@@ -74,7 +74,7 @@
                                     <h1 class="modal-title">Tambah {{ $pagetitle }}</h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
-                                <form action="{{ url('create-data-alat-berat') }}" method="post" enctype="multipart/form-data">
+                                <form action="{{ url('create-data-mebel') }}" method="post" enctype="multipart/form-data">
                                     @method('post')
                                     @csrf
                                     <div class="modal-body">
@@ -166,7 +166,7 @@
                                     <h5 class="modal-title">Hapus {{ $pagetitle }}</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
-                                <form action="{{ url('delete-data-alat-berat/' . $item->id) }}" method="post">
+                                <form action="{{ url('delete-data-mebel/' . $item->id) }}" method="post">
                                     @method('DELETE')
                                     @csrf
                                     <div class="modal-body">
@@ -188,7 +188,7 @@
                                     <h5 class="modal-title">Edit {{ $pagetitle }}</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
-                                <form action="{{ url('update-data-alat-berat/' . $item->id) }}" method="post" enctype="multipart/form-data">
+                                <form action="{{ url('update-data-mebel/' . $item->id) }}" method="post" enctype="multipart/form-data">
                                     @method('put')
                                     @csrf
                                     <div class="modal-body">

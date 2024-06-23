@@ -10,15 +10,9 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link collapsed " href="{{ url('data-alat-berat') }}">
+            <a class="nav-link collapsed " href="{{ url('data-mebel') }}">
                 <i class="bi bi-card-checklist"></i>
                 <span>Data Produk</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link collapsed " href="{{ url('custom-produk') }}">
-                <i class="bi bi-card-checklist"></i>
-                <span>Custom Produk</span>
             </a>
         </li>
         <li class="nav-item">
@@ -40,11 +34,6 @@
                 <li>
                     <a href="{{ url('laporan/produk') }}">
                         <i class="bi bi-circle"></i><span>Produk</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ url('laporan/custom-produk') }}">
-                        <i class="bi bi-circle"></i><span>Custom Produk</span>
                     </a>
                 </li>
                 <li>

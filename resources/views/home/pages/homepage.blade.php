@@ -32,7 +32,7 @@
 </div>
 <!-- Facts End -->
 
-@include('home.layouts.alat-berat')
+@include('home.layouts.mebel')
 @endsection
 @section('script')
 @endsection
