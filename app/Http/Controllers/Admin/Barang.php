@@ -13,7 +13,7 @@ class Barang extends Controller
     public function index()
     {
         $barang = DB::table('barang as a')
-            ->select('a.*', 'b.id', 'b.kategori')
+            ->select('a.*', 'b.id_kategori', 'b.nama_kategori')
             ->join('kategori as b', 'a.id_kategori', '=', 'b.id_kategori')
             ->get();
 
