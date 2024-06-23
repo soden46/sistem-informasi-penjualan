@@ -25,7 +25,6 @@ Route::get('/transaksi', 'App\Http\Controllers\Home\Transaksi@index')->name('Tra
 Route::get('/invoice/{post}', 'App\Http\Controllers\Home\Transaksi@invoice')->name('invoice')->middleware('cek_login:pelanggan');
 Route::get('/invoicec/{post}', 'App\Http\Controllers\Home\Transaksi@invoicec')->name('invoicec')->middleware('cek_login:pelanggan');
 Route::post('/confirm', 'App\Http\Controllers\Home\Transaksi@create')->middleware('cek_login:pelanggan');
-Route::post('/confirm-custom', 'App\Http\Controllers\Home\Transaksi@createCustom')->middleware('cek_login:pelanggan');
 Route::put('/payment/{post}', 'App\Http\Controllers\Home\Transaksi@update')->middleware('cek_login:pelanggan');
 Route::get('/canceled/{post}', 'App\Http\Controllers\Home\Transaksi@delete')->middleware('cek_login:pelanggan');
 Route::get('/download-invoice/{post}', 'App\Http\Controllers\Home\Transaksi@download_invoice')->middleware('cek_login:pelanggan,owner,admin');

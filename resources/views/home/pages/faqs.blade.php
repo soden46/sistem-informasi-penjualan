@@ -15,9 +15,9 @@
 
         <div class="row">
             <div class="col-md-6 col-lg-4 mb-4">
-                <h6 class="mb-3 text-primary"><i class="far fa-paper-plane text-primary pe-2"></i>1. Buka website http://amartafurnitur.xyz/</h6>
+                <h6 class="mb-3 text-primary"><i class="far fa-paper-plane text-primary pe-2"></i>1. Buka website http://sadimanmeubel.xyz/</h6>
                 <p>
-                    <strong><u>Pertama</u></strong> Buka url http://amartafurnitur.xyz/.
+                    <strong><u>Pertama</u></strong> Buka url http://sadimanmeubel.xyz/.
                 </p>
             </div>
 

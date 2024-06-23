@@ -13,7 +13,6 @@
                <a href="{{ url('') }}" class="nav-item nav-link {{ $pagetitle == 'Homepage' ? 'active' : '' }}">Home</a>
                <a href="{{ url('tentang') }}" class="nav-item nav-link {{ $pagetitle == 'Tentang Kami' ? 'active' : '' }}">Tentang Kami</a>
                <a href="{{ url('produk') }}" class="nav-item nav-link {{ $pagetitle == 'Produk' ? 'active' : '' }}">Produk</a>
-               <a href="{{ url('pelanggan/custom-produk') }}" class="nav-item nav-link {{ $pagetitle == 'Custom Produk' ? 'active' : '' }}">Custom Produk</a>
                <a href="{{ url('cara-pemesanan') }}" class="nav-item nav-link {{ $pagetitle == 'Cara Pemesanan' ? 'active' : '' }}">Cara Pemesanan</a>
                @if (login())
                <div class="nav-item dropdown">

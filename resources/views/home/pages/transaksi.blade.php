@@ -47,32 +47,6 @@
                                 </td>
                             </tr>
                             @endforeach
-                            @foreach ($custom_produk as $itemc)
-                            <tr>
-                                <td>{{ $itemc->created_at }}</td>
-                                <td>Kategori Tidak tersedia Untuk Produk Custom</td>
-                                <td>{{ $itemc->nama_barang }}</td>
-                                <td>Rp.{{ number_format($itemc->harga * $itemc->jumlah) }}</td>
-                                <td>{!! $itemc->bukti_pembayaran == ''
-                                    ? '<span class="badge bg-danger">Belum Melakukan Pembayaran</span>'
-                                    : ($itemc->status != ''
-                                    ? '<span class="badge bg-secondary"> Pembayaran di Proses</span>'
-                                    : '') !!}</td>
-                                <td>{!! $itemc->status == '0'
-                                    ? '<span class="badge bg-danger"> Menunggu Konfirmasi</span>'
-                                    : ($itemc->status == '1'
-                                    ? '<span class="badge bg-success"> Pesanan Disetujui</span>'
-                                    : '') !!}</td>
-                                <td>
-                                    <a href="{{ url('invoice' , $itemc->id) }}" class="btn btn-success"><i class="bi bi-card-list"> </i>
-                                        Invoice</a>
-                                    @if ($itemc->status != '1')
-                                    <a href="{{ url('canceled/' . $itemc->id) }}" class="btn btn-danger"><i class="bi bi-x"></i>
-                                        Batalkan</a>
-                                    @endif
-                                </td>
-                            </tr>
-                            @endforeach
                         </tbody>
                     </table>
                 </div>

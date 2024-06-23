@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Home;
 
 use App\Http\Controllers\Admin\Transaksi as AdminTransaksi;
 use App\Http\Controllers\Controller;
-use App\Models\CustomModel;
 use App\Models\TransaksiModel;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
@@ -22,15 +21,9 @@ class Transaksi extends Controller
             ->join('users as c', 'a.id_pelanggan', '=', 'c.id')
             ->join('kategori as k', 'b.id_kategori', '=', 'k.id')
             ->where('a.id_pelanggan', $id_pelanggan)->get();
-        $custom = DB::table('penjualan as a')
-            ->select('a.*', 'b.nama_barang', 'b.jumlah', 'b.desain', 'b.keterangan', 'b.harga')
-            ->join('custom_produk as b', 'a.id_custom', '=', 'b.id')
-            ->join('users as c', 'a.id_pelanggan', '=', 'c.id')
-            ->where('a.id_pelanggan', $id_pelanggan)->get();
         $results = [
             'pagetitle' => 'Data Transaksi',
             'transaksi' => $transaksi,
-            'custom_produk' => $custom
         ];
         return view('home.pages.transaksi', $results);
     }
@@ -59,7 +52,6 @@ class Transaksi extends Controller
         $id_pelanggan = login()->id;
         $invoice = DB::table('penjualan as a')
             ->select('a.*', 'b.nama_barang', 'b.jumlah as per', 'b.desain', 'b.keterangan', 'b.harga', 'c.nama as nama_pelanggan', 'c.no_hp', 'c.email',)
-            ->join('custom_produk as b', 'a.id_custom', '=', 'b.id')
             ->join('users as c', 'a.id_pelanggan', '=', 'c.id')
             ->where('a.id', '=', $id)
             ->where('a.id_pelanggan', '=', $id_pelanggan)->get()->first();
@@ -91,47 +83,6 @@ class Transaksi extends Controller
         notify()->success('Pesanan Berhasil, Silahkan Melakukan Pembayaran', 'Berhasil');
         return redirect('transaksi');
     }
-
-    public function createCustom(Request $request)
-    {
-        $rules =  [
-            'sku' => ['string', 'max:191', 'required'],
-            'foto' => ['required', 'mimes:jpg,jpeg,png', 'max:5048'],
-            'keterangan' => ['string', 'max:191', 'required'],
-            'lokasi_pengiriman' => ['string', 'max:191', 'required'],
-            'jumlah' => ['string', 'max:191', 'required'],
-        ];
-
-
-        if ($request->file('foto')) {
-            $rules['foto'] = $request->file('foto')->store('custom-produk');
-            $data = [
-                'id_user' => login()->id,
-                'nama_barang' => $request['sku'],
-                'jumlah' => $request['jumlah'],
-                'desain' => $rules['foto'],
-                'keterangan' => $request['keterangan'],
-            ];
-            CustomModel::insert($data);
-        }
-
-        $data2 = [
-            'id_pelanggan' => login()->id,
-            'jumlah' => $request['jumlah'],
-            'alamat_pengiriman' => $request['lokasi_pengiriman'],
-        ];
-        TransaksiModel::insert($data2);
-        $jumlah = $request['jumlah'];
-        $customModel = CustomModel::where('jumlah', '=', $jumlah)->pluck('id')->first();
-
-        TransaksiModel::where('jumlah', '=', $jumlah)
-            ->update([
-                'id_custom' => $customModel
-            ]);
-        notify()->success('Pesanan Berhasil, Silahkan Melakukan Pembayaran', 'Berhasil');
-        return redirect('transaksi');
-    }
-
 
     public function update(Request $request, $id)
     {

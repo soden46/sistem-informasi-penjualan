@@ -55,15 +55,6 @@ class Homepage extends Controller
         return view('home.pages.about', $results);
     }
 
-    public function custom_produk()
-    {
-        $results = [
-            'pagetitle' => 'Custom Produk',
-        ];
-
-        return view('home.pages.custom-produk', $results);
-    }
-
     public function cara()
     {
         $results = [
