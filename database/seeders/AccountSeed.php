@@ -20,7 +20,7 @@ class AccountSeed extends Seeder
                 'alamat' => 'Jl. Rusa 1, Jogjakarta',
                 'role' => 'admin',
                 'email_verified_at' => Carbon::now(),
-                'password' => Hash::make('123456'),
+                'password' => bcrypt('123456'),
             ],
             [
                 'username' => 'user',
@@ -30,7 +30,7 @@ class AccountSeed extends Seeder
                 'alamat' => 'Jl. Rusa 1, Jogjakarta',
                 'role' => 'pelanggan',
                 'email_verified_at' => Carbon::now(),
-                'password' => Hash::make('123456'),
+                'password' => bcrypt('123456'),
             ],
         ];
 

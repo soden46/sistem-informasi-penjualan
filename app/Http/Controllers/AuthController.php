@@ -19,7 +19,7 @@ class AuthController extends Controller
             }
         }
         $results = [
-            'pagetitle' => 'Masuk | CV. Amarta'
+            'pagetitle' => 'Masuk | Sadiman Meubel Simbatan'
         ];
         return view('auth.login', $results);
     }
@@ -27,7 +27,7 @@ class AuthController extends Controller
     public function register()
     {
         $results = [
-            'pagetitle' => 'Masuk | CV. Amarta'
+            'pagetitle' => 'Masuk | Sadiman Meubel Simbatan'
         ];
         return view('auth.register', $results);
     }
