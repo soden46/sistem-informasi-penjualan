@@ -44,13 +44,13 @@ class AuthController extends Controller
         if (Auth::attempt($kredensil)) {
             $user = Auth::user();
             if ($user->role == 'owner') {
-                notify()->success('Selamat Datang di CV. Amarta Furniture', 'Berhasil');
+                notify()->success('Selamat Datang di Sadiman Meubel Simbatan', 'Berhasil');
                 return redirect('dashboard');
             } elseif ($user->role == 'admin') {
-                notify()->success('Selamat Datang di CV. Amarta Furniture', 'Berhasil');
+                notify()->success('Selamat Datang di Sadiman Meubel Simbatan', 'Berhasil');
                 return redirect('dashboard');
             } elseif ($user->role == 'pelanggan') {
-                notify()->success('Selamat Datang di CV. Amarta Furniture', 'Berhasil');
+                notify()->success('Selamat Datang di Sadiman Meubel Simbatan', 'Berhasil');
                 return redirect('/');
             }
             return redirect()->back();

@@ -9,7 +9,7 @@
 
 <body
     style="background-size: cover; height: auto; background-position: center center; background-repeat: no-repeat; background-image: url('/assets/admin/img/bg.jpg'); min-height: 100%;">
-    <x:notify-messages />
+    <x-notify::notify />
     @yield('main')
 
     @include('admin/layouts/js')
