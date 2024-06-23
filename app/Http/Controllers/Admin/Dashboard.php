@@ -19,7 +19,7 @@ class Dashboard extends Controller
         $transaksi = DB::table('pembelian as a')
             ->select('a.*', 'b.id_kategori', 'b.nama_barang', 'b.deskripsi', 'b.harga', 'b.satuan as per', 'c.nama as nama_pelanggan', 'c.no_telepon', 'c.email')
             ->join('barang as b', 'a.id_barang', '=', 'b.id_kategori')
-            ->join('users as c', 'a.id_user', '=', 'a.id_pelanggan')
+            ->join('users as c', 'a.id_pelanggan', '=', 'c.id_user')
             ->get();
 
         $results = [
