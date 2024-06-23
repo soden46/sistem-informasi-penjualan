@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\RekeningModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Notify;
 
 class Rekening extends Controller
 {
