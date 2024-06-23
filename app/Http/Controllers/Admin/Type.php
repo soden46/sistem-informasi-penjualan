@@ -25,7 +25,7 @@ class Type extends Controller
     {
 
         $rules =  [
-            'kategori' => ['string', 'min:3', 'max:191', 'required', 'unique:kategori'],
+            'nama_kategori' => ['string', 'min:3', 'max:191', 'required', 'unique:nama_kategori'],
         ];
         if ($request->validate($rules)) {
             TypeModel::insert($request->validate($rules));
@@ -37,22 +37,22 @@ class Type extends Controller
         }
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_kategori)
     {
         $rules =  [
-            'kategori' => ['string', 'min:3', 'max:191', 'required'],
+            'nama_kategori' => ['string', 'min:3', 'max:191', 'required'],
         ];
 
         if ($request->validate($rules)) {
-            $kategori = DB::table('kategori')->where('kategori', $request->kategori)->first();
-            if ($kategori = NULL && $request->kategori != $kategori->kategori) {
+            $kategori = DB::table('kategori')->where('nama_kategori', $request->nama_kategori)->first();
+            if ($kategori = NULL && $request->nama_kategori != $kategori->nama_kategori) {
                 $rules = [
-                    'kategori' => ['string', 'min:3', 'max:191', 'required', 'unique:kategori'],
+                    'nama_kategori' => ['string', 'min:3', 'max:191', 'required', 'unique:nama_kategori'],
                 ];
             } else {
                 $validatedData = $request->validate($rules);
                 $concat = $validatedData;
-                TypeModel::where('id', $id)->update($concat);
+                TypeModel::where('id_kategori', $id_kategori)->update($concat);
 
                 notify()->success('Data telah diperbarui', 'Berhasil');
                 return back();
@@ -63,10 +63,10 @@ class Type extends Controller
         }
     }
 
-    public function delete($id)
+    public function delete($id_kategori)
     {
-        if ($id != "") {
-            TypeModel::where('id', $id)->delete();
+        if ($id_kategori != "") {
+            TypeModel::where('id_kategori', $id_kategori)->delete();
             notify()->success('Data telah dihapus', 'Berhasil');
             return back();
         } else {

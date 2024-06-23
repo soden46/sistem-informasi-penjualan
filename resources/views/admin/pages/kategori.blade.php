@@ -38,13 +38,13 @@
                                             @foreach ($kategori as $no => $item)
                                             <tr>
                                                 <th scope="row">{{ $no + 1 }}</th>
-                                                <td>{{ $item->kategori }}</td>
+                                                <td>{{ $item->nama_kategori }}</td>
                                                 <td>{{ $item->created_at }}</td>
                                                 <td>{{ $item->updated_at }}</td>
                                                 <td>
                                                     <div class="d-flex justify-content-center gap-2">
-                                                        <a href="javascript:void(0);" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#edit-{{ $item->id }}"><i class="bi bi-pencil"></i> Ubah</a>
-                                                        <a href="javascript:void(0);" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#delete-{{ $item->id }}"><i class="bi bi-trash"></i> Hapus</a>
+                                                        <a href="javascript:void(0);" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#edit-{{ $item->id_kategori }}"><i class="bi bi-pencil"></i> Ubah</a>
+                                                        <a href="javascript:void(0);" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#delete-{{ $item->id_kategori }}"><i class="bi bi-trash"></i> Hapus</a>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -68,9 +68,9 @@
                                     @csrf
                                     <div class="modal-body">
                                         <div class="pt-2">
-                                            <label for="kategori" class="form-label">Kategori</label>
-                                            <input type="text" class="form-control @error('kategori') is-invalid @enderror" name="kategori" id="kategori" placeholder="Masukan Nama Kategori">
-                                            @error('kategori')
+                                            <label for="nama_kategori" class="form-label">Kategori</label>
+                                            <input type="text" class="form-control @error('nama_kategori') is-invalid @enderror" name="nama_kategori" id="nama_kategori" placeholder="Masukan Nama Kategori">
+                                            @error('nama_kategori')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
                                             </div>
@@ -86,18 +86,18 @@
                         </div>
                     </div>
                     @foreach ($kategori as $item)
-                    <div class="modal fade" id="delete-{{ $item->id }}" tabindex="-1">
+                    <div class="modal fade" id="delete-{{ $item->id_kategori }}" tabindex="-1">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title">Hapus {{ $pagetitle }}</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
-                                <form action="{{ url('delete-data-type/' . $item->id) }}" method="post">
+                                <form action="{{ url('delete-data-type/' . $item->id_kategori) }}" method="post">
                                     @method('DELETE')
                                     @csrf
                                     <div class="modal-body">
-                                        Hapus {{ $pagetitle }} <b>{{ $item->kategori }}</b>?
+                                        Hapus {{ $pagetitle }} <b>{{ $item->nama_kategori }}</b>?
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
@@ -108,21 +108,21 @@
                         </div>
                     </div>
 
-                    <div class="modal fade" id="edit-{{ $item->id }}" tabindex="-1">
+                    <div class="modal fade" id="edit-{{ $item->id_kategori }}" tabindex="-1">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title">Edit {{ $pagetitle }}</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
-                                <form action="{{ url('update-data-type/' . $item->id) }}" method="post">
+                                <form action="{{ url('update-data-type/' . $item->id_kategori) }}" method="post">
                                     @method('put')
                                     @csrf
                                     <div class="modal-body">
                                         <div class="pt-2">
-                                            <label for="type" class="form-label">Type</label>
-                                            <input type="text" class="form-control @error('kategori') is-invalid @enderror" name="kategori" id="kategori" value="{{ $item->kategori }}" placeholder="Masukan Nama Ktegori">
-                                            @error('kategori')
+                                            <label for="nama_kategori" class="form-label">Nama Kategori</label>
+                                            <input type="text" class="form-control @error('nama_kategori') is-invalid @enderror" name="nama_kategori" id="nama_kategori" value="{{ $item->nama_kategori }}" placeholder="Masukan Nama Kategori">
+                                            @error('nama_kategori')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
                                             </div>
