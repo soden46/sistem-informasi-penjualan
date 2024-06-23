@@ -34,6 +34,7 @@ class AuthController extends Controller
 
     public function proses_login(Request $request)
     {
+        // dd($request);
         request()->validate(
             [
                 'username' => 'required',
@@ -43,10 +44,8 @@ class AuthController extends Controller
         $kredensil = $request->only('username', 'password');
         if (Auth::attempt($kredensil)) {
             $user = Auth::user();
-            if ($user->role == 'owner') {
-                notify()->success('Selamat Datang di Sadiman Meubel Simbatan', 'Berhasil');
-                return redirect('dashboard');
-            } elseif ($user->role == 'admin') {
+            // dd($user);
+            if ($user->role == 'admin') {
                 notify()->success('Selamat Datang di Sadiman Meubel Simbatan', 'Berhasil');
                 return redirect('dashboard');
             } elseif ($user->role == 'pelanggan') {
