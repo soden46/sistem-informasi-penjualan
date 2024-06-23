@@ -3,7 +3,9 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class AccountSeed extends Seeder
 {
@@ -11,34 +13,24 @@ class AccountSeed extends Seeder
     {
         $user = [
             [
-                'username' => 'admin',
-                'name' => 'ini akun Admin',
-                'email' => 'admin@example.com',
+                'username' => 'Admin',
+                'nama' => 'Admin',
+                'email' => 'admin@gmail.com',
+                'no_telepon' => '081818181',
+                'alamat' => 'Jl. Rusa 1, Jogjakarta',
                 'role' => 'admin',
-                'address' => 'Jl. Rusa 1, Jogjakarta',
-                'phone' => '082299123456',
-                'password' => bcrypt('123456'),
-                'photo' => 'user-dummy-img.jpg',
+                'email_verified_at' => Carbon::now(),
+                'password' => Hash::make('123456'),
             ],
             [
                 'username' => 'user',
-                'name' => 'ini akun User',
-                'email' => 'user@example.com',
+                'nama' => 'ini akun User',
+                'email' => 'user@gmail.com',
+                'no_telepon' => '081818181',
+                'alamat' => 'Jl. Rusa 1, Jogjakarta',
                 'role' => 'pelanggan',
-                'address' => 'Jl. Rusa 1, Jogjakarta',
-                'phone' => '082299123445',
-                'password' => bcrypt('123456'),
-                'photo' => 'user-dummy-img.jpg',
-            ],
-            [
-                'username' => 'owner',
-                'name' => 'ini akun Owner',
-                'email' => 'owner@example.com',
-                'role' => 'owner',
-                'address' => 'Jl. Rusa 1, Jogjakarta',
-                'phone' => '08229912445',
-                'password' => bcrypt('123456'),
-                'photo' => 'user-dummy-img.jpg',
+                'email_verified_at' => Carbon::now(),
+                'password' => Hash::make('123456'),
             ],
         ];
 

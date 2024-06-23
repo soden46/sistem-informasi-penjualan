@@ -18,14 +18,16 @@ class User extends Authenticatable
         'email',
         'username',
         'password',
-        'no_hp',
+        'no_telepon',
         'alamat',
-        'photo',
         'role',
     ];
 
-
     protected $hidden = [
         'password',
+    ];
+
+    protected $dates = [
+        'email_verified_at',
     ];
 }
