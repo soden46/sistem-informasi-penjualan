@@ -18,13 +18,13 @@ Route::get('/', 'App\Http\Controllers\Home\Homepage@index')->name('homepage');
 Route::get('/tentang', 'App\Http\Controllers\Home\Homepage@faqs')->name('about');
 Route::get('/cara-pemesanan', 'App\Http\Controllers\Home\Homepage@cara')->name('cara_pemesanan');
 Route::get('/produk', 'App\Http\Controllers\Home\Homepage@barang')->name('produk');
-Route::get('/pelanggan/custom-produk', 'App\Http\Controllers\Home\Homepage@custom_produk')->name('custom_produk');
+Route::get('/kategori/{id_kategori}', 'App\Http\Controllers\Home\KategoriController@show')->name('kategori.show');
 Route::get('/profil-pengguna', 'App\Http\Controllers\Home\Homepage@profile')->name('profile');
-Route::get('/detail-mebel/{id_barang}', 'App\Http\Controllers\Home\Homepage@detail')->name('detail')->middleware('cek_login:pelanggan');
-Route::get('/transaksi', 'App\Http\Controllers\Home\Transaksi@index')->name('Transaksi')->middleware('cek_login:pelanggan');
-Route::get('/invoice/{post}', 'App\Http\Controllers\Home\Transaksi@invoice')->name('invoice')->middleware('cek_login:pelanggan');
-Route::get('/invoicec/{post}', 'App\Http\Controllers\Home\Transaksi@invoicec')->name('invoicec')->middleware('cek_login:pelanggan');
-Route::post('/confirm', 'App\Http\Controllers\Home\Transaksi@create')->middleware('cek_login:pelanggan');
+Route::get('/detail-mebel/{id_barang}', 'App\Http\Controllers\Home\Homepage@detail')->name('detail')->middleware('cek_login:pelanggan,admin');
+Route::get('/transaksi', 'App\Http\Controllers\Home\Transaksi@index')->name('Transaksi')->middleware('cek_login:pelanggan,admin');
+Route::get('/invoice/{post}', 'App\Http\Controllers\Home\Transaksi@invoice')->name('invoice')->middleware('cek_login:pelanggan,admin');
+Route::get('/invoicec/{post}', 'App\Http\Controllers\Home\Transaksi@invoicec')->name('invoicec')->middleware('cek_login:pelanggan,admin');
+Route::post('/confirm', 'App\Http\Controllers\Home\Transaksi@create')->middleware('cek_login:pelanggan,admin');
 Route::put('/payment/{post}', 'App\Http\Controllers\Home\Transaksi@update')->middleware('cek_login:pelanggan');
 Route::get('/canceled/{post}', 'App\Http\Controllers\Home\Transaksi@delete')->middleware('cek_login:pelanggan');
 Route::get('/download-invoice/{post}', 'App\Http\Controllers\Home\Transaksi@download_invoice')->middleware('cek_login:pelanggan,owner,admin');
@@ -95,8 +95,6 @@ Route::get('/download-laporan-custom-produk', 'App\Http\Controllers\Admin\Transa
 Route::get('/download-laporan-pengiriman', 'App\Http\Controllers\Admin\Transaksi@cetak_laporanPengiriman')->middleware('cek_login:owner,admin');
 Route::get('/download-laporan-pelanggan', 'App\Http\Controllers\Admin\Pelanggan@cetak_laporanPelanggan')->middleware('cek_login:owner,admin');
 
-
-Route::get('/custom-produk', 'App\Http\Controllers\Admin\CustomProduct@index')->name('admin')->middleware('cek_login:admin,owner');
 Route::post('/create-data-mebel', 'App\Http\Controllers\Admin\Barang@create')->name('create')->middleware('cek_login:admin,owner');
 Route::put('/update-data-mebel/{post}', 'App\Http\Controllers\Admin\Barang@update')->name('update')->middleware('cek_login:admin,owner');
 Route::delete('/delete-data-mebel/{post}', 'App\Http\Controllers\Admin\Barang@delete')->name('delete')->middleware('cek_login:admin,owner');

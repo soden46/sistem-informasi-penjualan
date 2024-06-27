@@ -24,9 +24,9 @@
                             @foreach ($transaksi as $item)
                             <tr>
                                 <td>{{ $item->created_at }}</td>
-                                <td>{{ $item->kategori }}</td>
+                                <td>{{ $item->nama_kategori }}</td>
                                 <td>{{ $item->nama_barang }}</td>
-                                <td>Rp.{{ number_format($item->harga * $item->jumlah) }}</td>
+                                <td>Rp.{{ number_format($item->total_harga) }}</td>
                                 <td>{!! $item->bukti_pembayaran == ''
                                     ? '<span class="badge bg-danger">Belum Melakukan Pembayaran</span>'
                                     : ($item->status != ''
@@ -38,10 +38,10 @@
                                     ? '<span class="badge bg-success"> Pesanan Disetujui</span>'
                                     : '') !!}</td>
                                 <td>
-                                    <a href="{{ url('invoice' , $item->id) }}" class="btn btn-success"><i class="bi bi-card-list"> </i>
+                                    <a href="{{ url('invoice' , $item->id_pembelian) }}" class="btn btn-success"><i class="bi bi-card-list"> </i>
                                         Invoice</a>
                                     @if ($item->status != '1')
-                                    <a href="{{ url('canceled/' . $item->id) }}" class="btn btn-danger"><i class="bi bi-x"></i>
+                                    <a href="{{ url('canceled/' . $item->id_pembelian) }}" class="btn btn-danger"><i class="bi bi-x"></i>
                                         Batalkan</a>
                                     @endif
                                 </td>

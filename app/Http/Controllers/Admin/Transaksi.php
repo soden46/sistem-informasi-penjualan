@@ -16,21 +16,16 @@ class Transaksi extends Controller
 {
     public function index()
     {
-        $transaksi = DB::table('penjualan as a')
-            ->select('a.*', 'b.id_kategori', 'b.nama_barang', 'b.bahan', 'b.deskripsi', 'b.harga', 'b.jumlah as per', 'c.nama as nama_pelanggan', 'c.no_hp', 'c.email', 'd.kategori')
-            ->join('barang as b', 'a.id_barang', '=', 'b.id')
-            ->join('users as c', 'a.id_pelanggan', '=', 'c.id')
-            ->get();
-        $transaksic = DB::table('penjualan as a')
-            ->select('a.*', 'b.id', 'b.nama_barang', 'b.jumlah', 'b.desain', 'b.keterangan', 'b.harga')
-            ->join('custom_produk as b', 'a.id_custom', '=', 'b.id')
-            ->join('users as c', 'a.id_pelanggan', '=', 'c.id')
+        $transaksi = DB::table('pembelian as a')
+            ->select('a.*', 'b.id_barang', 'b.id_kategori', 'b.nama_barang', 'b.deskripsi', 'b.harga', 'b.stok', 'b.satuan as per', 'c.nama as nama_pelanggan', 'c.no_telepon', 'c.email', 'd.id_kategori', 'd.nama_kategori')
+            ->join('barang as b', 'a.id_barang', '=', 'b.id_barang')
+            ->join('users as c', 'a.id_pelanggan', '=', 'c.id_user')
+            ->join('kategori as d', 'a.id_id_kategori', '=', 'd.id_kategori')
             ->get();
 
         $results = [
             'pagetitle' => 'Data Penjualan',
             'transaksi' => $transaksi,
-            'transaksic' => $transaksic
         ];
         return view('admin.pages.transaksi', $results);
     }
@@ -38,8 +33,8 @@ class Transaksi extends Controller
     public function laporanProduk()
     {
         $produk = DB::table('barang as a')
-            ->select('a.*', 'b.kategori')
-            ->join('kategori as b', 'a.id_kategori', '=', 'b.id')
+            ->select('a.*', 'b.nama_kategori')
+            ->join('kategori as b', 'a.id_kategori', '=', 'b.id_kategori')
             ->get();
 
         $url = '/download-laporan-produk';
@@ -51,58 +46,26 @@ class Transaksi extends Controller
         return view('admin.pages.laporan-produk', $results);
     }
 
-    public function custom_product()
-    {
-        $custom = DB::table('custom_produk as a')
-            ->select('a.*', 'b.id')
-            ->join('users as b', 'a.id_user', '=', 'b.id')
-            ->get();
-
-        $url = '/download-laporan-custom-produk';
-        $results = [
-            'pagetitle' => 'Data Custom Produk',
-            'custom' => $custom,
-            'url' => $url,
-        ];
-        return view('admin.pages.laporan-custom', $results);
-    }
-
     public function invoice($id)
     {
         $id_pelanggan = login()->id;
-        $invoice = DB::table('penjualan as a')
-            ->select('a.*', 'b.id_kategori', 'b.nama_barang', 'b.bahan', 'b.deskripsi', 'b.harga', 'b.stok', 'b.jumlah as per', 'c.nama as nama_pelanggan', 'c.no_hp', 'c.email', 'd.kategori')
-            ->join('barang as b', 'a.id_barang', '=', 'b.id')
-            ->join('users as c', 'a.id_pelanggan', '=', 'c.id')
-            ->join('kategori as d', 'b.id_kategori', '=', 'd.id')
-            ->where('a.id', '=', $id)->get()->first();
-        $rekening = DB::table('rekening')->get();
+        $invoice = DB::table('pembelian as a')
+            ->select('a.*', 'b.id_barang', 'b.id_kategori', 'b.nama_barang', 'b.deskripsi', 'b.harga', 'b.stok', 'b.satuan as per', 'c.nama as nama_pelanggan', 'c.no_telepon', 'c.email', 'd.id_kategori', 'd.nama_kategori')
+            ->join('barang as b', 'a.id_barang', '=', 'b.id_barang')
+            ->join('users as c', 'a.id_pelanggan', '=', 'c.id_user')
+            ->join('kategori as d', 'b.id_kategori', '=', 'd.id_kategori')
+            ->where('a.id_pembelian', '=', $id)->first();
+        $rekening = DB::table('metode_pembayaran')->get();
         $results = [
             'pagetitle' => 'Invoice',
             'invoice' => $invoice,
             'rekening' => $rekening,
         ];
+        // dd($invoice);
         return view('admin.pages.invoice', $results);
     }
 
-    public function invoicec($id)
-    {
-        $id_pelanggan = login()->id;
-        $invoicec = DB::table('penjualan as a')
-            ->select('a.*', 'b.nama_barang', 'b.jumlah as per', 'b.desain', 'b.keterangan', 'b.harga', 'c.nama as nama_pelanggan', 'c.no_hp', 'c.email',)
-            ->join('custom_produk as b', 'a.id_custom', '=', 'b.id')
-            ->join('users as c', 'a.id_pelanggan', '=', 'c.id')
-            ->where('a.id', '=', $id)->get()->first();
-        $rekening = DB::table('rekening')->get();
-        $results = [
-            'pagetitle' => 'Invoice',
-            'invoicec' => $invoicec,
-            'rekening' => $rekening,
-        ];
-        return view('admin.pages.invoicec', $results);
-    }
-
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_pembelian)
     {
         $id_barang = $request['id_barang'];
 
@@ -113,43 +76,22 @@ class Transaksi extends Controller
             $results = [
                 'status' => $request['status']
             ];
-            if ($request['tgl_tersedia'] && $request['jam_selesai'] != null) {
-                $date = $request['tgl_tersedia'];
-                $selesai = $request['jam_selesai'];
-                $tgl_tersedia = date('Y-m-d', strtotime($date));
-                $jam_tersedia = date('H:i', strtotime($selesai . "+ 2 hours"));
-                $status = [
-                    'status' =>  $request['status_alat'],
-                    'tgl_tersedia' => $tgl_tersedia,
-                    'jam_tersedia' => $jam_tersedia
-                ];
-                TransaksiModel::where('id', $id)->update($results);
-                BarangModel::where('id', $id_barang)->update($status);
-                notify()->success('Status diperbarui', 'Berhasil');
-                return back();
-            } else if ($request['tgl_tersedia'] && $request['jam_selesai'] == null) {
-                $date = $request['tgl_tersedia'];
-                $tgl_tersedia = date('Y-m-d', strtotime($date));
-                $status = [
-                    'status' =>  $request['status_alat'],
-                    'tgl_tersedia' => $tgl_tersedia,
-                    'jam_tersedia' => null
-                ];
-                TransaksiModel::where('id', $id)->update($results);
-                BarangModel::where('id', $id_barang)->update($status);
-                notify()->success('Status diperbarui', 'Berhasil');
-                return back();
-            }
+            $status = [
+                'status' =>  $request['status_alat'],
+            ];
+            TransaksiModel::where('id_pembelian', $id_pembelian)->update($results);
+            notify()->success('Data telah ditambahkan', 'Berhasil');
+            return back();
         } else {
             notify()->warning('Harap Periksa Kembali', 'Gagal');
             return back();
         }
     }
 
-    public function delete($id)
+    public function delete($id_pembelian)
     {
-        if ($id != "") {
-            TransaksiModel::where('id', $id)->delete();
+        if ($id_pembelian != "") {
+            TransaksiModel::where('id_pembelian', $id_pembelian)->delete();
             notify()->success('Transaksi di Batalkan', 'Berhasil');
             return back();
         } else {
@@ -160,17 +102,18 @@ class Transaksi extends Controller
 
     public function download_invoice($id)
     {
-        $invoice = DB::table('transaksi as a')
-            ->select('a.*', 'b.kategori', 'b.nama_barang', 'b.bahan', 'b.deskripsi', 'b.harga', 'b.jumlah as per', 'jam_selesai', 'c.name as nama_pelanggan', 'c.phone', 'c.email')
-            ->join('alat_berat as b', 'a.id_alat_berat', '=', 'b.id')
-            ->join('users as c', 'a.id_pelanggan', '=', 'c.id')
-            ->where('a.id', $id)
+        $invoice = DB::table('pembelian as a')
+            ->select('a.*', 'b.id_barang', 'b.id_kategori', 'b.nama_barang', 'b.deskripsi', 'b.harga', 'b.stok', 'b.satuan as per', 'c.nama as nama_pelanggan', 'c.no_telepon', 'c.email', 'd.id_kategori', 'd.nama_kategori')
+            ->join('barang as b', 'a.id_barang', '=', 'b.id_barang')
+            ->join('users as c', 'a.id_pelanggan', '=', 'c.id_user')
+            ->join('kategori as d', 'b.id_kategori', '=', 'd.id_kategori')
+            ->where('a.id_pembelian', $id)
             ->get()->first();
         $data = [
             'invoice' =>  $invoice
         ];
         $pdf = Pdf::loadView('home.pages.pdf.invoice', $data)->setPaper('a4', 'landscape');
-        $name = now()->timestamp . "CVMBH_INV-0" . $invoice->id . ".pdf";
+        $name = now()->timestamp . "CVMBH_INV-0" . $invoice->id_pembelian . ".pdf";
         return $pdf->download($name);
     }
 
@@ -179,23 +122,14 @@ class Transaksi extends Controller
         if (!empty($_GET["tgl_dari"]) && !empty($_GET["tgl_sampai"]) && empty($_GET["kategori"])) {
             $tanggal_mulai = $_GET["tgl_dari"];
             $tanggal_sampai = $_GET["tgl_sampai"];
-            $getmonth = DB::table('penjualan as a')
-                ->select('a.*', 'b.id_kategori', 'b.nama_barang', 'b.bahan', 'b.ukuran', 'b.harga', 'b.jumlah as per', 'c.nama as nama_pelanggan', 'c.no_hp', 'c.email')
-                ->join('barang as b', 'a.id_barang', '=', 'b.id')
-                ->join('users as c', 'a.id_pelanggan', '=', 'c.id')
+            $getmonth = DB::table('pembelian as a')
+                ->select('a.*', 'b.id_barang', 'b.id_kategori', 'b.nama_barang', 'b.deskripsi', 'b.harga', 'b.stok', 'b.satuan as per', 'c.nama as nama_pelanggan', 'c.no_telepon', 'c.email', 'd.id_kategori', 'd.nama_kategori')
+                ->join('barang as b', 'a.id_barang', '=', 'b.id_barang')
+                ->join('users as c', 'a.id_pelanggan', '=', 'c.id_user')
+                ->join('kategori as d', 'b.id_kategori', '=', 'd.id_kategori')
                 ->where('a.created_at', '>=', $tanggal_mulai)
                 ->where('a.created_at', '<=', $tanggal_sampai)
                 ->get();
-
-            $custom = DB::table('penjualan as a')
-                ->select('a.*', 'b.id', 'b.nama_barang', 'b.jumlah', 'b.desain', 'b.keterangan', 'b.harga')
-                ->join('custom_produk as b', 'a.id_custom', '=', 'b.id')
-                ->join('users as c', 'a.id_pelanggan', '=', 'c.id')
-                ->where('a.created_at', '>=', $tanggal_mulai)
-                ->where('a.created_at', '<=', $tanggal_sampai)
-                ->get();
-
-            $transaksic = $custom;
 
             $transaksi = $getmonth;
             $url = '/download-laporan?tgl_dari=' . $tanggal_mulai . '&tgl_sampai=' . $tanggal_sampai . '&kategori=';
@@ -203,52 +137,38 @@ class Transaksi extends Controller
             $tanggal_mulai = $_GET["tgl_dari"];
             $tanggal_sampai = $_GET["tgl_sampai"];
             $kategori = $_GET["kategori"];
-            $getmonth = DB::table('penjualan as a')
-                ->select('a.*', 'b.id_kategori', 'b.nama_barang', 'b.bahan', 'b.ukuran', 'b.harga', 'b.jumlah as per', 'c.nama as nama_pelanggan', 'c.no_hp', 'c.email', 'k.kategori')
-                ->join('barang as b', 'a.id_barang', '=', 'b.id')
-                ->join('users as c', 'a.id_pelanggan', '=', 'c.id')
-                ->join('kategori as k', 'b.id_kategori', '=', 'k.id')
-                ->where('k.kategori', '=', $kategori)
+            $getmonth = DB::table('pembelian as a')
+                ->select('a.*', 'b.id_barang', 'b.id_kategori', 'b.nama_barang', 'b.deskripsi', 'b.harga', 'b.stok', 'b.satuan as per', 'c.nama as nama_pelanggan', 'c.no_telepon', 'c.email', 'd.id_kategori', 'd.nama_kategori')
+                ->join('barang as b', 'a.id_barang', '=', 'b.id_barang')
+                ->join('users as c', 'a.id_pelanggan', '=', 'c.id_user')
+                ->join('kategori as d', 'b.id_kategori', '=', 'd.id_kategori')
+                ->where('d.kategori', '=', $kategori)
                 ->where('a.created_at', '>=', $tanggal_mulai)
                 ->where('a.created_at', '<=', $tanggal_sampai)
                 ->get();
 
-            $custom = DB::table('penjualan as a')
-                ->select('a.*', 'b.id', 'b.nama_barang', 'b.jumlah', 'b.desain', 'b.keterangan', 'b.harga')
-                ->join('custom_produk as b', 'a.id_custom', '=', 'b.id')
-                ->join('users as c', 'a.id_pelanggan', '=', 'c.id')
-                ->where('a.created_at', '>=', $tanggal_mulai)
-                ->where('a.created_at', '<=', $tanggal_sampai)
-                ->get();
-
-            $transaksic = $custom;
             $transaksi = $getmonth;
             $url = '/download-laporan?tgl_dari=' . $tanggal_mulai . '&tgl_sampai=' . $tanggal_sampai . '&kategori=' . $kategori;
         } elseif (!empty($_GET["kategori"]) && empty($_GET["tgl_dari"]) && empty($_GET["tgl_sampai"])) {
             $kategori = $_GET["kategori"];
-            $getmonth = DB::table('penjualan as a')
-                ->select('a.*', 'b.id_kategori', 'b.nama_barang', 'b.bahan', 'b.ukuran', 'b.harga', 'b.jumlah as per', 'c.nama as nama_pelanggan', 'c.no_hp', 'c.email', 'k.kategori')
-                ->join('barang as b', 'a.id_barang', '=', 'b.id')
-                ->join('users as c', 'a.id_pelanggan', '=', 'c.id')
-                ->join('kategori as k', 'b.id_kategori', '=', 'k.id')
+            $getmonth = DB::table('pembelian as a')
+                ->select('a.*', 'b.id_barang', 'b.id_kategori', 'b.nama_barang', 'b.deskripsi', 'b.harga', 'b.stok', 'b.satuan as per', 'c.nama as nama_pelanggan', 'c.no_telepon', 'c.email', 'd.id_kategori', 'd.nama_kategori')
+                ->join('barang as b', 'a.id_barang', '=', 'b.id_barang')
+                ->join('users as c', 'a.id_pelanggan', '=', 'c.id_user')
+                ->join('kategori as d', 'b.id_kategori', '=', 'd.id_kategori')
                 ->where('k.kategori', '=', $kategori)
                 ->get();
+
             $transaksi = $getmonth;
             $url = '/download-laporan?tgl_dari=&tgl_sampai=&kategori=' . $kategori;
         } else {
-            $all = DB::table('penjualan as a')
-                ->select('a.*', 'b.id_kategori', 'b.nama_barang', 'b.bahan', 'b.deskripsi', 'b.harga', 'b.jumlah as per', 'c.nama as nama_pelanggan', 'c.no_hp', 'c.email')
-                ->join('barang as b', 'a.id_barang', '=', 'b.id')
-                ->join('users as c', 'a.id_pelanggan', '=', 'c.id')
+            $all = DB::table('pembelian as a')
+                ->select('a.*', 'b.id_barang', 'b.id_kategori', 'b.nama_barang', 'b.deskripsi', 'b.harga', 'b.stok', 'b.satuan as per', 'c.nama as nama_pelanggan', 'c.no_telepon', 'c.email', 'd.id_kategori', 'd.nama_kategori')
+                ->join('barang as b', 'a.id_barang', '=', 'b.id_barang')
+                ->join('users as c', 'a.id_pelanggan', '=', 'c.id_user')
+                ->join('kategori as d', 'b.id_kategori', '=', 'd.id_kategori')
                 ->get();
 
-            $custom = DB::table('penjualan as a')
-                ->select('a.*', 'b.id', 'b.nama_barang', 'b.jumlah', 'b.desain', 'b.keterangan', 'b.harga')
-                ->join('custom_produk as b', 'a.id_custom', '=', 'b.id')
-                ->join('users as c', 'a.id_pelanggan', '=', 'c.id')
-                ->get();
-
-            $transaksic = $custom;
             $transaksi = $all;
             $url = '/download-laporan';
         }
@@ -256,7 +176,6 @@ class Transaksi extends Controller
         $results = [
             'pagetitle' => 'Data Penjualan',
             'transaksi' => $transaksi,
-            'transaksic' => $transaksic,
             'kategori' => $kategori,
             'url' => $url,
         ];
@@ -268,10 +187,10 @@ class Transaksi extends Controller
         if (!empty($_GET["tgl_dari"]) && !empty($_GET["tgl_sampai"]) && empty($_GET["katgori"])) {
             $tanggal_mulai = $_GET["tgl_dari"];
             $tanggal_sampai = $_GET["tgl_sampai"];
-            $getmonth = DB::table('penjualan as a')
-                ->select('a.*', 'b.id_kategori', 'b.nama_barang', 'b.bahan', 'b.deskripsi', 'b.harga', 'b.jumlah as per', 'c.nama as nama_pelanggan', 'c.no_hp', 'c.email')
-                ->join('barang as b', 'a.id_barang', '=', 'b.id')
-                ->join('users as c', 'a.id_pelanggan', '=', 'c.id')
+            $getmonth = DB::table('pembelian as a')
+                ->select('a.*', 'b.id_barang', 'b.id_kategori', 'b.nama_barang', 'b.deskripsi', 'b.harga', 'b.stok', 'b.satuan as per', 'c.nama as nama_pelanggan', 'c.no_telepon', 'c.email',)
+                ->join('barang as b', 'a.id_barang', '=', 'b.id_barang')
+                ->join('users as c', 'a.id_pelanggan', '=', 'c.id_user')
                 ->where('a.created_at', '>=', $tanggal_mulai)
                 ->where('a.created_at', '<=', $tanggal_sampai)
                 ->get();
@@ -285,10 +204,10 @@ class Transaksi extends Controller
             $tanggal_mulai = $_GET["tgl_dari"];
             $tanggal_sampai = $_GET["tgl_sampai"];
             $kategori = $_GET["kategori"];
-            $getmonth = DB::table('penjualan as a')
-                ->select('a.*', 'b.id_kategori', 'b.nama_barang', 'b.bahan', 'b.deskripsi', 'b.harga', 'b.jumlah as per', 'c.nama as nama_pelanggan', 'c.no_hp', 'c.email')
-                ->join('barang as b', 'a.id_barang', '=', 'b.id')
-                ->join('users as c', 'a.id_pelanggan', '=', 'c.id')
+            $getmonth = DB::table('pembelian as a')
+                ->select('a.*', 'b.id_kategori', 'b.nama_barang', 'b.deskripsi', 'b.harga', 'b.satuan as per', 'c.nama as nama_pelanggan', 'c.no_telepon', 'c.email')
+                ->join('barang as b', 'a.id_barang', '=', 'b.id_barang')
+                ->join('users as c', 'a.id_pelanggan', '=', 'c.id_user')
                 ->where('b.id_kategori', '=', $kategori)
                 ->where('a.created_at', '>=', $tanggal_mulai)
                 ->where('a.created_at', '<=', $tanggal_sampai)
@@ -300,10 +219,10 @@ class Transaksi extends Controller
 
         if (!empty($_GET["kategori"]) && empty($_GET["tgl_dari"]) && empty($_GET["tgl_sampai"])) {
             $kategori = $_GET["kategori"];
-            $getmonth = DB::table('penjualan as a')
-                ->select('a.*', 'b.id_kategori', 'b.nama_barang', 'b.bahan', 'b.deskripsi', 'b.harga', 'b.jumlah as per', 'c.nama as nama_pelanggan', 'c.no_hp', 'c.email')
-                ->join('barang as b', 'a.id_barang', '=', 'b.id')
-                ->join('users as c', 'a.id_pelanggan', '=', 'c.id')
+            $getmonth = DB::table('pembelian as a')
+                ->select('a.*', 'b.id_kategori', 'b.nama_barang', 'b.deskripsi', 'b.harga', 'b.satuan as per', 'c.nama as nama_pelanggan', 'c.no_telepon', 'c.email')
+                ->join('barang as b', 'a.id_barang', '=', 'b.id_barang')
+                ->join('users as c', 'a.id_pelanggan', '=', 'c.id_user')
                 ->where('b.id_kategori', '=', $kategori)
                 ->get();
             $transaksi = $getmonth;
@@ -312,10 +231,10 @@ class Transaksi extends Controller
         }
 
         if (empty($_GET["kategori"]) && empty($_GET["tgl_dari"]) && empty($_GET["tgl_sampai"])) {
-            $all = DB::table('penjualan as a')
-                ->select('a.*', 'b.id_kategori', 'b.nama_barang', 'b.bahan', 'b.deskripsi', 'b.harga', 'b.jumlah as per', 'c.nama as nama_pelanggan', 'c.no_hp', 'c.email')
-                ->join('barang as b', 'a.id_barang', '=', 'b.id')
-                ->join('users as c', 'a.id_pelanggan', '=', 'c.id')
+            $all = DB::table('pembelian as a')
+                ->select('a.*', 'b.id_kategori', 'b.nama_barang', 'b.deskripsi', 'b.harga', 'b.satuan as per', 'c.nama as nama_pelanggan', 'c.nama as nama_pelanggan', 'c.no_telepon', 'c.email')
+                ->join('barang as b', 'a.id_barang', '=', 'b.id_barang')
+                ->join('users as c', 'a.id_pelanggan', '=', 'c.id_user')
                 ->get();
 
             $transaksi = $all;
@@ -337,8 +256,8 @@ class Transaksi extends Controller
     public function cetak_laporanProduk()
     {
         $all = DB::table('barang as a')
-            ->select('a.*', 'b.kategori')
-            ->join('kategori as b', 'a.id_kategori', '=', 'b.id')
+            ->select('a.*', 'b.nama_kategori')
+            ->join('kategori as b', 'a.id_kategori', '=', 'b.id_kategori')
             ->get();
 
         $produk = $all;
@@ -350,24 +269,6 @@ class Transaksi extends Controller
         $pdf = Pdf::loadView('admin.pages.pdf.laporan-produk', $results)->setPaper('a4', 'landscape');
         $name = now()->timestamp . "Laporan-Produk" . ".pdf";
         return $pdf->download('Laporan-Produk' . $name);
-    }
-
-    public function cetak_laporanCustom()
-    {
-        $all = DB::table('custom_produk as a')
-            ->select('a.*', 'b.id')
-            ->join('users as b', 'a.id_user', '=', 'b.id')
-            ->get();
-
-        $custom = $all;
-
-        $results = [
-            'pagetitle' => 'Data Custom Produk',
-            'custom' => $custom,
-        ];
-        $pdf = Pdf::loadView('admin.pages.pdf.laporan-custom-product', $results)->setPaper('a4', 'landscape');
-        $name = now()->timestamp . "Laporan-Custom-Produk" . ".pdf";
-        return $pdf->download('Laporan-Cutom-Produk' . $name);
     }
 
     public function cetak_laporanPengiriman()

@@ -29,7 +29,7 @@
                                             <thead>
                                                 <tr>
                                                     <th scope="col">#</th>
-                                                    <th scope="col">Bank</th>
+                                                    <th scope="col">Nama Bank</th>
                                                     <th scope="col">No Rekening</th>
                                                     <th scope="col">Nama Rekening</th>
                                                     <th scope="col">Dibuat</th>
@@ -41,20 +41,20 @@
                                                 @foreach ($rekening as $no => $item)
                                                     <tr>
                                                         <th scope="row">{{ $no + 1 }}</th>
-                                                        <td>{{ $item->bank }}</td>
-                                                        <td>{{ $item->no_rekening }}</td>
-                                                        <td>{{ $item->nama_rekening }}</td>
+                                                        <td>{{ $item->nama_bank }}</td>
+                                                        <td>{{ $item->nomor_rekening }}</td>
+                                                        <td>{{ $item->nama_akun }}</td>
                                                         <td>{{ $item->created_at }}</td>
                                                         <td>{{ $item->updated_at }}</td>
                                                         <td>
                                                             <div class="d-flex justify-content-center gap-2">
                                                                 <a href="javascript:void(0);" class="btn btn-warning btn-sm"
                                                                     data-bs-toggle="modal"
-                                                                    data-bs-target="#edit-{{ $item->id }}"><i
+                                                                    data-bs-target="#edit-{{ $item->id_metode_pembayaran }}"><i
                                                                         class="bi bi-pencil"></i> Ubah</a>
                                                                 <a href="javascript:void(0);" class="btn btn-danger btn-sm"
                                                                     data-bs-toggle="modal"
-                                                                    data-bs-target="#delete-{{ $item->id }}"><i
+                                                                    data-bs-target="#delete-{{ $item->id_metode_pembayaran }}"><i
                                                                         class="bi bi-trash"></i> Hapus</a>
                                                             </div>
                                                         </td>
@@ -80,33 +80,33 @@
                                         @csrf
                                         <div class="modal-body">
                                             <div class="pt-2">
-                                                <label for="bank" class="form-label">Bank</label>
+                                                <label for="nama_bank" class="form-label">Nama Bank</label>
                                                 <input bank="text"
-                                                    class="form-control @error('bank') is-invalid @enderror" name="bank"
-                                                    id="bank"  placeholder="Masukan Nama Bank">
-                                                @error('bank')
+                                                    class="form-control @error('nama_bank') is-invalid @enderror" name="nama_bank"
+                                                    id="nama_bank"  placeholder="Masukan Nama Bank">
+                                                @error('nama_bank')
                                                     <div class="invalid-feedback">
                                                         {{ $message }}
                                                     </div>
                                                 @enderror
                                             </div>
                                             <div class="pt-2">
-                                                <label for="no_rekening" class="form-label">No Rekening</label>
+                                                <label for="nomor_rekening" class="form-label">No Rekening</label>
                                                 <input type="number"
-                                                    class="form-control @error('no_rekening') is-invalid @enderror" name="no_rekening"
-                                                    id="no_rekening" placeholder="Masukan No Rekening">
-                                                @error('no_rekening')
+                                                    class="form-control @error('nomor_rekening') is-invalid @enderror" name="nomor_rekening"
+                                                    id="nomor_rekening" placeholder="Masukan No Rekening">
+                                                @error('nomor_rekening')
                                                     <div class="invalid-feedback">
                                                         {{ $message }}
                                                     </div>
                                                 @enderror
                                             </div>
                                             <div class="pt-2">
-                                                <label for="nama_rekening" class="form-label">Nama Rekening</label>
+                                                <label for="nama_akun" class="form-label">Nama Rekening</label>
                                                 <input type="text"
-                                                    class="form-control @error('type') is-invalid @enderror" name="nama_rekening"
-                                                    id="nama_rekening" placeholder="Masukan Nama Rekening">
-                                                @error('type')
+                                                    class="form-control @error('nama_akun') is-invalid @enderror" name="nama_akun"
+                                                    id="nama_akun" placeholder="Masukan Nama Rekening">
+                                                @error('nama_akun')
                                                     <div class="invalid-feedback">
                                                         {{ $message }}
                                                     </div>
@@ -123,7 +123,7 @@
                             </div>
                         </div>
                         @foreach ($rekening as $item)
-                            <div class="modal fade" id="delete-{{ $item->id }}" tabindex="-1">
+                            <div class="modal fade" id="delete-{{ $item->id_metode_pembayaran }}" tabindex="-1">
                                 <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -131,11 +131,11 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
                                         </div>
-                                        <form action="{{ url('delete-data-rekening/' . $item->id) }}" method="post">
+                                        <form action="{{ url('delete-data-rekening/' . $item->id_metode_pembayaran) }}" method="post">
                                             @method('DELETE')
                                             @csrf
                                             <div class="modal-body">
-                                                Hapus {{ $pagetitle }} <b>{{ $item->bank .' '. $item->no_rekening .' a.n. '. $item->nama_rekening }}</b>?
+                                                Hapus {{ $pagetitle }} <b>{{ $item->nama_bank .' '. $item->nomor_rekening .' a.n. '. $item->nama_akun }}</b>?
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary"
@@ -147,7 +147,7 @@
                                 </div>
                             </div>
 
-                            <div class="modal fade" id="edit-{{ $item->id }}" tabindex="-1">
+                            <div class="modal fade" id="edit-{{ $item->id_metode_pembayaran }}" tabindex="-1">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -155,38 +155,38 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
                                         </div>
-                                        <form action="{{ url('update-data-rekening/' . $item->id) }}" method="post">
+                                        <form action="{{ url('update-data-rekening/' . $item->id_metode_pembayaran) }}" method="post">
                                             @method('put')
                                             @csrf
                                             <div class="modal-body">
                                                 <div class="pt-2">
-                                                    <label for="bank" class="form-label">Bank</label>
+                                                    <label for="nama_bank" class="form-label">Nama Bank</label>
                                                     <input bank="text"
-                                                        class="form-control @error('bank') is-invalid @enderror" name="bank"
-                                                        id="bank" value="{{ $item->bank }}" placeholder="Masukan Nama Bank">
-                                                    @error('bank')
+                                                        class="form-control @error('nama_bank') is-invalid @enderror" name="nama_bank"
+                                                        id="nama_bank" value="{{ $item->nama_bank }}" placeholder="Masukan Nama Bank">
+                                                    @error('nama_bank')
                                                         <div class="invalid-feedback">
                                                             {{ $message }}
                                                         </div>
                                                     @enderror
                                                 </div>
                                                 <div class="pt-2">
-                                                    <label for="no_rekening" class="form-label">No Rekening</label>
+                                                    <label for="nomor_rekening" class="form-label">No Rekening</label>
                                                     <input type="number"
-                                                        class="form-control @error('no_rekening') is-invalid @enderror" name="no_rekening"
-                                                        id="no_rekening" value="{{ $item->no_rekening }}" placeholder="Masukan No Rekening">
-                                                    @error('no_rekening')
+                                                        class="form-control @error('nomor_rekening') is-invalid @enderror" name="nomor_rekening"
+                                                        id="nomor_rekening" value="{{ $item->nomor_rekening }}" placeholder="Masukan No Rekening">
+                                                    @error('nomor_rekening')
                                                         <div class="invalid-feedback">
                                                             {{ $message }}
                                                         </div>
                                                     @enderror
                                                 </div>
                                                 <div class="pt-2">
-                                                    <label for="nama_rekening" class="form-label">Nama Rekening</label>
+                                                    <label for="nama_akun" class="form-label">Nama Rekening</label>
                                                     <input type="text"
-                                                        class="form-control @error('nama_rekening') is-invalid @enderror" name="nama_rekening"
-                                                        id="nama_rekening" value="{{ $item->nama_rekening }}" placeholder="Masukan Nama Rekening">
-                                                    @error('nama_rekening')
+                                                        class="form-control @error('nama_akun') is-invalid @enderror" name="nama_akun"
+                                                        id="nama_akun" value="{{ $item->nama_akun }}" placeholder="Masukan Nama Rekening">
+                                                    @error('nama_akun')
                                                         <div class="invalid-feedback">
                                                             {{ $message }}
                                                         </div>

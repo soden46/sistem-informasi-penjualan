@@ -73,36 +73,30 @@
     <div class="card">
         <div class="card-body">
             <center>
-                <h1>Laporan Data Produk<br>{{ profile()->nama_perusahaan }}</h1>
+                <h1>Laporan Data Produk<br>Sadiman Maubel Simbatan</h1>
             </center>
             <hr>
             <table class="table" style="width: 100%">
                 <thead>
-                    <tr>
-                        <th class="th">Nama Produk</th>
-                        <th class="th">Kategori</th>
-                        <th class="th">Bahan</th>
-                        <th class="th">Deskripsi</th>
-                        <th class="th">Finishing</th>
-                        <th class="th">Ukuran</th>
-                        <th class="th">Jumlah</th>
-                        <th class="th">Harga (Rp.)</th>
-                        <th class="th">Stok</th>
+                   <tr>
+                        <th>Nama Kategori</th>
+                        <th>Nama Barang</th>
+                        <th>Deskripsi</th>
+                        <th>Stok</th>
+                        <th>Satuan</th>
+                        <th>Harga</th>
                     </tr>
                 </thead>
                 <tbody>
                     @php $total = '0' @endphp
                     @foreach ($produk as $item)
                     <tr>
-                        <td class="td">{{ $item->nama_barang }}</td>
-                        <td class="td">{{ $item->kategori }}</td>
-                        <td class="td">{{ $item->bahan }}</td>
-                        <td class="td">{{ $item->deskripsi }}</td>
-                        <td class="td">{{ $item->finishing }}</td>
-                        <td class="td">{{ $item->ukuran }}</td>
-                        <td class="td">{{ $item->jumlah }}</td>
-                        <td class="td">{{ $item->harga }}</td>
-                        <td class="td">{{ $item->stok }}</td>
+                        <td>{{ $item->nama_kategori }}</td>
+                        <td>{{ $item->nama_barang }}</td>>
+                        <td>{{ $item->deskripsi }}</td>
+                        <td>{{ $item->stok }}</td>
+                        <td>{{ $item->satuan }}</td>
+                        <td>{{ $item->harga }}</td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -115,7 +109,7 @@
 
                 </br width="100px">
 
-                <p>CV. Amarta Furniture</p>
+                <p>Sadiman Maubel Simbatan</p>
 
             </div>
         </div>

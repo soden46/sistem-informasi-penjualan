@@ -32,32 +32,24 @@
                                     <table class="table table-borderless datatable">
                                         <thead>
                                             <tr>
-                                                <th>Kategori</th>
+                                                <th>Nama Kategori</th>
                                                 <th>Nama Barang</th>
-                                                <th>Bahan</th>
                                                 <th>Deskripsi</th>
-                                                <th>Finishing</th>
-                                                <th>Ukuran</th>
-                                                <th>Jumlah</th>
-                                                <th>Harga</th>
                                                 <th>Stok</th>
-                                                <th>Status</th>
+                                                <th>Satuan</th>
+                                                <th>Harga</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @php $total = '0' @endphp
                                             @foreach ($produk as $item)
-                                            @php $total += $item->harga * $item->jumlah @endphp
                                             <tr>
-                                                <td>{{ $item->kategori }}</td>
-                                                <td>{{ $item->nama_barang }}</td>
-                                                <td>{{ $item->bahan }}</td>
+                                                <td>{{ $item->nama_kategori }}</td>
+                                                <td>{{ $item->nama_barang }}</td>>
                                                 <td>{{ $item->deskripsi }}</td>
-                                                <td>{{ $item->finishing }}</td>
-                                                <td>{{ $item->ukuran }}</td>
-                                                <td>{{ $item->jumlah }}</td>
-                                                <td>{{ $item->harga }}</td>
                                                 <td>{{ $item->stok }}</td>
+                                                <td>{{ $item->satuan }}</td>
+                                                <td>{{ $item->harga }}</td>
+                                                
                                                 <!-- gambar -->
                                             </tr>
                                             @endforeach

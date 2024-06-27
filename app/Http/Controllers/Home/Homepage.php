@@ -24,17 +24,16 @@ class Homepage extends Controller
         return view('home.pages.homepage', $results);
     }
 
-    public function detail($id)
+    public function detail($id_barang)
     {
-
         $barang = DB::table('barang as a')
-            ->select('a.id', 'a.id_kategori', 'a.nama_barang', 'a.stok', 'a.satuan')
-            ->where('a.id', '=', $id)
+            ->select('a.id_barang', 'a.id_kategori', 'a.nama_barang', 'a.stok', 'a.satuan', 'a.harga', 'a.foto', 'a.deskripsi')
+            ->where('a.id_barang', '=', $id_barang)
             ->get()->first();
         $kategori = DB::table('kategori as k')
-            ->select('k.id', 'k.kategori', 'a.id', 'a.id_kategori')
-            ->join('barang as a', 'k.id', '=', 'a.id_kategori')
-            ->where('a.id', '=', $id)
+            ->select('k.id_kategori', 'k.nama_kategori', 'a.id_barang', 'a.id_kategori')
+            ->join('barang as a', 'k.id_kategori', '=', 'a.id_kategori')
+            ->where('a.id_barang', '=', $id_barang)
             ->get()->first();
         $results = [
             'pagetitle' => 'Detail Produk',

@@ -1,0 +1,9 @@
+@extends('home.layouts.template')
+@section('css')
+@endsection
+@section('main')
+    @include('home.layouts.breadcrumb')
+    @include('home.layouts.kategori-detail')
+@endsection
+@section('script')
+@endsection

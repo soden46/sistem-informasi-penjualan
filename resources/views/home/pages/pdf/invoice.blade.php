@@ -55,8 +55,8 @@
 <body>
     <div class="card">
         <div class="card-body">
-            <h2 class="card-title fs-4">#INV-0{{ $invoice->id }}</h2>
-            <h4>{{ profile()->nama_perusahaan }}</h4>
+            <h2 class="card-title fs-4">#INV-0{{ $invoice->id_pembelian }}</h2>
+            <h4>Sadiman Meubel Sombatan</h4>
 
             <div class="pt-2">
                 <table>
@@ -73,7 +73,7 @@
                     <tr>
                         <td>No. Telepon</td>
                         <td class="text-center">:</td>
-                        <td>{{ $invoice->no_hp }}</td>
+                        <td>{{ $invoice->no_telepon }}</td>
                     </tr>
                     <tr>
                         <td>Alamat Pengiriman</td>
@@ -89,33 +89,31 @@
             </div>
             <div class="pt-4">
                 @if ($invoice->status != '0')
-                <p class="text-center fw-bold text-success">[LUNAS]</p>
+                    <p class="text-center fw-bold text-success">[LUNAS]</p>
                 @else
-                <p class="text-center fw-bold text-danger">[BELUM LUNAS]</p>
+                    <p class="text-center fw-bold text-danger">[BELUM LUNAS]</p>
                 @endif
                 <h4 class="card-subtitle mb-2 text-muted">Detail Pesanan</h4>
                 <div class="table-responsive">
-                    <table class="table" style="width: 100%">
+                    <table class="table table-bordered" style="width: 100%">
                         <thead>
                             <tr>
                                 <th class="th">Kategori</th>
                                 <th class="th">Nama Barang</th>
-                                <th class="th">Harga (Rp.)</th>
-                                <th class="th">Jumlah (Pcs)</th>
-                                <th class="th">Total (Rp.)</th>
+                                <th class="th">Total barang (Unit)</th>
+                                <th class="th">Total Harga (Rp.)</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td class="td">{{ $invoice->kategori }}</td>
+                                <td class="td">{{ $invoice->nama_kategori }}</td>
                                 <td class="td">{{ $invoice->nama_barang }}</td>
-                                <td class="td">{{ number_format($invoice->harga) . '/' . $invoice->per }}</td>
-                                <td class="td">{{ $invoice->jumlah }}</td>
-                                <td class="td">{{ number_format($invoice->harga * $invoice->jumlah) }}</td>
+                                <td class="td">{{ number_format($invoice->total_barang) }}</td>
+                                <td class="td">{{ number_format($invoice->total_harga) }}</td>
                             </tr>
                             <tr>
-                                <th colspan="4" class="text-end th">Total</th>
-                                <th class="th"> {{ number_format($invoice->harga * $invoice->jumlah) }}</th>
+                                <th colspan="4" class="text-end">Total: {{ number_format($invoice->total_harga) }}
+                                </th>
                             </tr>
                         </tbody>
                     </table>
@@ -126,22 +124,22 @@
                         <tr>
                             <td style="vertical-align: text-top">Telepon</td>
                             <td style="vertical-align: text-top" class="text-center">:</td>
-                            <td style="vertical-align: text-top">{{ profile()->telepon }}</td>
+                            <td style="vertical-align: text-top"></td>
                         </tr>
                         <tr>
                             <td style="vertical-align: text-top">Whatsapp</td>
                             <td style="vertical-align: text-top" class="text-center">:</td>
-                            <td style="vertical-align: text-top">{{ profile()->whatsapp }}</td>
+                            <td style="vertical-align: text-top"></td>
                         </tr>
                         <tr>
                             <td style="vertical-align: text-top">Email</td>
                             <td style="vertical-align: text-top" class="text-center">:</td>
-                            <td style="vertical-align: text-top">{{ profile()->email }}</td>
+                            <td style="vertical-align: text-top"></td>
                         </tr>
                         <tr>
                             <td style="vertical-align: text-top">Alamat</td>
                             <td style="vertical-align: text-top" class="text-center">:</td>
-                            <td style="vertical-align: text-top">{{ profile()->alamat }}</td>
+                            <td style="vertical-align: text-top"></td>
                         </tr>
                     </table>
                 </footer>

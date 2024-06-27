@@ -70,38 +70,44 @@
     <div class="card">
         <div class="card-body">
             <center>
-                <h1>Laporan Data Penjualan<br>{{ profile()->nama_perusahaan }}</h1>
+                <h1>Laporan Data Penjualan<br>Sadiman Maubel Simbatan</h1>
             </center>
             <p><b>Periode :</b> {{ $periode }}</p>
             <hr>
             <table class="table" style="width: 100%">
                 <thead>
                     <tr>
-                        <th class="th">Nama Pelanggan</th>
-                        <th class="th">Kategori</th>
-                        <th class="th">Nama Barang</th>
-                        <th class="th">Harga (Rp.)</th>
-                        <th class="th">Jumlah</th>
-                        <th class="th">Total (Rp.)</th>
+                        <th>Tanggal Pesanan</th>
+                        <th>Nama Pelanggan</th>
+                        <th>Nama Barang</th>
+                        <th>Total Barang</th>
+                        <th>Total Harga</th>
+                        <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @php $total = '0' @endphp
+                    @php $total = 0 @endphp
                     @foreach ($transaksi as $item)
-                    @php $total += $item->harga * $item->jumlah @endphp
-                    <tr>
-                        <td class="td">{{ $item->nama_pelanggan }}</td>
-                        <td class="td">{{ $item->id_kategori }}</td>
-                        <td class="td">{{ $item->nama_barang }}</td>
-                        <td class="td">{{ number_format($item->harga) . '/' . $item->per }}</td>
-                        <td class="td">{{ $item->jumlah }}</td>
-                        <td class="td">{{ number_format($item->harga * $item->jumlah) }}</td>
-                    </tr>
+                        @php $total += $item->total_harga @endphp
+                        <tr>
+                            <td>{{ $item->created_at }}</td>
+                            <td>{{ $item->nama_pelanggan }}</td>
+                            <td>{{ $item->nama_barang }}</td>
+                            <td>Rp.{{ number_format($item->total_harga) }}</td>
+                            <td>Rp.{{ number_format($item->total_barang) }}</td>
+                            <td>
+                                {!! $item->status == '0'
+                                    ? '<span class="badge bg-danger">Belum Lunas</span>'
+                                    : ($item->status == '1'
+                                        ? '<span class="badge bg-success">Lunas</span>'
+                                        : '') !!}
+                            </td>
+                        </tr>
                     @endforeach
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th colspan="5" class="text-end">Total Pendapatan</th>
+                        <th colspan="4" class="text-end">Total Pendapatan</th>
                         <th>Rp.{{ number_format($total) }}</th>
                     </tr>
                 </tfoot>
@@ -114,7 +120,7 @@
 
                 </br width="100px">
 
-                <p>CV. Amarta Furniture</p>
+                <p>Sadiman Maubel Simbatan</p>
 
             </div>
         </div>

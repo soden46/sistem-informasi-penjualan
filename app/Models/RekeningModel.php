@@ -8,10 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class RekeningModel extends Model
 {
     use HasFactory;
-    protected $table = 'rekening';
+    protected $table = 'metode_pembayaran';
+    protected $primaryKey = 'id_metode_pembayaran';
     protected $fillable = [
-        'bank',
-        'no_rekening',
-        'nama_rekening',
+        'nama_bank',
+        'nomor_rekening',
+        'nama_akun',
     ];
 }
