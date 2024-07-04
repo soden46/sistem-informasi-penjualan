@@ -24,7 +24,6 @@
             class="bi bi-arrow-up-short"></i></a>
 
     @include('admin.layouts.js')
-    @notifyJs
     @yield('scripts')
 
 </body>
