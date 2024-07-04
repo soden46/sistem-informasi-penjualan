@@ -99,4 +99,7 @@ Route::post('/create-data-mebel', 'App\Http\Controllers\Admin\Barang@create')->n
 Route::put('/update-data-mebel/{post}', 'App\Http\Controllers\Admin\Barang@update')->name('update')->middleware('cek_login:admin,owner');
 Route::delete('/delete-data-mebel/{post}', 'App\Http\Controllers\Admin\Barang@delete')->name('delete')->middleware('cek_login:admin,owner');
 
+Route::put('/update-data-pengiriman/{post}', 'App\Http\Controllers\Admin\Pengiriman@update')->name('update')->middleware('cek_login:admin,owner');
+Route::delete('/delete-data-pengiriman/{post}', 'App\Http\Controllers\Admin\Pengiriman@delete')->name('delete')->middleware('cek_login:admin,owner');
+
 Route::get('laporan/pengiriman', 'App\Http\Controllers\Admin\Pengiriman@index')->name('admin')->middleware('cek_login:admin,owner');
