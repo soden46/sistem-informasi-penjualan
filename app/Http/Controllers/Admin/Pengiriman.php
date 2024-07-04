@@ -16,11 +16,10 @@ class Pengiriman extends Controller
     {
 
 
-        $kirim = DB::table('penjualan as a')
-            ->select('a.*', 'b.nama_barang', 'c.nama as nama_pelanggan', 'c.no_hp', 'c.email', 'c.alamat', 'p.status')
-            ->join('barang as b', 'a.id_barang', '=', 'b.id')
-            ->join('users as c', 'a.id_pelanggan', '=', 'c.id')
-            ->join('pengiriman as p', 'a.id_pengiriman', '=', 'p.id')
+        $kirim = DB::table('pembelian as a')
+            ->select('a.*', 'b.nama_barang', 'c.nama as nama_pelanggan', 'c.no_telepon', 'c.email', 'c.alamat', 'p.status')
+            ->join('barang as b', 'a.id_barang', '=', 'b.id_barang')
+            ->join('users as c', 'a.id_pelanggan', '=', 'c.id_user')
             ->get();
         $url = '/download-laporan-pengiriman';
         $results = [

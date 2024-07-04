@@ -36,11 +36,6 @@
                         <i class="bi bi-circle"></i><span>Produk</span>
                     </a>
                 </li>
-                <li>
-                    <a href="{{ url('laporan/pengiriman') }}">
-                        <i class="bi bi-circle"></i><span>Pengiriman</span>
-                    </a>
-                </li>
             </ul>
         </li>
         <li class="nav-item">

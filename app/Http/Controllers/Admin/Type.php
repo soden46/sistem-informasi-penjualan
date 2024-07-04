@@ -12,11 +12,13 @@ class Type extends Controller
 {
     public function index()
     {
+        $barang = DB::table('barang')->get();
         $kategori = DB::table('kategori')->get();
         $results = [
             'pagetitle' => 'Data Kategori',
             'uri' => 'type mebel',
             'kategori' => $kategori,
+            'barang' => $barang
         ];
         return view('admin.pages.kategori', $results);
     }
