@@ -73,7 +73,7 @@
     <div class="card">
         <div class="card-body">
             <center>
-                <h1>Laporan Data Pengiriman<br>{{ profile()->nama_perusahaan }}</h1>
+                <h1>Laporan Data Pengiriman<br>Sadiman Meubel Simbatan</h1>
             </center>
             <hr>
             <table class="table" style="width: 100%">
@@ -84,20 +84,22 @@
                         <th class="th">Alamat</th>
                         <th class="th">Email</th>
                         <th class="th">No HP</th>
-                        <th class="th">Status</th>
+                        <th class="th">Status Pembayaran</th>
+                        <th class="th">Status Pengirirman</th>
                     </tr>
                 </thead>
                 <tbody>
                     @php $total = '0' @endphp
                     @foreach ($kirim as $item)
-                    <tr>
-                        <td class="td">{{ $item->nama }}</td>
-                        <td class="td">{{ $item->nama_barang }}</td>
-                        <td class="td">{{ $item->alamat }}</td>
-                        <td class="td">{{ $item->email }}</td>
-                        <td class="td">{{ $item->no_hp }}</td>
-                        <td class="td">{{ $item->status }}</td>
-                    </tr>
+                        <tr>
+                            <td class="td">{{ $item->nama_pelanggan }}</td>
+                            <td class="td">{{ $item->nama_barang }}</td>
+                            <td class="td">{{ $item->alamat_pengiriman }}</td>
+                            <td class="td">{{ $item->email }}</td>
+                            <td class="td">{{ $item->no_telepon }}</td>
+                            <td>{{ $item->status == '0' ? 'Belum Lunas' : ($item->status != '0' ? 'Lunas' : '') }}</td>
+                            <td class="td">{{ $item->status_pengiriman }}</td>
+                        </tr>
                     @endforeach
                 </tbody>
             </table>
@@ -109,7 +111,7 @@
 
                 </br width="100px">
 
-                <p>CV. Amarta Furniture</p>
+                <p>Sadiman Meubel Simbatan</p>
 
             </div>
         </div>

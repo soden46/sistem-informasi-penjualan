@@ -53,7 +53,8 @@
                                                     <th>Total Barang</th>
                                                     <th>Total Harga</th>
                                                     <th>Status Pembayaran</th>
-                                                    <th>Status Status Konfirmasi</th>
+                                                    <th>Status Konfirmasi</th>
+                                                    <th>Status Pengirirman</th>
                                                     <th>Detail Transaksi</th>
                                                 </tr>
                                             </thead>
@@ -77,6 +78,7 @@
                                                             : ($item->status == '1'
                                                                 ? '<span class="badge bg-success"> Pesanan Disetujui</span>'
                                                                 : '') !!}</td>
+                                                        <td>{{ $item->status_pengiriman }}</td>
                                                         <td>
                                                             <a href="{{ url('detail-transaksi/' . $item->id_pembelian) }}"
                                                                 class="btn btn-sm btn-success"><i class="bi bi-card-list">

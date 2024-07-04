@@ -273,11 +273,11 @@ class Transaksi extends Controller
 
     public function cetak_laporanPengiriman()
     {
-        $all = DB::table('penjualan as a')
-            ->select('a.*', 'b.status', 'c.nama', 'c.alamat', 'c.email', 'c.no_hp', 'd.nama_barang')
-            ->join('pengiriman as b', 'a.id_pengiriman', '=', 'b.id')
-            ->join('users as c', 'a.id_pelanggan', '=', 'c.id')
-            ->join('barang as d', 'a.id_barang', '=', 'c.id')
+        $all =
+            DB::table('pembelian as a')
+            ->select('a.*', 'b.id_kategori', 'b.nama_barang', 'b.deskripsi', 'b.harga', 'b.satuan as per', 'c.nama as nama_pelanggan', 'c.nama as nama_pelanggan', 'c.no_telepon', 'c.email')
+            ->join('barang as b', 'a.id_barang', '=', 'b.id_barang')
+            ->join('users as c', 'a.id_pelanggan', '=', 'c.id_user')
             ->get();
 
         $kirim = $all;
