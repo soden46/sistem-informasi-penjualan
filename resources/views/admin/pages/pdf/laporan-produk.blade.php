@@ -73,12 +73,12 @@
     <div class="card">
         <div class="card-body">
             <center>
-                <h1>Laporan Data Produk<br>Sadiman Maubel Simbatan</h1>
+                <h1>Laporan Data Produk<br>Sidoluhur Furniture</h1>
             </center>
             <hr>
             <table class="table" style="width: 100%">
                 <thead>
-                   <tr>
+                    <tr>
                         <th>Nama Kategori</th>
                         <th>Nama Barang</th>
                         <th>Deskripsi</th>
@@ -90,14 +90,14 @@
                 <tbody>
                     @php $total = '0' @endphp
                     @foreach ($produk as $item)
-                    <tr>
-                        <td>{{ $item->nama_kategori }}</td>
-                        <td>{{ $item->nama_barang }}</td>>
-                        <td>{{ $item->deskripsi }}</td>
-                        <td>{{ $item->stok }}</td>
-                        <td>{{ $item->satuan }}</td>
-                        <td>{{ $item->harga }}</td>
-                    </tr>
+                        <tr>
+                            <td>{{ $item->nama_kategori }}</td>
+                            <td>{{ $item->nama_barang }}</td>>
+                            <td>{{ $item->deskripsi }}</td>
+                            <td>{{ $item->stok }}</td>
+                            <td>{{ $item->satuan }}</td>
+                            <td>{{ $item->harga }}</td>
+                        </tr>
                     @endforeach
                 </tbody>
             </table>
@@ -109,7 +109,7 @@
 
                 </br width="100px">
 
-                <p>Sadiman Maubel Simbatan</p>
+                <p>Sidoluhur Furniture</p>
 
             </div>
         </div>

@@ -8,8 +8,10 @@
                       <div class="container">
                           <div class="row justify-content-center">
                               <div class="col-lg-10 text-start">
-                                  <p class="fs-5 fw-medium text-primary text-uppercase animated slideInRight">⁠Sadiman Meubel Simbatan</p>
-                                  <h2 class="display-1 text-white mb-5 animated slideInRight">Selamat Datang di <br> ⁠Sadiman Meubel Simbatan</h2>
+                                  <p class="fs-5 fw-medium text-primary text-uppercase animated slideInRight">Sidoluhur
+                                      Furniture</p>
+                                  <h2 class="display-1 text-white mb-5 animated slideInRight">Selamat Datang di <br>
+                                      Sidoluhur Furniture</h2>
                               </div>
                           </div>
                       </div>
@@ -21,7 +23,8 @@
                       <div class="container">
                           <div class="row justify-content-center">
                               <div class="col-lg-10 text-start">
-                                  <p class="fs-5 fw-medium text-primary text-uppercase animated slideInRight">⁠Sadiman Meubel Simbatan</p>
+                                  <p class="fs-5 fw-medium text-primary text-uppercase animated slideInRight">Sidoluhur
+                                      Furniture</p>
                                   <h2 class="display-1 text-white mb-5 animated slideInRight">Terbaik Dan Terpercaya
                                       Untuk Solusi Perabotan Anda</h2>
                               </div>

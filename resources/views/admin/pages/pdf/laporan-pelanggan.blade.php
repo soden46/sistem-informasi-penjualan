@@ -88,12 +88,12 @@
                 <tbody>
                     @php $total = '0' @endphp
                     @foreach ($user as $item)
-                    <tr>
-                        <td class="td">{{ $item->nama }}</td>
-                        <td class="td">{{ $item->email }}</td>
-                        <td class="td">{{ $item->alamat }}</td>
-                        <td class="td">{{ $item->no_hp }}</td>
-                    </tr>
+                        <tr>
+                            <td class="td">{{ $item->nama }}</td>
+                            <td class="td">{{ $item->email }}</td>
+                            <td class="td">{{ $item->alamat }}</td>
+                            <td class="td">{{ $item->no_hp }}</td>
+                        </tr>
                     @endforeach
                 </tbody>
             </table>
@@ -105,7 +105,7 @@
 
                 </br width="100px">
 
-                <p>CV. Amarta Furniture</p>
+                <p>Sidoluhur Furniture</p>
 
             </div>
 

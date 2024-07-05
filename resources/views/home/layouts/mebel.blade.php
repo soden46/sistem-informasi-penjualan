@@ -13,7 +13,7 @@
                             style="height: 210px;object-fit: cover;">
                         <div class="d-flex">
                             <div class="flex-shrink-0 btn-square bg-primary" style="width: 90px; height: 90px;">
-                                <img src="{{ url('assets/homepage/img/amartalogo.png') }}" alt=""
+                                <img src="{{ url('assets/homepage/img/sidoluhur.png') }}" alt=""
                                     style="height: 50px; width: auto; ">
                             </div>
                             <div class="position-relative overflow-hidden bg-light d-flex flex-column justify-content-center w-100 ps-4"

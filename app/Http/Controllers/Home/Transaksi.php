@@ -122,7 +122,7 @@ class Transaksi extends Controller
             'invoice' =>  $invoice
         ];
         $pdf = Pdf::loadView('home.pages.pdf.invoice', $data)->setPaper('a4', 'landscape');
-        $name = now()->timestamp . "CV_Amarta_INV-0" . $invoice->id_pembelian . ".pdf";
+        $name = now()->timestamp . "SIDOLUHUR_INV-0" . $invoice->id_pembelian . ".pdf";
         return $pdf->download($name);
     }
 }

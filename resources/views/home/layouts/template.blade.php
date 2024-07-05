@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <title>{{ $pagetitle . ' | ' . "⁠Sadiman Meubel Simbatan" }}</title>
+    <title>{{ $pagetitle . ' | ' . 'Sidoluhur Furniture' }}</title>
     @include('home.layouts.meta')
     @include('home.layouts.css')
     @yield('css')
     @notifyCss
 </head>
+
 <body>
     <x-notify::notify />
     <!-- Spinner Start -->
@@ -31,4 +33,5 @@
     @notifyJs
     @yield('js')
 </body>
+
 </html>

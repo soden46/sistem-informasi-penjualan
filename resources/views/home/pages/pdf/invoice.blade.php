@@ -56,7 +56,7 @@
     <div class="card">
         <div class="card-body">
             <h2 class="card-title fs-4">#INV-0{{ $invoice->id_pembelian }}</h2>
-            <h4>Sadiman Meubel Sombatan</h4>
+            <h4>Sidoluhur Furniture</h4>
 
             <div class="pt-2">
                 <table>

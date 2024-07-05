@@ -1,10 +1,12 @@
  <!-- Favicon -->
- <link href="{{ url('assets/homepage/img/amartafav.png') }}" rel="icon">
+ <link href="{{ url('assets/homepage/img/sidoluhur.png') }}" rel="icon">
 
  <!-- Google Web Fonts -->
  <link rel="preconnect" href="https://fonts.googleapis.com">
  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
- <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&family=Rubik:wght@500;600;700&display=swap" rel="stylesheet">
+ <link
+     href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&family=Rubik:wght@500;600;700&display=swap"
+     rel="stylesheet">
 
  <!-- Icon Font Stylesheet -->
  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -29,8 +31,8 @@
  </style>
 
  <!-- Font Awesome -->
- <link href="{{url('assets/fontawesome-6.4.0/css/all.css')}}" rel="stylesheet">
- <link href="{{url('assets/fontawesome-6.4.0/css/fonawesome.css')}}" rel="stylesheet">
+ <link href="{{ url('assets/fontawesome-6.4.0/css/all.css') }}" rel="stylesheet">
+ <link href="{{ url('assets/fontawesome-6.4.0/css/fonawesome.css') }}" rel="stylesheet">
 
  <!--Date Time Picker CSS-->
  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">

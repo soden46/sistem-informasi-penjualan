@@ -70,7 +70,7 @@
     <div class="card">
         <div class="card-body">
             <center>
-                <h1>Laporan Data Penjualan<br>Sadiman Maubel Simbatan</h1>
+                <h1>Laporan Data Penjualan<br>Sidoluhur Furniture</h1>
             </center>
             <p><b>Periode :</b> {{ $periode }}</p>
             <hr>
@@ -120,7 +120,7 @@
 
                 </br width="100px">
 
-                <p>Sadiman Maubel Simbatan</p>
+                <p>Sidoluhur Furniture</p>
 
             </div>
         </div>

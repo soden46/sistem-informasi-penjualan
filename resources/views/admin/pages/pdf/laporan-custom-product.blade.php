@@ -89,13 +89,13 @@
                 <tbody>
                     @php $total = '0' @endphp
                     @foreach ($custom as $item)
-                    <tr>
-                        <td class="td">{{ $item->nama_barang }}</td>
-                        <td class="td">{{ $item->jumlah }}</td>
-                        <td class="td">{{ $item->desain }}</td>
-                        <td class="td">{{ $item->keterangan }}</td>
-                        <td class="td">{{ $item->harga }}</td>
-                    </tr>
+                        <tr>
+                            <td class="td">{{ $item->nama_barang }}</td>
+                            <td class="td">{{ $item->jumlah }}</td>
+                            <td class="td">{{ $item->desain }}</td>
+                            <td class="td">{{ $item->keterangan }}</td>
+                            <td class="td">{{ $item->harga }}</td>
+                        </tr>
                     @endforeach
                 </tbody>
             </table>
@@ -107,7 +107,7 @@
 
                 </br width="100px">
 
-                <p>CV. Amarta Furniture</p>
+                <p>Sidoluhur Furniture</p>
 
             </div>
         </div>

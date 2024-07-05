@@ -2,8 +2,8 @@
 
     <div class="d-flex align-items-center justify-content-between">
         <a href="{{ url('') }}" class="logo d-flex align-items-center">
-            <img src="{{ url('assets/homepage/img/amarta.png') }}" alt="">
-            <span class="d-none d-lg-block fs-6">Sadiman Meubel Simbatan</span>
+            <img src="{{ url('assets/homepage/img/sidoluhur.png') }}" alt="">
+            <span class="d-none d-lg-block fs-6">Sidoluhur Furniture</span>
         </a>
         <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->

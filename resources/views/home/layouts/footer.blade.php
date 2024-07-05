@@ -5,11 +5,11 @@
                 <div class="col-lg-6 col-md-6">
                     <h5 class="text-white mb-4">Kantor Kami</h5>
                     <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Alamat</p>
-                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>Telepon</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3">+6281359260006</i>Whatsapp</p>
                     <p class="mb-2"><i class="fa fa-envelope me-3"></i>Email</p>
                     <div class="d-flex pt-3">
-                        <a class="btn btn-square btn-primary rounded-circle me-2"
-                            href="https://wa.me/"><i class="fab fa-whatsapp"></i></a>
+                        <a class="btn btn-square btn-primary rounded-circle me-2" href="https://wa.me/+6281359260006"><i
+                                class="fab fa-whatsapp"></i></a>
                         <a class="btn btn-square btn-primary rounded-circle me-2" href="Facebook"><i
                                 class="fab fa-facebook-f"></i></a>
                         <a class="btn btn-square btn-primary rounded-circle me-2" href="Instagram"><i
@@ -18,7 +18,9 @@
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <h5 class="text-white mb-4">Tentang</h5>
-                    <p>Sadiman Meubel Simbatan didirikan pada tahun 2001. Berawal dari usaha kecil kecilan yang didirikan oleh Ibu Warsi dan Bapak Sadiman, ternyata usaha ini mendapatkan respon positif dari warga sekitar. Tidak hanya menyediakan berbagai macam meubel.</p>
+                    <p>Sidoluhur Furniture didirikan pada tahun 2001. Berawal dari usaha kecil kecilan yang didirikan
+                        oleh Ibu Warsi dan Bapak Sadiman, ternyata usaha ini mendapatkan respon positif dari warga
+                        sekitar. Tidak hanya menyediakan berbagai macam meubel.</p>
                 </div>
             </div>
         </div>
@@ -29,8 +31,9 @@
     <!-- Copyright Start -->
     <div class="container-fluid copyright bg-dark py-4">
         <div class="container text-center">
-            <p class="mb-2">Copyright &copy; {{ date('Y') }} <a class="fw-semi-bold" href="#">⁠Sadiman Meubel Simbatan
-</a>
+            <p class="mb-2">Copyright &copy; {{ date('Y') }} <a class="fw-semi-bold" href="#">Sidoluhur
+                    Furniture
+                </a>
             </p>
         </div>
     </div>

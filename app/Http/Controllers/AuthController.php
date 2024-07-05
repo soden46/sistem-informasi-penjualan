@@ -19,7 +19,7 @@ class AuthController extends Controller
             }
         }
         $results = [
-            'pagetitle' => 'Masuk | Sadiman Meubel Simbatan'
+            'pagetitle' => 'Masuk | Sidoluhur Furniture'
         ];
         return view('auth.login', $results);
     }
@@ -27,7 +27,7 @@ class AuthController extends Controller
     public function register()
     {
         $results = [
-            'pagetitle' => 'Masuk | Sadiman Meubel Simbatan'
+            'pagetitle' => 'Masuk | Sidoluhur Furniture'
         ];
         return view('auth.register', $results);
     }
@@ -46,10 +46,10 @@ class AuthController extends Controller
             $user = Auth::user();
             // dd($user);
             if ($user->role == 'admin') {
-                notify()->success('Selamat Datang di Sadiman Meubel Simbatan', 'Berhasil');
+                notify()->success('Selamat Datang di Sidoluhur Furniture', 'Berhasil');
                 return redirect('dashboard');
             } elseif ($user->role == 'pelanggan') {
-                notify()->success('Selamat Datang di Sadiman Meubel Simbatan', 'Berhasil');
+                notify()->success('Selamat Datang di Sidoluhur Furniture', 'Berhasil');
                 return redirect('/');
             }
             return redirect()->back();

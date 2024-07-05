@@ -1,6 +1,6 @@
   <!-- Favicons -->
-  <link href="{{ url('assets/homepage/img/amartafav.png') }}" rel="icon">
-  <link href="{{ url('assets/homepage/img/amartafav.png') }}" rel="apple-touch-icon">
+  <link href="{{ url('assets/homepage/img/sidoluhur.png') }}" rel="icon">
+  <link href="{{ url('assets/homepage/img/sidoluhur.png') }}" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">

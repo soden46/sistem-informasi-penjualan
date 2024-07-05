@@ -73,7 +73,7 @@
     <div class="card">
         <div class="card-body">
             <center>
-                <h1>Laporan Data Pengiriman<br>Sadiman Meubel Simbatan</h1>
+                <h1>Laporan Data Pengiriman<br>Sidoluhur Furnoture</h1>
             </center>
             <hr>
             <table class="table" style="width: 100%">
@@ -111,7 +111,7 @@
 
                 </br width="100px">
 
-                <p>Sadiman Meubel Simbatan</p>
+                <p>Sidoluhur Furniture</p>
 
             </div>
         </div>
