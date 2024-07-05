@@ -5,7 +5,7 @@
                 <div class="col-lg-6 col-md-6">
                     <h5 class="text-white mb-4">Kantor Kami</h5>
                     <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Alamat</p>
-                    <p class="mb-2"><i class="fa fa-phone-alt me-3">+6281359260006</i>Whatsapp</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+6281359260006</p>
                     <p class="mb-2"><i class="fa fa-envelope me-3"></i>Email</p>
                     <div class="d-flex pt-3">
                         <a class="btn btn-square btn-primary rounded-circle me-2" href="https://wa.me/+6281359260006"><i
