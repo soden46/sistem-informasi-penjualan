@@ -17,10 +17,10 @@
                 <!-- Left side columns -->
                 <form action="" method="GET">
                     <div class="row">
-                        <div class="col-lg-6 d-flex gap-2 pb-4">
+                        {{-- <div class="col-lg-6 d-flex gap-2 pb-4">
                             <a href="{{ url($url) }}" class="btn btn-danger"><i class="bi bi-file-earmark-pdf"></i>
                                 Cetak PDF </a>
-                        </div>
+                        </div> --}}
                     </div>
                 </form>
                 <div class="col-lg-12">

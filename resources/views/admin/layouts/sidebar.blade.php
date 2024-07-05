@@ -22,6 +22,12 @@
             </a>
         </li>
         <li class="nav-item">
+            <a class="nav-link collapsed " href="{{ url('laporan/pengiriman') }}">
+                <i class="bi bi-hash"></i>
+                <span>Data Pengiriman</span>
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#laporan-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-list-check"></i><span>Laporan</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
@@ -34,11 +40,6 @@
                 <li>
                     <a href="{{ url('laporan/produk') }}">
                         <i class="bi bi-circle"></i><span>Produk</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ url('laporan/pengiriman') }}">
-                        <i class="bi bi-circle"></i><span>Pengiriman</span>
                     </a>
                 </li>
             </ul>
