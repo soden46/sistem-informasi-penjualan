@@ -4,7 +4,8 @@
             <div class="row g-5">
                 <div class="col-lg-6 col-md-6">
                     <h5 class="text-white mb-4">Kantor Kami</h5>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Alamat</p>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Simbatan Watan, Simbatan, Kec.
+                        Nguntoronadi, Kabupaten Magetan, Jawa Timur</p>
                     <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+6281359260006</p>
                     <p class="mb-2"><i class="fa fa-envelope me-3"></i>Email</p>
                     <div class="d-flex pt-3">
