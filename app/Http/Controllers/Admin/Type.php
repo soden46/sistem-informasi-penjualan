@@ -31,11 +31,9 @@ class Type extends Controller
         ];
         if ($request->validate($rules)) {
             TypeModel::insert($request->validate($rules));
-            notify()->success('Data telah ditambahkan', 'Berhasil');
-            return back();
+            return back()->with('message', 'Data berhasil disimpan!');;
         } else {
-            notify()->warning('Harap Periksa Kembali', 'Gagal');
-            return back();
+            return back()->with('message', 'Data gagal disimpan!');;
         }
     }
 
@@ -56,12 +54,10 @@ class Type extends Controller
                 $concat = $validatedData;
                 TypeModel::where('id_kategori', $id_kategori)->update($concat);
 
-                notify()->success('Data telah diperbarui', 'Berhasil');
-                return back();
+                return back()->with('message', 'Data berhasil disimpan!');;
             }
         } else {
-            notify()->warning('Harap Periksa Kembali', 'Gagal');
-            return back();
+            return back()->with('message', 'Data gagal disimpan!');;
         }
     }
 
@@ -69,11 +65,9 @@ class Type extends Controller
     {
         if ($id_kategori != "") {
             TypeModel::where('id_kategori', $id_kategori)->delete();
-            notify()->success('Data telah dihapus', 'Berhasil');
-            return back();
+            return back()->with('message', 'Data berhasil dihapus!');;
         } else {
-            notify()->warning('Harap Periksa Kembali', 'Gagal');
-            return back();
+            return back()->with('message', 'Data gagal dihapus!');;
         }
     }
 }

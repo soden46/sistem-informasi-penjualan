@@ -56,11 +56,9 @@ class Barang extends Controller
             }
 
             BarangModel::insert($concat);
-            notify()->success('Data telah ditambahkan', 'Berhasil');
-            return back();
+            return back()->with('message', 'Data berhasil disimpan!');
         } else {
-            notify()->warning('Harap Periksa Kembali', 'Gagal');
-            return back();
+            return back()->with('message', 'Data gagal disimpan, periksa kembali!');;
         }
     }
 
@@ -100,11 +98,9 @@ class Barang extends Controller
             }
             BarangModel::where('id_barang', $id_barang)->update($concat);
 
-            notify()->success('Data telah diperbarui', 'Berhasil');
-            return back();
+            return back()->with('message', 'Data berhasil diperbaharui!');;
         } else {
-            notify()->warning('Harap Periksa Kembali', 'Gagal');
-            return back();
+            return back()->with('message', 'Data gagal diperbaharui!');;
         }
     }
 
@@ -112,11 +108,9 @@ class Barang extends Controller
     {
         if ($id_barang != "") {
             BarangModel::where('id_barang', $id_barang)->delete();
-            notify()->success('Data telah dihapus', 'Berhasil');
-            return back();
+            return back()->with('message', 'Data berhasil dihapus!');;
         } else {
-            notify()->warning('Harap Periksa Kembali', 'Gagal');
-            return back();
+            return back()->with('message', 'Data gagal dihapus!');;
         }
     }
 }

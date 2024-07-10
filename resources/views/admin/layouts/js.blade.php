@@ -15,63 +15,15 @@
 <!-- Template Main JS File -->
 <script src="{{ url('assets/admin/js/main.js') }}"></script>
 
+{{-- Notifikasi --}}
 <script>
-    window.onload = function() {
-        // Contoh notifikasi sukses
-        $.notify({
-            // options
-            message: 'Sukses! Data telah disimpan.'
-        }, {
-            // settings
-            type: 'success',
-            delay: 3000,
-            placement: {
-                from: "top",
-                align: "right"
-            },
-            animate: {
-                enter: 'animated fadeInDown',
-                exit: 'animated fadeOutUp'
-            },
-            template: '<div data-notify="container" class="notify success" role="alert">' +
-                '<button type="button" aria-hidden="true" class="close" data-notify="dismiss">×</button>' +
-                '<span data-notify="icon"></span> ' +
-                '<span data-notify="title">{1}</span> ' +
-                '<span data-notify="message">{2}</span>' +
-                '<div class="progress" data-notify="progressbar">' +
-                '<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
-                '</div>' +
-                '<a href="{3}" target="{4}" data-notify="url"></a>' +
-                '</div>'
-        });
+    document.addEventListener('DOMContentLoaded', function() {
+        @if (session('message'))
+            toastr.success("{{ session('message') }}");
+        @endif
 
-        // Contoh notifikasi error
-        $.notify({
-            // options
-            message: 'Terjadi kesalahan, silakan coba lagi.'
-        }, {
-            // settings
-            type: 'error',
-            delay: 3000,
-            placement: {
-                from: "top",
-                align: "right"
-            },
-            animate: {
-                enter: 'animated fadeInDown',
-                exit: 'animated fadeOutUp'
-            },
-            template: '<div data-notify="container" class="notify error" role="alert">' +
-                '<button type="button" aria-hidden="true" class="close" data-notify="dismiss">×</button>' +
-                '<span data-notify="icon"></span> ' +
-                '<span data-notify="title">{1}</span> ' +
-                '<span data-notify="message">{2}</span>' +
-                '<div class="progress" data-notify="progressbar">' +
-                '<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
-                '</div>' +
-                '<a href="{3}" target="{4}" data-notify="url"></a>' +
-                '</div>'
-        });
-    };
+        @if (session('error'))
+            toastr.error("{{ session('error') }}");
+        @endif
+    });
 </script>
-@notifyJs

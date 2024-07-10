@@ -19,7 +19,6 @@
 
   <!-- Template Main CSS File -->
   <link href="{{ url('assets/admin/css/style.css') }}" rel="stylesheet">
-  @notifyCss
   <style type="text/css">
       .notify {
           z-index: 1000000;

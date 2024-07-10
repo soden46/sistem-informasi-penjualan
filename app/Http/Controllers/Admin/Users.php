@@ -56,11 +56,9 @@ class Users extends Controller
             }
 
             User::insert($concat);
-            notify()->success('Data telah ditambahkan', 'Berhasil');
-            return back();
+            return back()->with('message', 'Data berhasil disimpan!');;
         } else {
-            notify()->warning('Harap Periksa Kembali', 'Gagal');
-            return back();
+            return back()->with('message', 'Data gagal disimpan!');;
         }
     }
 
@@ -102,11 +100,9 @@ class Users extends Controller
             }
             User::where('id', $id)->update($concat);
 
-            notify()->success('Data telah diperbarui', 'Berhasil');
-            return back();
+            return back()->with('message', 'Data berhasil disimpan!');;
         } else {
-            notify()->warning('Harap Periksa Kembali', 'Gagal');
-            return back();
+            return back()->with('message', 'Data gagal disimpan!');;
         }
     }
 
@@ -114,11 +110,9 @@ class Users extends Controller
     {
         if ($id != "") {
             User::where('id', $id)->delete();
-            notify()->success('Data telah dihapus', 'Berhasil');
-            return back();
+            return back()->with('message', 'Data berhasil dihapus!');;
         } else {
-            notify()->warning('Harap Periksa Kembali', 'Gagal');
-            return back();
+            return back()->with('message', 'Data gagal dihapus!');;
         }
     }
 
@@ -132,11 +126,9 @@ class Users extends Controller
             ];
 
             User::where('id', $id)->update($data);
-            notify()->success('Reset Password Berhasil', 'Berhasil');
-            return back();
+            return back()->with('message', 'Data berhasil direset!');;
         } else {
-            notify()->warning('Terjadi Kesalahan', 'Gagal');
-            return back();
+            return back()->with('message', 'Data gagal direset!');;
         }
     }
 }

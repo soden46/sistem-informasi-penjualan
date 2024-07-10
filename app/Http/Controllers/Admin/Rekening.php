@@ -31,11 +31,9 @@ class Rekening extends Controller
         ];
         if ($request->validate($rules)) {
             RekeningModel::insert($request->validate($rules));
-            notify()->success('Data telah ditambahkan', 'Berhasil');
-            return back();
+            return back()->with('message', 'Data berhasil disimpan!');;
         } else {
-            notify()->warning('Harap Periksa Kembali', 'Gagal');
-            return back();
+            return back()->with('message', 'Data gagal disimpan!');;
         }
     }
 
@@ -53,8 +51,7 @@ class Rekening extends Controller
             $concat = $validatedData;
 
             RekeningModel::where('id_metode_pembayaran', $id_metode_pembayaran)->update($concat);
-            notify()->success('Data telah diperbarui', 'Berhasil');
-            return back();
+            return back()->with('message', 'Data berhasil disimpan!');;
         } else {
             notify()->warning('Harap Periksa Kembali', 'Gagal');
             return back();
@@ -65,11 +62,9 @@ class Rekening extends Controller
     {
         if ($id_metode_pembayaran != "") {
             RekeningModel::where('id_metode_pembayaran', $id_metode_pembayaran)->delete();
-            notify()->success('Data telah dihapus', 'Berhasil');
-            return back();
+            return back()->with('message', 'Data berhasil dihapus!');;
         } else {
-            notify()->warning('Harap Periksa Kembali', 'Gagal');
-            return back();
+            return back()->with('message', 'Data gagal dihapus!');;
         }
     }
 }

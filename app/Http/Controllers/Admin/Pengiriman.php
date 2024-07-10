@@ -44,11 +44,9 @@ class Pengiriman extends Controller
                 'status_pengiriman' =>  $request['status_pengiriman'],
             ];
             TransaksiModel::where('id_pembelian', $id_pembelian)->update($results);
-            notify()->success('Data telah diupdate', 'Berhasil');
-            return back();
+            return back()->with('message', 'Data berhasil disimpan!');;
         } else {
-            notify()->warning('Harap Periksa Kembali', 'Gagal');
-            return back();
+            return back()->with('message', 'Data berhasil disimpan!');;
         }
     }
 
@@ -56,11 +54,9 @@ class Pengiriman extends Controller
     {
         if ($id_pembelian != "") {
             TransaksiModel::where('id_pembelian', $id_pembelian)->delete();
-            notify()->success('Pengiriman di Batalkan', 'Berhasil');
-            return back();
+            return back()->with('message', 'Pengiriman Dibatalkan!');;
         } else {
-            notify()->warning('Harap Periksa Kembali', 'Gagal');
-            return back();
+            return back()->with('message', 'Gagal Melakukan Pembatalan!');;
         }
     }
 }

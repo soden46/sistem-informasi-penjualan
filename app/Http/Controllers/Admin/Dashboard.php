@@ -75,8 +75,7 @@ class Dashboard extends Controller
         }
 
         User::where('id', $post)->update($concat);
-        notify()->success('Data telah diperbarui', 'Berhasil');
-        return back();
+        return back()->with('message', 'Data berhasil disimpan!');
     }
 
     public function password_update(Request $request, $post)
@@ -92,19 +91,16 @@ class Dashboard extends Controller
         $user = Auth::user();
         $oldpass = $request['oldpass'];
         if (!Hash::check($oldpass, $user->password)) {
-            notify()->error('Kata sandi salah!', 'Gagal!');
-            return back();
+            return back()->with('message', 'Gagal, Kata Sandi Yang Anda Masukan Salah');
         } else {
             if ($request['newpass'] == $request['repass']) {
                 $data = [
                     'password' => bcrypt($request['newpass'])
                 ];
                 User::where('id', $post)->update($data);
-                notify()->success('Kata sandi telah diperbarui!', 'Berhasil');
-                return back();
+                return back()->with('message', 'Data berhasil disimpan!');;
             } else {
-                notify()->warning('Kata sandi baru tidak sama!', 'Peringatan!');
-                return back();
+                return back()->with('message', 'Gagal, Kata Sandi Yang Anda Masukan Tidak Sama');;
             }
         }
     }

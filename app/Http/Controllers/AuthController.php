@@ -46,16 +46,14 @@ class AuthController extends Controller
             $user = Auth::user();
             // dd($user);
             if ($user->role == 'admin') {
-                notify()->success('Selamat Datang di Sidoluhur Furniture', 'Berhasil');
-                return redirect('dashboard');
+
+                return redirect('dashboard')->with('message', 'Berhasil Login');;
             } elseif ($user->role == 'pelanggan') {
-                notify()->success('Selamat Datang di Sidoluhur Furniture', 'Berhasil');
-                return redirect('/');
+                return redirect('/')->with('message', 'Sukses Login');;
             }
             return redirect()->back();
         }
-        notify()->warning('Akun tidak terdaftar', 'Gagal');
-        return redirect('login');
+        return redirect('login')->with('message', 'Gagal Login, Periksa Username Atau Password Anda!');;
     }
 
     public function logout(Request $request)

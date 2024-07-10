@@ -80,11 +80,9 @@ class Transaksi extends Controller
                 'status' =>  $request['status_alat'],
             ];
             TransaksiModel::where('id_pembelian', $id_pembelian)->update($results);
-            notify()->success('Data telah ditambahkan', 'Berhasil');
-            return back();
+            return back()->with('message', 'Data berhasil disimpan!');;
         } else {
-            notify()->warning('Harap Periksa Kembali', 'Gagal');
-            return back();
+            return back()->with('message', 'Data gagal disimpan!');;
         }
     }
 
@@ -92,11 +90,9 @@ class Transaksi extends Controller
     {
         if ($id_pembelian != "") {
             TransaksiModel::where('id_pembelian', $id_pembelian)->delete();
-            notify()->success('Transaksi di Batalkan', 'Berhasil');
-            return back();
+            return back()->with('message', 'Transaksi berhasil dibatalkan!');;
         } else {
-            notify()->warning('Harap Periksa Kembali', 'Gagal');
-            return back();
+            return back()->with('message', 'Transaksi gagal dibatalkan!');;
         }
     }
 

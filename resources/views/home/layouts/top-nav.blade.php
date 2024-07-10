@@ -6,7 +6,8 @@
                    <span>Ikuti kami:</span>
                    <a class="btn btn-link text-light" href="Facebook"><i class="fab fa-facebook-f"></i></a>
                    <a class="btn btn-link text-light" href="Instagram"><i class="fab fa-instagram"></i></a>
-                   <a class="btn btn-link text-light" href="https://wa.me/"><i class="fab fa-whatsapp"></i></a>
+                   <a class="btn btn-link text-light" href="https://wa.me/+6281359260006"><i
+                           class="fab fa-whatsapp"></i></a>
                </div>
            </div>
            <div class="col-lg-6 text-end">

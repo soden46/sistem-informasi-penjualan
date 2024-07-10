@@ -65,8 +65,7 @@ class Transaksi extends Controller
             'alamat_pengiriman' => $request['lokasi_pengiriman']
         ];
         TransaksiModel::insert($data);
-        notify()->success('Pesanan Berhasil, Silahkan Melakukan Pembayaran', 'Berhasil');
-        return redirect('transaksi');
+        return redirect('transaksi')->with('message', 'Pesanan Berhasil Dibuat, Silahkan Melakukan Pembayaran!');;
     }
 
     public function update(Request $request, $id_pembelian)
@@ -85,15 +84,12 @@ class Transaksi extends Controller
                 ];
                 $foto->move($location, $name);
                 TransaksiModel::where('id_pembelian', $id_pembelian)->update($results);
-                notify()->success('Bukti Pembayaran Terkirim, Tunggu Konfirmasi Admin', 'Berhasil');
-                return back();
+                return back()->with('message', 'Bukti pembayaran berhasil dikirim, Tunggu konfirmasi Admin!');;
             } else {
-                notify()->warning('Harap Periksa Kembali', 'Gagal');
-                return back();
+                return back()->with('message', 'Gagal!');;
             }
         } else {
-            notify()->warning('Harap Periksa Kembali', 'Gagal');
-            return back();
+            return back()->with('message', 'Gagal!');;
         }
     }
 
@@ -101,11 +97,9 @@ class Transaksi extends Controller
     {
         if ($id_pembelian != "") {
             TransaksiModel::where('id_pembelian', $id_pembelian)->delete();
-            notify()->success('Transaksi di Batalkan', 'Berhasil');
-            return back();
+            return back()->with('message', 'Transaksi berhasil dibatalkan!');;
         } else {
-            notify()->warning('Harap Periksa Kembali', 'Gagal');
-            return back();
+            return back()->with('message', 'Transaksi gagal dibatalkan!');;
         }
     }
 

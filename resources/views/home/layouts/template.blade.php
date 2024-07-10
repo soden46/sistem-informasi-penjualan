@@ -6,11 +6,11 @@
     @include('home.layouts.meta')
     @include('home.layouts.css')
     @yield('css')
-    @notifyCss
+
 </head>
 
 <body>
-    <x-notify::notify />
+
     <!-- Spinner Start -->
     <div id="spinner"
         class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -30,7 +30,7 @@
             class="bi bi-arrow-up"></i></a>
 
     @include('home.layouts.js')
-    @notifyJs
+
     @yield('js')
 </body>
 

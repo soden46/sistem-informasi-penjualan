@@ -58,8 +58,7 @@ class Pelanggan extends Controller
         ];
 
         User::insert($data);
-        notify()->success('Pendaftaran Berhasil, Silahkan Login', 'Berhasil');
-        return redirect('login');
+        return redirect('login')->with('message', 'Berhasil Membuat Akun, Silahkan Login');;
     }
 
     public function update(Request $request, $id)
@@ -88,11 +87,9 @@ class Pelanggan extends Controller
             ];
             User::where('id', $id)->update($data);
 
-            notify()->success('Data telah diperbarui', 'Berhasil');
-            return redirect('profil-pengguna');
+            return redirect('profil-pengguna')->with('message', 'Data berhasil disimpan!');;
         } else {
-            notify()->warning('Harap Periksa Kembali', 'Gagal');
-            return redirect('profil-pengguna');
+            return redirect('profil-pengguna')->with('message', 'Data gagal disimpan!');;
         }
     }
 
@@ -100,11 +97,9 @@ class Pelanggan extends Controller
     {
         if ($id != "") {
             User::where('id', $id)->delete();
-            notify()->success('Data telah dihapus', 'Berhasil');
-            return back();
+            return back()->with('message', 'Data berhasil dihapus!');;
         } else {
-            notify()->warning('Harap Periksa Kembali', 'Gagal');
-            return back();
+            return back()->with('message', 'Data gagal dihapus!');;
         }
     }
 
@@ -118,11 +113,9 @@ class Pelanggan extends Controller
             ];
 
             User::where('id', $id)->update($data);
-            notify()->success('Reset Password Berhasil', 'Berhasil');
-            return back();
+            return back()->with('message', 'Berhasil Melakukan Reset Password!');;
         } else {
-            notify()->warning('Terjadi Kesalahan', 'Gagal');
-            return back();
+            return back()->with('message', 'Gagal! Periksa Kembali data yang anda masukan');;
         }
     }
 }

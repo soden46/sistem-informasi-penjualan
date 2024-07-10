@@ -9,7 +9,7 @@
 <body>
 
     <!-- ======= Header ======= -->
-    <x-notify::notify />
+
 
     @include('admin.layouts.header')
 

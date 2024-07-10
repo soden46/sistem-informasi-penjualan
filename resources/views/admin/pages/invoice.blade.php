@@ -1,7 +1,7 @@
 @extends('admin.layouts.template')
 @section('main')
     <main id="main" class="main">
-        <x-notify::notify />
+
         <div class="pagetitle">
             <h1>{{ $pagetitle }}</h1>
             <nav>
