@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\KategoriModel;
 use App\Models\TypeModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -15,7 +14,7 @@ class Type extends Controller
     public function index()
     {
         $barang = DB::table('barang')->get();
-        $kategori = KategoriModel::get();
+        $kategori = DB::table('kategori')->get();
         $results = [
             'pagetitle' => 'Data Kategori',
             'uri' => 'type mebel',
@@ -71,7 +70,7 @@ class Type extends Controller
         ];
 
         if ($request->validate($rules)) {
-            $kategori = TypeModel::find($id_kategori);
+            $kategori = TypeModel::find('id_kategori', $id_kategori);
             $foto = $request->file('foto');
 
             // Simpan foto jika ada
