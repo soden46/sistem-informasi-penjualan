@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\KategoriModel;
 use App\Models\TypeModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -14,7 +15,7 @@ class Type extends Controller
     public function index()
     {
         $barang = DB::table('barang')->get();
-        $kategori = DB::table('kategori')->get();
+        $kategori = KategoriModel::get();
         $results = [
             'pagetitle' => 'Data Kategori',
             'uri' => 'type mebel',
