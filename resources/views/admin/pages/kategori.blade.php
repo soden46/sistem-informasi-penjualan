@@ -176,10 +176,10 @@
                                             <div class="modal-body">
                                                 <div class="pt-2">
                                                     <label for="foto" class="form-label">Foto</label>
-                                                    <input type="text"
+                                                    <input type="file"
                                                         class="form-control @error('foto') is-invalid @enderror"
                                                         name="foto" id="foto" value="{{ $item->foto }}"
-                                                        placeholder="Masukan Nama Ktegori">
+                                                        placeholder="Masukan Foto Ktegori">
                                                     @error('foto')
                                                         <div class="invalid-feedback">
                                                             {{ $message }}
