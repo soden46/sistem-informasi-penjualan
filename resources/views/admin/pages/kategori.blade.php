@@ -30,6 +30,7 @@
                                                 <tr>
                                                     <th scope="col">#</th>
                                                     <th scope="col">Nama Kategori</th>
+                                                    <th scope="col">Foto</th>
                                                     <th scope="col">Dibuat</th>
                                                     <th scope="col">Diperbarui</th>
                                                     <th scope="col"></th>
@@ -40,6 +41,15 @@
                                                     <tr>
                                                         <th scope="row">{{ $no + 1 }}</th>
                                                         <td>{{ $item->nama_kategori }}</td>
+                                                        <td>
+                                                            @if ($item->foto)
+                                                                <img src="{{ asset('assets/upload/images/kategori/' . $item->foto) }}"
+                                                                    alt="{{ $item->nama_kategori }}"
+                                                                    style="width: 100px; height: 100px;">
+                                                            @else
+                                                                <span>Tidak ada foto</span>
+                                                            @endif
+                                                        </td>
                                                         <td>{{ $item->created_at }}</td>
                                                         <td>{{ $item->updated_at }}</td>
                                                         <td>
@@ -71,7 +81,8 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
                                     </div>
-                                    <form action="{{ url('create-data-type') }}" method="post">
+                                    <form action="{{ url('create-data-type') }}" method="post"
+                                        enctype="multipart/form-data">
                                         @method('post')
                                         @csrf
                                         <div class="modal-body">
@@ -82,6 +93,19 @@
                                                     name="nama_kategori" id="nama_kategori"
                                                     placeholder="Masukan Nama nama_kategori">
                                                 @error('nama_kategori')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="pt-2">
+                                                <label for="foto" class="form-label">Foto Kategori</label>
+                                                <input type="file"
+                                                    class="form-control @error('foto') is-invalid @enderror" name="foto"
+                                                    id="foto" placeholder="Masukan Foto Kategori">
+                                                @error('foto')
                                                     <div class="invalid-feedback">
                                                         {{ $message }}
                                                     </div>
@@ -130,19 +154,33 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
                                         </div>
-                                        <form action="{{ url('update-data-type/' . $item->id_kategori) }}"
-                                            method="post">
+                                        <form action="{{ url('update-data-type/' . $item->id_kategori) }}" method="post"
+                                            enctype="multipart/form-data">
                                             @method('put')
                                             @csrf
                                             <div class="modal-body">
                                                 <div class="pt-2">
-                                                    <label for="type" class="form-label">Type</label>
+                                                    <label for="type" class="form-label">Nama Kategori</label>
                                                     <input type="text"
                                                         class="form-control @error('nama_kategori') is-invalid @enderror"
                                                         name="nama_kategori" id="nama_kategori"
                                                         value="{{ $item->nama_kategori }}"
                                                         placeholder="Masukan Nama Ktegori">
                                                     @error('nama_kategori')
+                                                        <div class="invalid-feedback">
+                                                            {{ $message }}
+                                                        </div>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="pt-2">
+                                                    <label for="foto" class="form-label">Foto</label>
+                                                    <input type="text"
+                                                        class="form-control @error('foto') is-invalid @enderror"
+                                                        name="foto" id="foto" value="{{ $item->foto }}"
+                                                        placeholder="Masukan Nama Ktegori">
+                                                    @error('foto')
                                                         <div class="invalid-feedback">
                                                             {{ $message }}
                                                         </div>
