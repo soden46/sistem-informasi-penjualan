@@ -7,6 +7,7 @@ use App\Models\BarangModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Notify;
+use Spatie\Image\Image;
 
 class Barang extends Controller
 {
@@ -34,31 +35,40 @@ class Barang extends Controller
             'id_kategori' => ['string', 'required'],
             'nama_barang' => ['string', 'min:3', 'max:191', 'required'],
             'deskripsi' => ['string', 'min:3', 'max:191', 'required'],
-            'stok' => ['string',  'required'],
-            'satuan' => ['string',  'required'],
-            'harga' => ['string',  'required'],
+            'stok' => ['string', 'required'],
+            'satuan' => ['string', 'required'],
+            'harga' => ['string', 'required'],
             'foto' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg|max:2048|dimensions:min_width=100,min_height=100,max_width=1000,max_height=1000',
         ];
+
         if ($request->validate($rules)) {
-            $foto = $request['foto'];
-            $results_data = $request->validate($rules);
-            if ($foto != "") {
-                $name = now()->timestamp . "_{$foto->getClientOriginalName()}";
-                $results =  [
-                    'foto' => $name
-                ];
-                $concat = array_merge($results_data, $results);
+            $foto = $request->file('foto');
+
+            // Simpan foto jika ada
+            if ($foto) {
                 $location = 'assets/upload/images/barang/';
-                $foto->move($location, $name);
+                $name = now()->timestamp . "_" . $foto->getClientOriginalName();
+
+                // Resize dan simpan foto menggunakan Spatie Image
+                Image::load($foto)
+                    ->width(250)
+                    ->height(250)
+                    ->save($location . $name);
+
+                // Persiapkan data untuk disimpan ke database
+                $validatedData = $request->validate($rules);
+                $validatedData['foto'] = $name;
             } else {
-                $validatedData = $results_data;
-                $concat = $validatedData;
+                // Jika tidak ada foto diupload, gunakan data tanpa foto
+                $validatedData = $request->validate($rules);
             }
 
-            BarangModel::insert($concat);
+            // Simpan data ke database menggunakan model BarangModel
+            BarangModel::insert($validatedData);
+
             return back()->with('message', 'Data berhasil disimpan!');
         } else {
-            return back()->with('message', 'Data gagal disimpan, periksa kembali!');;
+            return back()->with('message', 'Data gagal disimpan, periksa kembali!');
         }
     }
 
@@ -76,31 +86,37 @@ class Barang extends Controller
 
         if ($request->validate($rules)) {
             $barang = BarangModel::find($id_barang);
-            $foto = $request['foto'];
+            $foto = $request->file('foto');
 
-            if ($request->foto != '') {
-
+            if ($foto) {
+                // Hapus foto lama jika ada
                 $location = 'assets/upload/images/barang/';
-                if ($barang->foto != ''  && $barang->foto != null) {
-                    $file_old = $location . $barang->foto;
-                    unlink($file_old);
+                if ($barang->foto && file_exists($location . $barang->foto)) {
+                    unlink($location . $barang->foto);
                 }
-                $name = now()->timestamp . "_{$foto->getClientOriginalName()}";
-                $results =  [
-                    'foto' => $name
-                ];
-                $validatedData = $request->validate($rules);
-                $concat = array_merge($validatedData, $results);
-                $foto->move($location, $name);
-            } else {
-                $validatedData = $request->validate($rules);
-                $concat = $validatedData;
-            }
-            BarangModel::where('id_barang', $id_barang)->update($concat);
 
-            return back()->with('message', 'Data berhasil diperbaharui!');;
+                // Generate nama unik untuk foto baru
+                $name = now()->timestamp . "_" . $foto->getClientOriginalName();
+
+                // Resize dan simpan foto menggunakan Spatie Image
+                Image::load($foto)
+                    ->width(250)
+                    ->height(250)
+                    ->save($location . $name);
+
+                // Update data barang dengan foto baru
+                $validatedData = $request->validate($rules);
+                $validatedData['foto'] = $name;
+                BarangModel::where('id_barang', $id_barang)->update($validatedData);
+            } else {
+                // Jika tidak ada foto baru diupload, hanya update data barang
+                $validatedData = $request->validate($rules);
+                BarangModel::where('id_barang', $id_barang)->update($validatedData);
+            }
+
+            return back()->with('message', 'Data berhasil diperbaharui!');
         } else {
-            return back()->with('message', 'Data gagal diperbaharui!');;
+            return back()->with('message', 'Data gagal diperbaharui!');
         }
     }
 
