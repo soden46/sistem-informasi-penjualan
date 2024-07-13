@@ -64,24 +64,27 @@ class Type extends Controller
 
     public function update(Request $request, $id_kategori)
     {
-        $rules =  [
+        $rules = [
             'nama_kategori' => ['string', 'min:3', 'max:191', 'required'],
             'foto' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg|max:2048|dimensions:min_width=100,min_height=100,max_width=1000,max_height=1000',
         ];
 
         if ($request->validate($rules)) {
-            $kategori = TypeModel::where('id_kategori', $id_kategori)->first();
+            $kategori = TypeModel::find($id_kategori);
             $foto = $request->file('foto');
 
-            // Simpan foto jika ada
+            // Periksa apakah ada foto yang diunggah
             if ($foto) {
+                // Jika ada foto yang diunggah, proses untuk menyimpan dan menghapus yang lama
                 $location = 'assets/upload/images/kategori/';
+
+                // Hapus foto lama jika ada
                 if ($kategori->foto && file_exists($location . $kategori->foto)) {
                     unlink($location . $kategori->foto);
                 }
-                $name = now()->timestamp . "_" . $foto->getClientOriginalName();
 
-                // Resize dan simpan foto menggunakan Spatie Image
+                // Simpan foto baru
+                $name = now()->timestamp . "_" . $foto->getClientOriginalName();
                 Image::load($foto)
                     ->width(250)
                     ->height(250)
@@ -91,10 +94,19 @@ class Type extends Controller
                 $validatedData = $request->validate($rules);
                 $validatedData['foto'] = $name;
             } else {
-                // Jika tidak ada foto baru diupload, hanya update data kategori
-                $validatedData = $request->validate($rules);
+                // Jika tidak ada foto baru diunggah, hanya update data kategori tanpa mengubah foto
+                $validatedData = $request->validate([
+                    'nama_kategori' => ['string', 'min:3', 'max:191', 'required'],
+                ]);
+
+                // Periksa apakah kategori memiliki foto sebelumnya
+                if ($kategori->foto) {
+                    // Foto tidak diubah, gunakan foto yang sudah ada
+                    $validatedData['foto'] = $kategori->foto;
+                }
             }
 
+            // Update data kategori dengan data terbaru
             TypeModel::where('id_kategori', $id_kategori)->update($validatedData);
 
             return back()->with('message', 'Data berhasil disimpan!');

@@ -111,6 +111,7 @@ class Barang extends Controller
             } else {
                 // Jika tidak ada foto baru diupload, hanya update data barang
                 $validatedData = $request->validate($rules);
+                unset($validatedData['foto']); // Hapus aturan validasi foto jika tidak ada foto baru diupload
                 BarangModel::where('id_barang', $id_barang)->update($validatedData);
             }
 
@@ -119,6 +120,7 @@ class Barang extends Controller
             return back()->with('message', 'Data gagal diperbaharui!');
         }
     }
+
 
     public function delete($id_barang)
     {
