@@ -70,7 +70,7 @@ class Type extends Controller
         ];
 
         if ($request->validate($rules)) {
-            $kategori = TypeModel::find('id_kategori', $id_kategori);
+            $kategori = TypeModel::where('id_kategori', $id_kategori)->first();
             $foto = $request->file('foto');
 
             // Simpan foto jika ada

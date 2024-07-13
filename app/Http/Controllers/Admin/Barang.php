@@ -85,7 +85,7 @@ class Barang extends Controller
         ];
 
         if ($request->validate($rules)) {
-            $barang = BarangModel::find('id_barang', $id_barang);
+            $barang = BarangModel::where('id_barang', $id_barang)->first();
             $foto = $request->file('foto');
 
             if ($foto) {
