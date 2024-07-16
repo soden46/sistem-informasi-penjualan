@@ -59,7 +59,7 @@
                             </div>
                         </div>
                         <div class="pt-4">
-                            @if ($invoice->status != '0')
+                            @if ($invoice->status_pembayaran != '0')
                                 <p class="text-center fw-bold text-success">[LUNAS]</p>
                             @else
                                 <p class="text-center fw-bold text-danger">[BELUM LUNAS]</p>

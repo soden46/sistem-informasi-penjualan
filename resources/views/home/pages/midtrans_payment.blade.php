@@ -50,7 +50,7 @@
                                 id_metode_pembayaran: '2',
                                 jumlah: result.gross_amount,
                                 id_transaksi: idTransaksi,
-                                status: 2, // Mengupdate status menjadi 2
+                                status_pembayaran: 1, // Mengupdate status menjadi 2
                                 metode_pembayaran: 'Midtrans'
                             })
                             .then(function(response) {

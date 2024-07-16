@@ -53,7 +53,7 @@
                                                     <th>Total Barang</th>
                                                     <th>Total Harga</th>
                                                     <th>Status Pembayaran</th>
-                                                    <th>Status Konfirmasi</th>
+                                                    <th>Status Pesanan</th>
                                                     <th>Status Pengirirman</th>
                                                     <th>Detail Transaksi</th>
                                                 </tr>
@@ -68,22 +68,28 @@
                                                         <td>{{ $item->nama_barang }}</td>
                                                         <td>Rp.{{ number_format($item->total_barang) }}</td>
                                                         <td>Rp.{{ number_format($item->total_harga) }}</td>
-                                                        <td>{!! $item->status == '0'
-                                                            ? '<span class="badge bg-danger">Belum Lunas</span>'
-                                                            : ($item->status != '0'
-                                                                ? '<span class="badge bg-success"> Lunas </span>'
+                                                        <td>{!! $item->bukti_pembayaran == ''
+                                                            ? ($item->status_pembayaran == '2'
+                                                                ? '<span class="badge bg-primary">Sudah Dibayar</span>'
+                                                                : ($item->status_pembayaran == '0'
+                                                                    ? '<span class="badge bg-danger">Belum Melakukan Pembayaran</span>'
+                                                                    : ($item->status_pembayaran == '1'
+                                                                        ? '<span class="badge bg-primary">Sudah Melakukan Pembayaran</span>'
+                                                                        : '<span class="badge bg-danger">Belum Melakukan Pembayaran</span>')))
+                                                            : ($item->status_pembayaran != ''
+                                                                ? '<span class="badge bg-secondary">Pembayaran di Proses</span>'
                                                                 : '') !!}</td>
-                                                        <td>{!! $item->status == '0'
+                                                        <td>{!! $item->status_pesanan == '0'
                                                             ? '<span class="badge bg-danger"> Menunggu Konfirmasi</span>'
-                                                            : ($item->status == '1'
+                                                            : ($item->status_pesanan == '1'
                                                                 ? '<span class="badge bg-success"> Pesanan Disetujui</span>'
-                                                                : '') !!}</td>
+                                                                : '<span class="badge bg-danger"> Menunggu Konfirmasi</span>') !!}</td>
                                                         <td>{{ $item->status_pengiriman }}</td>
                                                         <td>
                                                             <a href="{{ url('detail-transaksi/' . $item->id_pembelian) }}"
                                                                 class="btn btn-sm btn-success"><i class="bi bi-card-list">
                                                                     Detail</i></a>
-                                                            @if ($item->status != '1')
+                                                            @if ($item->status_pembayaran != '1')
                                                                 <a href="{{ url('delete-transaksi/' . $item->id_pembelian) }}"
                                                                     class="btn btn-sm btn-danger"><i class="bi bi-x"></i>
                                                                     Batalkan</a>

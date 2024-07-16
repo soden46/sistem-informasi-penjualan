@@ -70,14 +70,13 @@ class Transaksi extends Controller
         $id_barang = $request['id_barang'];
 
         $rules =  [
-            'status' => 'required',
+            'status_pengiriman' => 'required',
+            'status_pesanan' => 'required',
         ];
         if ($request->validate($rules)) {
             $results = [
-                'status' => $request['status']
-            ];
-            $status = [
-                'status' =>  $request['status_alat'],
+                'status_pengiriman' => $request['status_pengiriman'],
+                'status_pesanan' => $request['status_pesanan']
             ];
             TransaksiModel::where('id_pembelian', $id_pembelian)->update($results);
             return back()->with('message', 'Data berhasil disimpan!');;

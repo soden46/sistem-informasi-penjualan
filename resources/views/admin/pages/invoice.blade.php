@@ -68,7 +68,7 @@
                                                 </div>
                                             </div>
                                             <div class="pt-4">
-                                                @if ($invoice->status != '0')
+                                                @if ($invoice->status_pembayaran != '0')
                                                     <p class="text-center fw-bold text-success">[LUNAS]</p>
                                                 @else
                                                     <p class="text-center fw-bold text-danger">[BELUM LUNAS]</p>
@@ -135,12 +135,13 @@
                                                             Konfirmasi Pengiriman</button>
                                                     </form>
                                                 @endif
-                                                @if ($invoice->status == '0')
+                                                @if ($invoice->status_pembayaran == '1')
                                                     <form action="{{ url('confirm-transaksi/' . $invoice->id_pembelian) }}"
                                                         method="post" enctype="multipart/form-data">
                                                         @method('put')
                                                         @csrf
-                                                        <input type="hidden" name="status" value="1">
+                                                        <input type="hidden" name="status_pembayaran" value="2">
+                                                        <input type="hidden" name="status_pesanan" value="1">
                                                         <input type="hidden" name="status_pengiriman" value="Dikemas">
                                                         <input type="hidden" name="id_alatberat"
                                                             value="{{ $invoice->id_barang }}">

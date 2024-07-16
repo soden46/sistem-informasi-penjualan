@@ -49,26 +49,31 @@
                                                         <td>{{ $item->Ukuran }}</td>
                                                         <td>{{ $item->jumlah }}</td>
                                                         <td>Rp.{{ number_format($item->harga * $item->jumlah) }}</td>
-                                                        <td>{!! $item->status == '0'
-                                                            ? '<span class="badge bg-danger">Belum Lunas</span>'
-                                                            : ($item->status != '0'
-                                                                ? '<span class="badge bg-success"> Lunas </span>'
+                                                        <td>{!! $item->bukti_pembayaran == ''
+                                                            ? ($item->status_pembayaran == '2'
+                                                                ? '<span class="badge bg-primary">Sudah Dibayar</span>'
+                                                                : ($item->status_pembayaran == '0'
+                                                                    ? '<span class="badge bg-danger">Belum Melakukan Pembayaran</span>'
+                                                                    : ($item->status_pembayaran == '1'
+                                                                        ? '<span class="badge bg-primary">Sudah Melakukan Pembayaran</span>'
+                                                                        : '<span class="badge bg-danger">Belum Melakukan Pembayaran</span>')))
+                                                            : ($item->status_pembayaran != ''
+                                                                ? '<span class="badge bg-secondary">Pembayaran di Proses</span>'
                                                                 : '') !!}</td>
-                                                        <td>{!! $item->status == '0'
+                                                        <td>{!! $item->status_pesanan == '0'
                                                             ? '<span class="badge bg-danger"> Menunggu Konfirmasi</span>'
-                                                            : ($item->status == '1'
+                                                            : ($item->status_pesanan == '1'
                                                                 ? '<span class="badge bg-success"> Pesanan Disetujui</span>'
-                                                                : '') !!}</td>
-                                                        <td>
-                                                            <a href="{{ url('detail-transaksi/' . $item->id) }}"
-                                                                class="btn btn-sm btn-success"><i class="bi bi-card-list">
-                                                                </i>
-                                                                Detail</a>
-                                                            @if ($item->status != '1')
-                                                                <a href="{{ url('delete-transaksi/' . $item->id) }}"
-                                                                    class="btn btn-sm btn-danger"><i class="bi bi-x"></i>
-                                                                    Batalkan</a>
-                                                            @endif
+                                                                : '<span class="badge bg-danger"> Menunggu Konfirmasi</span>') !!}</td>
+                                                        <a href="{{ url('detail-transaksi/' . $item->id) }}"
+                                                            class="btn btn-sm btn-success"><i class="bi bi-card-list">
+                                                            </i>
+                                                            Detail</a>
+                                                        @if ($item->status_pesanan != '1')
+                                                            <a href="{{ url('delete-transaksi/' . $item->id) }}"
+                                                                class="btn btn-sm btn-danger"><i class="bi bi-x"></i>
+                                                                Batalkan</a>
+                                                        @endif
                                                         </td>
                                                         <td>{{ $item->stok }}</td>
                                                         <td><a href="{{ asset('upload/images/barang/' . $item->foto) }}">Lihat

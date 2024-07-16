@@ -243,7 +243,7 @@ class Transaksi extends Controller
     {
         // Validate incoming request data
         $request->validate([
-            'status' => 'nullable|integer',
+            'status_pembayaran' => 'nullable|integer',
             'metode_pembayaran' => 'nullable|string',
         ]);
 
@@ -251,7 +251,7 @@ class Transaksi extends Controller
 
         if ($pembelian) {
             // Update data pembelian
-            $pembelian->status = $request->status;
+            $pembelian->status_pembayaran = $request->status_pembayaran;
             $pembelian->metode_pembayaran = $request->metode_pembayaran;
             $pembelian->save();
 
