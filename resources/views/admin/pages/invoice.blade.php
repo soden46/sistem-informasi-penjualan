@@ -59,6 +59,13 @@
                                                         <p>: {{ $invoice->created_at }}</p>
                                                     </div>
                                                 </div>
+                                                <div class="row">
+                                                    <label for="nama_pelanggan" class="col-sm-2 col-lg-4">Status
+                                                        Pengiriman</label>
+                                                    <div class="col-sm-10 col-lg-8">
+                                                        <p>: {{ $invoice->status_pengiriman }}</p>
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="pt-4">
                                                 @if ($invoice->status != '0')
@@ -108,15 +115,33 @@
                                             <h2 class="card-title fs-5">Konfirmasi Pesanan</h2>
 
                                             <div class="d-flex gap-3">
-                                                <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                                    data-bs-target="#exampleModal"><i class="bi bi-file-earmark-text"></i>
-                                                    Lihat Bukti Pembayaran</button>
+                                                @if ($invoice->metode_pembayaran === 'Manual')
+                                                    <span class="badge bg-success">Dibayar Menggunakan Midtrans</span>
+                                                @elseif($invoice->metode_pembayaran === 'Manual Bank Transfer')
+                                                    <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                                                        data-bs-target="#exampleModal"><i
+                                                            class="bi bi-file-earmark-text"></i>
+                                                        Lihat Bukti Pembayaran</button>
+                                                @endif
+                                                @if ($invoice->status_pengiriman === 'Dikemas')
+                                                    <form
+                                                        action="{{ url('confirm-pengiriman/' . $invoice->id_pembelian) }}"
+                                                        method="post" enctype="multipart/form-data">
+                                                        @method('put')
+                                                        @csrf
+                                                        <input type="hidden" name="status_pengiriman" value="Dikirim">
+                                                        <button type="submit" id="btn-batal" name="btn-batal"
+                                                            class="btn btn-primary"><i class="bi bi-check2-circle"></i>
+                                                            Konfirmasi Pengiriman</button>
+                                                    </form>
+                                                @endif
                                                 @if ($invoice->status == '0')
                                                     <form action="{{ url('confirm-transaksi/' . $invoice->id_pembelian) }}"
                                                         method="post" enctype="multipart/form-data">
                                                         @method('put')
                                                         @csrf
                                                         <input type="hidden" name="status" value="1">
+                                                        <input type="hidden" name="status_pengiriman" value="Dikemas">
                                                         <input type="hidden" name="id_alatberat"
                                                             value="{{ $invoice->id_barang }}">
                                                         <button type="submit" id="btn-acc" name="btn-acc"
@@ -130,9 +155,9 @@
                                                         @method('put')
                                                         @csrf
                                                         <input type="hidden" name="status" value="0">
-                                                        <input type="hidden" name="status_barang" value="Tersedia">
                                                         <button type="submit" id="btn-batal" name="btn-batal"
-                                                            class="btn btn-danger"><i class="bi bi-x-circle"></i> Batalkan
+                                                            class="btn btn-danger"><i class="bi bi-x-circle"></i>
+                                                            Batalkan
                                                             Konfirmasi</button>
                                                     </form>
                                                 @endif

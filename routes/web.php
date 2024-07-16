@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\Dashboard;
+use App\Http\Controllers\Home\Transaksi;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,9 +24,12 @@ Route::get('/profil-pengguna', 'App\Http\Controllers\Home\Homepage@profile')->na
 Route::get('/detail-mebel/{id_barang}', 'App\Http\Controllers\Home\Homepage@detail')->name('detail')->middleware('cek_login:pelanggan,admin');
 Route::get('/transaksi', 'App\Http\Controllers\Home\Transaksi@index')->name('Transaksi')->middleware('cek_login:pelanggan,admin');
 Route::get('/invoice/{post}', 'App\Http\Controllers\Home\Transaksi@invoice')->name('invoice')->middleware('cek_login:pelanggan,admin');
-Route::get('/invoicec/{post}', 'App\Http\Controllers\Home\Transaksi@invoicec')->name('invoicec')->middleware('cek_login:pelanggan,admin');
+Route::get('pembayaran/{id_pembelian}', [Transaksi::class, 'pembayaran'])->name('transaksi.pembayaran');
+Route::post('midtrans/notification', [Transaksi::class, 'midtransNotification'])->name('midtrans.notification');
 Route::post('/confirm', 'App\Http\Controllers\Home\Transaksi@create')->middleware('cek_login:pelanggan,admin');
-Route::put('/payment/{post}', 'App\Http\Controllers\Home\Transaksi@update')->middleware('cek_login:pelanggan');
+Route::put('/payment/{id_pembelian}', 'App\Http\Controllers\Home\Transaksi@update')->middleware('cek_login:pelanggan');
+Route::put('/confirm-pengiriman-user/{post}', 'App\Http\Controllers\Home\Transaksi@pengiriman')->name('pengiriman.user')->middleware('cek_login:pelanggan,admin,owner');
+
 Route::get('/canceled/{post}', 'App\Http\Controllers\Home\Transaksi@delete')->middleware('cek_login:pelanggan');
 Route::get('/download-invoice/{post}', 'App\Http\Controllers\Home\Transaksi@download_invoice')->middleware('cek_login:pelanggan,owner,admin');
 Route::get('/download-invoicec/{post}', 'App\Http\Controllers\Home\Transaksi@download_invoicec')->middleware('cek_login:pelanggan,owner,admin');
@@ -40,7 +44,7 @@ Route::get('/dashboard', 'App\Http\Controllers\Admin\Dashboard@index')->name('da
 Route::get('/profile', 'App\Http\Controllers\Admin\Dashboard@profile')->name('profile')->middleware('cek_login:admin,owner');
 Route::put('/update-profile/{post}', 'App\Http\Controllers\Admin\Dashboard@profile_update')->middleware('cek_login:admin,owner');
 Route::put('/update-password/{post}', 'App\Http\Controllers\Admin\Dashboard@password_update')->middleware('cek_login:admin,owner,pelanggan');
-
+Route::post('/save-payment', 'App\Http\Controllers\Home\Transaksi@savePayment')->middleware('cek_login:pelanggan');
 Route::get('/data-profil-perusahaan', 'App\Http\Controllers\Admin\ProfilPerusahaan@index')->name('profil-perusahaan')->middleware('cek_login:admin,owner');
 Route::put('/update-profile-perusahaan/{post}', 'App\Http\Controllers\Admin\ProfilPerusahaan@update')->name('update')->middleware('cek_login:admin,owner');
 
@@ -80,6 +84,7 @@ Route::get('laporan/transaksi', 'App\Http\Controllers\Admin\Transaksi@index')->n
 Route::get('/detail-transaksi/{post}', 'App\Http\Controllers\Admin\Transaksi@invoice')->name('admin')->middleware('cek_login:admin,owner');
 Route::get('/detail-transaksic/{post}', 'App\Http\Controllers\Admin\Transaksi@invoicec')->name('admin')->middleware('cek_login:admin,owner');
 Route::put('/confirm-transaksi/{post}', 'App\Http\Controllers\Admin\Transaksi@update')->name('update')->middleware('cek_login:admin,owner');
+Route::put('/confirm-pengiriman/{post}', 'App\Http\Controllers\Admin\Transaksi@pengiriman')->name('pengiriman')->middleware('cek_login:admin,owner');
 Route::get('/delete-transaksi/{post}', 'App\Http\Controllers\Admin\Transaksi@delete')->name('delete')->middleware('cek_login:admin,owner');
 Route::get('/download-invoice-/{post}', 'App\Http\Controllers\Admin\Transaksi@download_invoice')->middleware('cek_login:owner,admin');
 

@@ -86,6 +86,24 @@ class Transaksi extends Controller
         }
     }
 
+    public function pengiriman(Request $request, $id_pembelian)
+    {
+        $id_barang = $request['id_barang'];
+
+        $rules =  [
+            'status_pengiriman' => 'required',
+        ];
+        if ($request->validate($rules)) {
+            $results = [
+                'status_pengiriman' => $request['status_pengiriman']
+            ];
+            TransaksiModel::where('id_pembelian', $id_pembelian)->update($results);
+            return back()->with('message', 'Data berhasil disimpan!');;
+        } else {
+            return back()->with('message', 'Data gagal disimpan!');;
+        }
+    }
+
     public function delete($id_pembelian)
     {
         if ($id_pembelian != "") {

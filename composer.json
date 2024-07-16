@@ -13,6 +13,7 @@
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "mckenziearts/laravel-notify": "^2.5",
+        "midtrans/midtrans-php": "^2.5",
         "spatie/image": "^1.10"
     },
     "require-dev": {

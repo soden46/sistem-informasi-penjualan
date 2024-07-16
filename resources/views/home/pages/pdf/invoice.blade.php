@@ -85,6 +85,11 @@
                         <td class="text-center">:</td>
                         <td>{{ $invoice->created_at }}</td>
                     </tr>
+                    <tr>
+                        <td>Status Pengiriman</td>
+                        <td class="text-center">:</td>
+                        <td>{{ $invoice->status_pengiriman }}</td>
+                    </tr>
                 </table>
             </div>
             <div class="pt-4">
