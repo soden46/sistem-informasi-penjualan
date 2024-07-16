@@ -205,6 +205,7 @@ class Transaksi extends Controller
                 // Sukses: Update status transaksi di sini
                 $transaksi->update([
                     'metode_pembayaran' => "Midtrans",
+                    'status' => 2,
                 ]);
             } else if ($transaction == 'settlement') {
                 // Sukses: Update status transaksi di sini
@@ -242,26 +243,21 @@ class Transaksi extends Controller
     {
         // Validate incoming request data
         $request->validate([
-            'id_pembelian' => 'required',
-            'id_metode_pembayaran' => 'required',
-            'jumlah' => 'required',
-            'id_transaksi' => 'required',
-            'status' => 'required',
+            'status' => 'nullable|integer',
+            'metode_pembayaran' => 'nullable|string',
         ]);
 
-        DB::table('pembelian')->where('id_pembelian', $request->id_pembelian)->update(['status' => 1]);
+        $pembelian = TransaksiModel::find($request->id_pembelian);
 
-        // Save payment details to the database
-        $payment = new Pembayaran();
-        $payment->id_pembeli = auth()->id(); // Assuming you have authentication
-        $payment->id_pembelian = $request->id_pembelian;
-        $payment->id_metode_pembayaran = 2;
-        $payment->jumlah = $request->jumlah;
-        $payment->id_transaksi = $request->id_transaksi;
-        $payment->status = 1;
-        $payment->tanggal_pembayaran = now(); // Current timestamp
+        if ($pembelian) {
+            // Update data pembelian
+            $pembelian->status = $request->status;
+            $pembelian->metode_pembayaran = $request->metode_pembayaran;
+            $pembelian->save();
 
-        $payment->save();
-        return redirect()->back()->with(['success' => 'Data pembayaran berhasil disimpan']);
+            return response()->json(['success' => true]);
+        } else {
+            return response()->json(['success' => false, 'message' => 'Pembelian tidak ditemukan.'], 404);
+        }
     }
 }

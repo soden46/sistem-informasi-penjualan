@@ -46,14 +46,15 @@
                         alert('Pembayaran berhasil. Terima kasih atas pembayarannya!');
                         // Send AJAX request to save payment details
                         axios.post('/save-payment', {
-                                id_pembelian: idPembelian, // Ambil dari hidden input
+                                id_pembelian: idPembelian,
                                 id_metode_pembayaran: '2',
                                 jumlah: result.gross_amount,
-                                id_transaksi: idTransaksi, // Ambil dari hidden input
-                                status: '1' // Assuming payment is successful
+                                id_transaksi: idTransaksi,
+                                status: 2, // Mengupdate status menjadi 2
+                                metode_pembayaran: 'Midtrans'
                             })
                             .then(function(response) {
-                                window.location.href = "{{ url('payment/success') }}";
+                                window.location.href = "{{ url('transaksi') }}";
                             })
                             .catch(function(error) {
                                 alert('Gagal menyimpan data pembayaran. Silakan coba lagi.');

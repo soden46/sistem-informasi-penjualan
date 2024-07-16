@@ -15,8 +15,8 @@
                                     <th>Kategori</th>
                                     <th>Nama Barang</th>
                                     <th>Total</th>
-                                    <th>Pembayaran</th>
                                     <th>Status Pembayaran</th>
+                                    <th>Status Pesanan</th>
                                     <th>Status Pengiriman</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -29,15 +29,21 @@
                                         <td>{{ $item->nama_barang }}</td>
                                         <td>Rp.{{ number_format($item->total_harga) }}</td>
                                         <td>{!! $item->bukti_pembayaran == ''
-                                            ? '<span class="badge bg-danger">Belum Melakukan Pembayaran</span>'
+                                            ? ($item->status == '2'
+                                                ? '<span class="badge bg-primary">Sudah Dibayar</span>'
+                                                : ($item->status == '0'
+                                                    ? '<span class="badge bg-danger">Belum Melakukan Pembayaran</span>'
+                                                    : ($item->status == '1'
+                                                        ? '<span class="badge bg-primary">Sudah Melakukan Pembayaran</span>'
+                                                        : '<span class="badge bg-danger">Belum Melakukan Pembayaran</span>')))
                                             : ($item->status != ''
-                                                ? '<span class="badge bg-secondary"> Pembayaran di Proses</span>'
+                                                ? '<span class="badge bg-secondary">Pembayaran di Proses</span>'
                                                 : '') !!}</td>
                                         <td>{!! $item->status == '0'
                                             ? '<span class="badge bg-danger"> Menunggu Konfirmasi</span>'
                                             : ($item->status == '1'
                                                 ? '<span class="badge bg-success"> Pesanan Disetujui</span>'
-                                                : '') !!}</td>
+                                                : '<span class="badge bg-danger"> Menunggu Konfirmasi</span>') !!}</td>
                                         <td>{{ $item->status_pengiriman }}</td>
                                         <td>
                                             <a href="{{ url('invoice', $item->id_pembelian) }}" class="btn btn-success"><i
