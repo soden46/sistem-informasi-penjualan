@@ -24,7 +24,7 @@ Route::get('/profil-pengguna', 'App\Http\Controllers\Home\Homepage@profile')->na
 Route::get('/detail-mebel/{id_barang}', 'App\Http\Controllers\Home\Homepage@detail')->name('detail')->middleware('cek_login:pelanggan,admin');
 Route::get('/transaksi', 'App\Http\Controllers\Home\Transaksi@index')->name('Transaksi')->middleware('cek_login:pelanggan,admin');
 Route::get('/invoice/{post}', 'App\Http\Controllers\Home\Transaksi@invoice')->name('invoice')->middleware('cek_login:pelanggan,admin');
-Route::get('pembayaran/{id_pembelian}', [Transaksi::class, 'pembayaran'])->name('transaksi.pembayaran');
+Route::get('pembayaran/{id_pembelian}', [Transaksi::class, 'bayar'])->name('pembayaran');
 Route::post('midtrans/notification', [Transaksi::class, 'midtransNotification'])->name('midtrans.notification');
 Route::post('/confirm', 'App\Http\Controllers\Home\Transaksi@create')->middleware('cek_login:pelanggan,admin');
 Route::put('/payment/{id_pembelian}', 'App\Http\Controllers\Home\Transaksi@update')->middleware('cek_login:pelanggan');

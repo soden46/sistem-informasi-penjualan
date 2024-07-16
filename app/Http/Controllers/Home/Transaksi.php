@@ -152,7 +152,7 @@ class Transaksi extends Controller
         return $pdf->download($name);
     }
 
-    public function pembayaran($id_pembelian)
+    public function bayar($id_pembelian)
     {
         // Ambil data transaksi berdasarkan ID pembelian
         $invoice = TransaksiModel::where('id_pembelian', $id_pembelian)->first();
