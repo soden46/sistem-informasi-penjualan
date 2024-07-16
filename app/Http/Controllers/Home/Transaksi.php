@@ -90,11 +90,11 @@ class Transaksi extends Controller
             'id_pelanggan' => login()->id_user,
             'id_barang' => $request['id_barang'],
             'total_barang' => $request['jumlah'],
-            'total_harga' => $request['total'],
+            'total_harga' => str_replace('.', '', $request['total']),
             'alamat_pengiriman' => $request['lokasi_pengiriman']
         ];
         TransaksiModel::insert($data);
-        return redirect('transaksi')->with('message', 'Pesanan Berhasil Dibuat, Silahkan Melakukan Pembayaran!');;
+        return redirect('transaksi')->with('message', 'Pesanan Berhasil Dibuat, Silahkan Melakukan Pembayaran!');
     }
 
     public function update(Request $request, $id_pembelian)
