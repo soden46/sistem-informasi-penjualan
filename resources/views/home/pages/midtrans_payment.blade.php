@@ -68,7 +68,7 @@
                                 id_metode_pembayaran: '2',
                                 jumlah: result.gross_amount,
                                 id_transaksi: idTransaksi, // Ambil dari hidden input
-                                status: 'dibayar' // Assuming payment is successful
+                                status: '1' // Assuming payment is successful
                             })
                             .then(function(response) {
                                 window.location.href = "{{ url('payment/success') }}";
