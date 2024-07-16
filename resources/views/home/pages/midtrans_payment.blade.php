@@ -2,25 +2,7 @@
 @section('css')
 @endsection
 @section('main')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Pembayaran dengan Midtrans</div>
-                    <div class="card-body">
-                        <input type="hidden" name="snapToken" id="snapToken" value="{{ $snapToken }}">
-                        <button type="button" id="midtransPayButton" class="btn btn-primary"
-                            data-token="{{ $snapToken }}">Bayar dengan Midtrans</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    @extends('home.layouts.template')
-@section('css')
-@endsection
-@section('main')
-    <div class="container">
+    <div class="container mt-2">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
