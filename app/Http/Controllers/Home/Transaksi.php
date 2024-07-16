@@ -249,6 +249,8 @@ class Transaksi extends Controller
             'status' => 'required',
         ]);
 
+        DB::table('pembelian')->where('id_pembelian', $request->id_pembelian)->update(['status' => 1]);
+
         // Save payment details to the database
         $payment = new Pembayaran();
         $payment->id_pembeli = auth()->id(); // Assuming you have authentication
@@ -256,11 +258,10 @@ class Transaksi extends Controller
         $payment->id_metode_pembayaran = 2;
         $payment->jumlah = $request->jumlah;
         $payment->id_transaksi = $request->id_transaksi;
-        $payment->status = 'dibayar';
+        $payment->status = 1;
         $payment->tanggal_pembayaran = now(); // Current timestamp
 
         $payment->save();
-
         return redirect()->back()->with(['success' => 'Data pembayaran berhasil disimpan']);
     }
 }
