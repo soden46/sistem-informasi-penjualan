@@ -142,7 +142,7 @@
                                                             Konfirmasi Pengiriman</button>
                                                     </form>
                                                 @endif
-                                                @if ($invoice->status_pembayaran == '1')
+                                                @if ($invoice->status_pesanan == '1')
                                                     <form action="{{ url('confirm-transaksi/' . $invoice->id_pembelian) }}"
                                                         method="post" enctype="multipart/form-data">
                                                         @method('put')
@@ -157,7 +157,7 @@
                                                             Konfirmasi
                                                             Pesanan</button>
                                                     </form>
-                                                @elseif($invoice->status_pembayaran == '2')
+                                                @else
                                                     <form action="{{ url('confirm-transaksi/' . $invoice->id_pembelian) }}"
                                                         method="post" enctype="multipart/form-data">
                                                         @method('put')
