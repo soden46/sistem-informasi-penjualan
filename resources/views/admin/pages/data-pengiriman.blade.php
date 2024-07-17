@@ -48,7 +48,7 @@
                                                         <th scope="row">{{ $no + 1 }}</th>
                                                         <td>{{ $item->nama_pelanggan }}</td>
                                                         <td>{{ $item->nama_barang }}</td>
-                                                        <td>{{ $item->alamat }}</td>
+                                                        <td>{{ $item->alamat_pengiriman }}</td>
                                                         <td>{{ $item->email }}</td>
                                                         <td>{{ $item->no_telepon }}</td>
                                                         <td>{{ $item->status_pengiriman }}</td>

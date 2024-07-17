@@ -66,6 +66,13 @@
                                                         <p>: {{ $invoice->status_pengiriman }}</p>
                                                     </div>
                                                 </div>
+                                                <div class="row">
+                                                    <label for="nama_pelanggan" class="col-sm-2 col-lg-4">Dibayar
+                                                        Melalui</label>
+                                                    <div class="col-sm-10 col-lg-8">
+                                                        <p>: {{ $invoice->metode_pembayaran }}</p>
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="pt-4">
                                                 @if ($invoice->status_pembayaran != '0')
@@ -135,7 +142,7 @@
                                                             Konfirmasi Pengiriman</button>
                                                     </form>
                                                 @endif
-                                                @if ($invoice->status_pembayaran == '1')
+                                                @if ($invoice->status_pembayaran == '0')
                                                     <form action="{{ url('confirm-transaksi/' . $invoice->id_pembelian) }}"
                                                         method="post" enctype="multipart/form-data">
                                                         @method('put')
