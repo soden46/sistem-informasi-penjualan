@@ -162,7 +162,7 @@
                                                         method="post" enctype="multipart/form-data">
                                                         @method('put')
                                                         @csrf
-                                                        <input type="hidden" name="status" value="0">
+                                                        <input type="hidden" name="status_pesanan" value="0">
                                                         <button type="submit" id="btn-batal" name="btn-batal"
                                                             class="btn btn-danger"><i class="bi bi-x-circle"></i>
                                                             Batalkan
